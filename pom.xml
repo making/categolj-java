@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>am.ik.categolj</groupId>
     <artifactId>categolj-java</artifactId>
-    <name>shopping</name>
+    <name>categolj-java</name>
     <packaging>war</packaging>
     <version>1.0.0-BUILD-SNAPSHOT</version>
     <properties>
