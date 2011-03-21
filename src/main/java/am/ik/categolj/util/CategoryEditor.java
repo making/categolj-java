@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 import am.ik.categolj.common.Const;
-import am.ik.cateoglj.entity.Category;
+import am.ik.categolj.entity.Category;
 
 public class CategoryEditor extends PropertyEditorSupport {
     @Override

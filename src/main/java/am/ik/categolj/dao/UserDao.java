@@ -1,6 +1,6 @@
 package am.ik.categolj.dao;
 
-import am.ik.cateoglj.entity.User;
+import am.ik.categolj.entity.User;
 
 public interface UserDao {
     User authUser(User user);

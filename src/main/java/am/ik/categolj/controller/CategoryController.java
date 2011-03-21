@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.HandlerMapping;
 
 import am.ik.categolj.common.Const;
+import am.ik.categolj.entity.Category;
+import am.ik.categolj.entity.Entry;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.service.PagerService;
 import am.ik.categolj.util.CategoryUtils;
 import am.ik.categolj.util.CommonUtils;
-import am.ik.cateoglj.entity.Category;
-import am.ik.cateoglj.entity.Entry;
 
 @Controller
 public class CategoryController {

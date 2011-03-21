@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import am.ik.categolj.entity.Entry;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.util.BindingResultUtils;
 import am.ik.categolj.util.CategoryEditor;
-import am.ik.cateoglj.entity.Entry;
 
 @Controller
 @RequestMapping("/entry/*")

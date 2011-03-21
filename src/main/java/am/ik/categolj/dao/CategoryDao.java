@@ -2,7 +2,7 @@ package am.ik.categolj.dao;
 
 import java.util.List;
 
-import am.ik.cateoglj.entity.Category;
+import am.ik.categolj.entity.Category;
 
 public interface CategoryDao {
     List<Category> getAllCategoryList();

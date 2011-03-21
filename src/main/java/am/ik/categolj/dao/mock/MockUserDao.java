@@ -1,7 +1,7 @@
 package am.ik.categolj.dao.mock;
 
 import am.ik.categolj.dao.UserDao;
-import am.ik.cateoglj.entity.User;
+import am.ik.categolj.entity.User;
 
 public class MockUserDao implements UserDao {
 

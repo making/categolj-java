@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import am.ik.categolj.common.Const;
 import am.ik.categolj.dao.CategoryDao;
 import am.ik.categolj.dao.EntryDao;
+import am.ik.categolj.entity.Category;
+import am.ik.categolj.entity.Entry;
 import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.util.CategoryUtils;
-import am.ik.cateoglj.entity.Category;
-import am.ik.cateoglj.entity.Entry;
 
 @Service
 public class EntryServiceImpl implements EntryService {

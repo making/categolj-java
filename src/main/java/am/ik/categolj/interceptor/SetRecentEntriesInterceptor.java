@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import am.ik.categolj.common.Const;
+import am.ik.categolj.entity.Entry;
 import am.ik.categolj.service.EntryService;
-import am.ik.cateoglj.entity.Entry;
 
 public class SetRecentEntriesInterceptor extends HandlerInterceptorAdapter {
     @Inject

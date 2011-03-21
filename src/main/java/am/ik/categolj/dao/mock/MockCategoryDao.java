@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import am.ik.categolj.dao.CategoryDao;
-import am.ik.cateoglj.entity.Category;
+import am.ik.categolj.entity.Category;
 
 @Repository
 public class MockCategoryDao implements CategoryDao {

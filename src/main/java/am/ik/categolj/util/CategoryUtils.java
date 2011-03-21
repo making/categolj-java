@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 import am.ik.categolj.common.Const;
-import am.ik.cateoglj.entity.Category;
+import am.ik.categolj.entity.Category;
 
 public class CategoryUtils {
     public static List<Category> populateCategoriesFromPath(String path) {

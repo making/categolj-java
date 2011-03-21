@@ -1,4 +1,4 @@
-package am.ik.cateoglj.entity;
+package am.ik.categolj.entity;
 
 public class Category {
     public Long id;

@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import am.ik.categolj.entity.User;
 import am.ik.categolj.service.AuthenticationService;
-import am.ik.cateoglj.entity.User;
 
 public class DefaultAuthenticationService implements AuthenticationService {
     protected static final Logger logger = LoggerFactory

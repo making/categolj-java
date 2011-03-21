@@ -1,4 +1,4 @@
-package am.ik.cateoglj.entity;
+package am.ik.categolj.entity;
 
 import java.io.Serializable;
 

@@ -11,10 +11,10 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import am.ik.categolj.dao.EntryDao;
+import am.ik.categolj.entity.Category;
+import am.ik.categolj.entity.Entry;
 import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.categolj.util.CommonUtils;
-import am.ik.cateoglj.entity.Category;
-import am.ik.cateoglj.entity.Entry;
 
 @Repository
 public class MockEntryDao implements EntryDao {
