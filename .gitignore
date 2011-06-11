@@ -4,3 +4,4 @@ target
 .classpath
 .project
 .springBeans
+src/main/webapp/upload/*

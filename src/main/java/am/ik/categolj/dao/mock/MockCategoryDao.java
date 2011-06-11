@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import am.ik.categolj.dao.CategoryDao;
 import am.ik.categolj.entity.Category;
 
-@Repository
 public class MockCategoryDao implements CategoryDao {
 
     @Override

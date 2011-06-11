@@ -16,7 +16,6 @@ import am.ik.categolj.entity.Entry;
 import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.categolj.util.CommonUtils;
 
-@Repository
 public class MockEntryDao implements EntryDao {
     protected Map<Long, Entry> entryMap = new LinkedHashMap<Long, Entry>();
     {
@@ -52,7 +51,7 @@ public class MockEntryDao implements EntryDao {
         Collections.reverse(list);
         List<Entry> result = new ArrayList<Entry>();
         int offset = CommonUtils.calcOffset(page);
-        int len = Math.min(count, list.size() - offset);
+        int len = Math.min(count, list.size()) - offset;
         for (int i = 0; i < len; i++) {
             Entry e = list.get(i + offset);
             result.add(e);

@@ -58,7 +58,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-        <jsp-config>
+    <jsp-config>
         <taglib>
             <taglib-uri>/categolj</taglib-uri>
             <taglib-location>/WEB-INF/tlds/categolj.tld</taglib-location>
