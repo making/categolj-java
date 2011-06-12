@@ -32,8 +32,8 @@ public class MongoEntryDao implements EntryDao {
     @Override
     public Entry getEntryById(Long id) throws NoSuchEntryException {
         Entry entry = ds.find(Entry.class, "id", id)
-                .retrievedFields(false, "category-index")
-                .retrievedFields(false, "distinct-category").get();
+                .retrievedFields(false, "category-index", "distinct-category")
+                .get();
         return entry;
     }
 
@@ -41,17 +41,15 @@ public class MongoEntryDao implements EntryDao {
     public List<Entry> getEntriesByPage(int page, int count) {
         int offset = CommonUtils.calcOffset(page);
         List<Entry> entries = ds.find(Entry.class).order("-id")
-                .retrievedFields(false, "category-index")
-                .retrievedFields(false, "distinct-category").offset(offset)
-                .limit(count).asList();
+                .retrievedFields(false, "category-index", "distinct-category")
+                .offset(offset).limit(count).asList();
         return entries;
     }
 
     @Override
     public List<Entry> getEntriesOnlyIdTitle(int count) {
         List<Entry> entries = ds.find(Entry.class).order("-id")
-                .retrievedFields(true, "id").retrievedFields(true, "title")
-                .limit(count).asList();
+                .retrievedFields(true, "id", "title").limit(count).asList();
         LOGGER.debug("entries={}", entries);
         return entries;
     }
@@ -69,8 +67,7 @@ public class MongoEntryDao implements EntryDao {
         }
         Query<Entry> q = ds.createQuery(Entry.class)
                 .filter("category-index all", cl)
-                .retrievedFields(false, "category-index")
-                .retrievedFields(false, "distinct-category");
+                .retrievedFields(false, "category-index", "distinct-category");
         LOGGER.debug("query={}", q);
         return q;
     }
