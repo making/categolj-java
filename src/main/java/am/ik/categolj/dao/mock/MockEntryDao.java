@@ -8,8 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
-
 import am.ik.categolj.dao.EntryDao;
 import am.ik.categolj.entity.Category;
 import am.ik.categolj.entity.Entry;
@@ -34,7 +32,7 @@ public class MockEntryDao implements EntryDao {
                         Arrays.asList(c1, c2, c3)) };
 
         for (Entry e : entries) {
-            entryMap.put(e.id, e);
+            entryMap.put(e.getId(), e);
         }
     }
 
@@ -109,18 +107,18 @@ public class MockEntryDao implements EntryDao {
     public void insertEntry(Entry entry) {
         Entry last = new ArrayList<Entry>(entryMap.values()).get(entryMap
                 .size() - 1);
-        entry.setId(last.id + 1);
-        entryMap.put(entry.id, entry);
+        entry.setId(last.getId() + 1);
+        entryMap.put(entry.getId(), entry);
     }
 
     @Override
     public void updateEntry(Entry entry) {
-        entryMap.put(entry.id, entry);
+        entryMap.put(entry.getId(), entry);
     }
 
     @Override
     public void deleteEntry(Entry entry) {
-        entryMap.remove(entry.id);
+        entryMap.remove(entry.getId());
     }
 
 }

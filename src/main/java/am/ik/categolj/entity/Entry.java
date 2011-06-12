@@ -1,5 +1,6 @@
 package am.ik.categolj.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,20 +9,32 @@ import javax.validation.constraints.Size;
 
 import am.ik.categolj.util.CategoryUtils;
 
-public class Entry {
-    public Long id;
-    @Size(min = 1)
-    public String title;
-    @Size(min = 1)
-    public String content;
-    @NotNull
-    public Date createdAt;
-    @NotNull
-    public Date updatedAt;
-    @Size(min = 1)
-    public List<Category> category;
+import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Property;
+import com.google.code.morphia.annotations.Transient;
 
-    public boolean updateDate = false;
+@Entity(value = "entry", noClassnameStored = true)
+public class Entry {
+    private Long id;
+    @Size(min = 1)
+    private String title;
+    @Size(min = 1)
+    private String content;
+    @NotNull
+    @Property("created-at")
+    private Date createdAt;
+    @NotNull
+    @Property("updated-at")
+    private Date updatedAt;
+    @Transient
+    private boolean updateDate = false;
+    @Property("category")
+    @Size(min = 1)
+    private List<String> categoriesPath;
+    @Property("distinct-category")
+    private String distinctCategory;
+    @Property("category-index")
+    private List<String> categoryIndex;
 
     public Entry() {
     }
@@ -33,7 +46,7 @@ public class Entry {
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.category = category;
+        setCategory(category);
     }
 
     public Long getId() {
@@ -77,15 +90,19 @@ public class Entry {
     }
 
     public List<Category> getCategory() {
-        return category;
+        return CategoryUtils.populateCategoriesFromPath(categoriesPath);
     }
 
     public void setCategory(List<Category> category) {
-        this.category = category;
+        List<String> paths = new ArrayList<String>();
+        for (Category c : category) {
+            paths.add(c.getName());
+        }
+        this.categoriesPath = paths;
     }
 
     public String getCategoryLink() {
-        return CategoryUtils.categoryLinkString(category);
+        return CategoryUtils.categoryLinkString(categoriesPath);
     }
 
     public boolean isUpdateDate() {
@@ -98,8 +115,33 @@ public class Entry {
 
     @Override
     public String toString() {
-        return "Entry [id=" + id + ", title=" + title + ", content=" + content
-                + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
-                + ", category=" + category + "]";
+        return "Entry [id=" + id + ", title=" + title + ", content="
+                + (content == null ? 0 : content.length()) + ", createdAt="
+                + createdAt + ", updatedAt=" + updatedAt + ", category="
+                + categoriesPath + "]";
+    }
+
+    public void setCategoriesPath(List<String> categoriesPath) {
+        this.categoriesPath = categoriesPath;
+    }
+
+    public List<String> getCategoriesPath() {
+        return categoriesPath;
+    }
+
+    public String getDistinctCategory() {
+        return distinctCategory;
+    }
+
+    public void setDistinctCategory(String distinctCategory) {
+        this.distinctCategory = distinctCategory;
+    }
+
+    public List<String> getCategoryIndex() {
+        return categoryIndex;
+    }
+
+    public void setCategoryIndex(List<String> categoryIndex) {
+        this.categoryIndex = categoryIndex;
     }
 }

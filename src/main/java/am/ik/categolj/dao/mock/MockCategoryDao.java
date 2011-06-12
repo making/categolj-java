@@ -3,8 +3,6 @@ package am.ik.categolj.dao.mock;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import am.ik.categolj.dao.CategoryDao;
 import am.ik.categolj.entity.Category;
 

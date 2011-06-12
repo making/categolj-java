@@ -93,7 +93,7 @@ public class EntryController {
             entry.setUpdatedAt(new Date());
         }
         entryService.updateEntry(entry);
-        return "redirect:/entry/edit/id/" + entry.id;
+        return "redirect:/entry/edit/id/" + entry.getId();
     }
 
     @RequestMapping(value = "/delete/id/{id}/**", method = RequestMethod.GET)

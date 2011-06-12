@@ -9,7 +9,7 @@
 <div class='contents'>
 <dl class='main-contents'>
     <dt class='article-title'><a
-        href='<c:url value="entry/view/id/${param.id}/" />'>${param.title}</a></dt>
+        href='<c:url value="/entry/view/id/${param.id}/" />'>${param.title}</a></dt>
     <dd>
     <div class='article-content'>${categolj:markdown(param.content)}</div>
     <div class='edit-menu'>

@@ -46,6 +46,10 @@
         <level value="INFO" />
     </logger>
 
+    <logger name="com.google.code.morphia">
+        <level value="DEBUG" />
+    </logger>
+
     <root>
         <level value="INFO" />
         <appender-ref ref="STDOUT" />

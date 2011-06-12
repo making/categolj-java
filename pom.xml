@@ -8,9 +8,12 @@
     <packaging>war</packaging>
     <version>1.0.0-BUILD-SNAPSHOT</version>
     <properties>
-        <java-version>1.6</java-version>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <jdk.version>1.6</jdk.version>
         <org.springframework-version>3.0.5.RELEASE</org.springframework-version>
         <org.springframework.roo-version>1.0.2.RELEASE</org.springframework.roo-version>
+        <spring.data.mongo.version>1.0.0.M3</spring.data.mongo.version>
         <org.aspectj-version>1.6.9</org.aspectj-version>
         <org.slf4j-version>1.6.1</org.slf4j-version>
     </properties>
@@ -74,6 +77,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
             <version>${org.springframework-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>${spring.data.mongo.version}</version>
         </dependency>
 
         <!-- AspectJ -->
@@ -187,6 +196,25 @@
             <version>1.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>2.5.3</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.morphia</groupId>
+            <artifactId>morphia</artifactId>
+            <version>0.99</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.morphia</groupId>
+            <artifactId>morphia-logging-slf4j</artifactId>
+            <version>0.99</version>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -242,6 +270,11 @@
             <id>scala-tools</id>
             <url>http://scala-tools.org/repo-releases</url>
         </repository>
+
+        <repository>
+            <id>morphia</id>
+            <url>http://morphia.googlecode.com/svn/mavenrepo</url>
+        </repository>
     </repositories>
     <build>
         <plugins>
@@ -249,8 +282,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>${java-version}</source>
-                    <target>${java-version}</target>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -291,5 +324,58 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <configuration>
+                        <wtpversion>1.5</wtpversion>
+                        <useProjectReferences>false</useProjectReferences>
+                        <wtpContextName>categolj</wtpContextName>
+                        <downloadSources>true</downloadSources>
+                        <!-- <classpathContainers> -->
+                        <!-- <buildcommand>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre${jdk.version}</buildcommand> -->
+                        <!-- </classpathContainers> -->
+                        <additionalConfig>
+                            <file>
+                                <name>.settings/org.eclipse.jdt.ui.prefs</name>
+                                <content>
+        <![CDATA[
+editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=true
+sp_cleanup.format_source_code=true
+sp_cleanup.organize_imports=true
+        ]]>
+                                </content>
+                            </file>
+                            <file>
+                                <name>.settings/org.eclipse.jdt.core.prefs</name>
+                                <content>
+        <![CDATA[
+encoding//src/test/java=${encoding}
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=${jdk.version}
+eclipse.preferences.version=1
+encoding//src/test/resources=${encoding}
+org.eclipse.jdt.core.compiler.source=${jdk.version}
+encoding//src/main/java=${encoding}
+encoding//src/main/resources=UTF-8
+org.eclipse.jdt.core.compiler.compliance=${jdk.version}
+        ]]>
+                                </content>
+                            </file>
+                            <file>
+                                <name>.settings/org.eclipse.core.resources.prefs</name>
+                                <content>
+        <![CDATA[
+eclipse.preferences.version=1
+encoding/<project>=${encoding}
+        ]]>
+                                </content>
+                            </file>
+                        </additionalConfig>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
