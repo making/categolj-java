@@ -9,7 +9,8 @@
     <!-- Entry -->
     <!-- <bean class="am.ik.categolj.service.entry.EntryServiceImpl" /> -->
     <!-- Dao -->
-    <import resource="dao/mongodb.xml"/>
+    <!-- <import resource="dao/mongodb.xml"/> -->
+    <import resource="dao/mock.xml"/>
 
     <!-- Uploader -->
     <mvc:resources mapping="/upload/*/*" location="/upload/" />
