@@ -1,5 +1,8 @@
 package am.ik.categolj.service.pager;
 
+import static am.ik.categolj.util.CommonUtils.postAppendIfNotEndsWithSlash;
+import static am.ik.categolj.util.CommonUtils.preAppendIfNotStartsWithSlash;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +27,13 @@ public class DefaultPagerService implements PagerService {
                 sb.append("</strong>");
             } else {
                 sb.append("<a href=\"");
-                sb.append(Const.CONTEXT_PATH);
+                sb.append(preAppendIfNotStartsWithSlash(Const.CONTEXT_ROOT));
+                postAppendIfNotEndsWithSlash(sb);
                 sb.append(Const.PAGE_PATH);
-                sb.append("/");
+                postAppendIfNotEndsWithSlash(sb);
                 sb.append(i);
                 if (categories != null) {
-                    sb.append(Const.CATEGORY_PATH);
+                    sb.append(preAppendIfNotStartsWithSlash(Const.CATEGORY_PATH));
                     sb.append(CategoryUtils.categoryPathString(categories));
                 }
                 sb.append("/\">");

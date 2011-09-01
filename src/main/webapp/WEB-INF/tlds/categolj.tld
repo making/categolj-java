@@ -11,7 +11,7 @@
   <uri>/categolj</uri>
     <function>
         <name>markdown</name>
-        <function-class>am.ik.categolj.el.ELFunctions</function-class>
+        <function-class>am.ik.categolj.util.MarkdownUtils</function-class>
         <function-signature>
             java.lang.String markdown(java.lang.String)
         </function-signature>

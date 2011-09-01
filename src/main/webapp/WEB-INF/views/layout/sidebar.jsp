@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://amateras.sf.jp/functions" prefix="f" %>
 <%@ page pageEncoding="UTF-8"%>
-<div id='sidebar'>
-<div id='navi'>
+<div id="sidebar">
+<div id="navi">
 <h3>Menu</h3>
 <ul id="menu">
     <c:choose>
@@ -29,7 +30,7 @@
 <ul id="recently-posts">
     <c:forEach var="entry" items="${recentEntries}">
         <li class="post"><a
-            href="<c:url value="/entry/view/id/${entry.id}" />">${entry.title}</a></li>
+            href="<c:url value="/entry/view/id/${f:h(entry.id)}/${f:h(entry.title)}/" />">${f:h(entry.title)}</a></li>
     </c:forEach>
 </ul>
 </div>

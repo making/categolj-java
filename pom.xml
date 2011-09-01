@@ -215,6 +215,28 @@
             <version>0.99</version>
         </dependency>
 
+        <dependency>
+            <groupId>am.ik.yalf</groupId>
+            <artifactId>yalf-slf4j</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jp.sf.amateras.functions</groupId>
+            <artifactId>functions</artifactId>
+            <version>1.1.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>net.arnx</groupId>
+                    <artifactId>jsonic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -246,6 +268,12 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+
+        <repository>
+            <id>amateras</id>
+            <name>Project Amateras Maven2 Repository</name>
+            <url>http://amateras.sourceforge.jp/mvn/</url>
         </repository>
 
         <repository>

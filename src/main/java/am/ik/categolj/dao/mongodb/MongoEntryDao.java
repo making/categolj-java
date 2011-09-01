@@ -5,15 +5,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import am.ik.categolj.common.LogId;
 import am.ik.categolj.dao.EntryDao;
 import am.ik.categolj.entity.Category;
 import am.ik.categolj.entity.Entry;
 import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.categolj.util.CommonUtils;
+import am.ik.yalf.logger.Logger;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Key;
@@ -23,8 +23,9 @@ import com.google.code.morphia.query.UpdateResults;
 import com.mongodb.WriteResult;
 
 public class MongoEntryDao implements EntryDao {
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(MongoEntryDao.class);
+    private static final Logger LOGGER = Logger.getLogger(MongoEntryDao.class);
+
+    private static final String GET_ENTRY_ORDER = "-updated-at";
 
     @Inject
     private Datastore ds;
@@ -34,13 +35,14 @@ public class MongoEntryDao implements EntryDao {
         Entry entry = ds.find(Entry.class, "id", id)
                 .retrievedFields(false, "category-index", "distinct-category")
                 .get();
+        LOGGER.debug(LogId.DCTGL009, entry);
         return entry;
     }
 
     @Override
     public List<Entry> getEntriesByPage(int page, int count) {
         int offset = CommonUtils.calcOffset(page);
-        List<Entry> entries = ds.find(Entry.class).order("-id")
+        List<Entry> entries = ds.find(Entry.class).order(GET_ENTRY_ORDER)
                 .retrievedFields(false, "category-index", "distinct-category")
                 .offset(offset).limit(count).asList();
         return entries;
@@ -48,9 +50,8 @@ public class MongoEntryDao implements EntryDao {
 
     @Override
     public List<Entry> getEntriesOnlyIdTitle(int count) {
-        List<Entry> entries = ds.find(Entry.class).order("-id")
+        List<Entry> entries = ds.find(Entry.class).order(GET_ENTRY_ORDER)
                 .retrievedFields(true, "id", "title").limit(count).asList();
-        LOGGER.debug("entries={}", entries);
         return entries;
     }
 
@@ -68,7 +69,7 @@ public class MongoEntryDao implements EntryDao {
         Query<Entry> q = ds.createQuery(Entry.class)
                 .filter("category-index all", cl)
                 .retrievedFields(false, "category-index", "distinct-category");
-        LOGGER.debug("query={}", q);
+        LOGGER.debug(LogId.DCTGL010, q);
         return q;
     }
 
@@ -76,9 +77,9 @@ public class MongoEntryDao implements EntryDao {
     public List<Entry> getCategorizedEntriesByPage(List<Category> category,
             int page, int count) {
         int offset = CommonUtils.calcOffset(page);
-        List<Entry> entries = getCategorizedQuery(category).offset(offset)
-                .limit(count).asList();
-        LOGGER.debug("entries={}", entries);
+        List<Entry> entries = getCategorizedQuery(category)
+                .order(GET_ENTRY_ORDER).offset(offset).limit(count).asList();
+        LOGGER.debug(LogId.DCTGL009, entries);
         return entries;
     }
 
@@ -111,26 +112,26 @@ public class MongoEntryDao implements EntryDao {
     public void insertEntry(Entry entry) {
         entry.setId(incrementAndGet());
         prepareEntry(entry);
-        LOGGER.info("insert={}", entry);
+        LOGGER.info(LogId.ICTGL002, entry);
         Key<Entry> key = ds.save(entry);
-        LOGGER.info("key={}", key);
+        LOGGER.info(LogId.ICTGL001, key);
     }
 
     @Override
     public void updateEntry(Entry entry) {
         prepareEntry(entry);
-        LOGGER.info("update={}", entry);
+        LOGGER.info(LogId.ICTGL003, entry);
         Query<Entry> q = ds.find(Entry.class).filter("id", entry.getId());
         UpdateResults<Entry> result = ds.updateFirst(q, entry, false);
-        LOGGER.info("result={}", result);
+        LOGGER.info(LogId.ICTGL001, result);
     }
 
     @Override
     public void deleteEntry(Entry entry) {
-        LOGGER.info("delete={}", entry);
+        LOGGER.info(LogId.ICTGL004, entry);
         Query<Entry> q = ds.find(Entry.class).filter("id", entry.getId());
         WriteResult result = ds.delete(q);
-        LOGGER.info("result={}", result);
+        LOGGER.info(LogId.ICTGL001, result);
     }
 
     public Datastore getDs() {

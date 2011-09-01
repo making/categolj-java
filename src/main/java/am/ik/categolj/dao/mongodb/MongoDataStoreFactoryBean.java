@@ -1,12 +1,13 @@
 package am.ik.categolj.dao.mongodb;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.PersistenceExceptionTranslator;
+
+import am.ik.categolj.common.LogId;
+import am.ik.yalf.logger.Logger;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Morphia;
@@ -14,7 +15,7 @@ import com.mongodb.Mongo;
 
 public class MongoDataStoreFactoryBean implements FactoryBean<Datastore>,
         InitializingBean, PersistenceExceptionTranslator, DisposableBean {
-    private static final Logger LOGGER = LoggerFactory
+    private static final Logger LOGGER = Logger
             .getLogger(MongoDataStoreFactoryBean.class);
 
     private String host;
@@ -34,8 +35,8 @@ public class MongoDataStoreFactoryBean implements FactoryBean<Datastore>,
     public void afterPropertiesSet() throws Exception {
         mongo = new Mongo(host, port);
         ds = new Morphia().createDatastore(mongo, dbName);
-        LOGGER.debug("connect mongo {}", mongo);
-        LOGGER.debug("create datastore {}", ds);
+        LOGGER.debug(LogId.DCTGL006, mongo);
+        LOGGER.debug(LogId.DCTGL007, ds);
     }
 
     @Override
@@ -79,7 +80,7 @@ public class MongoDataStoreFactoryBean implements FactoryBean<Datastore>,
 
     @Override
     public void destroy() throws Exception {
-        LOGGER.debug("close mongo {}", mongo);
+        LOGGER.debug(LogId.DCTGL008, mongo);
         mongo.close();
     }
 }

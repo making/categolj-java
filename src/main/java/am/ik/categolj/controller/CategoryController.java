@@ -6,8 +6,6 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,17 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.HandlerMapping;
 
 import am.ik.categolj.common.Const;
+import am.ik.categolj.common.LogId;
 import am.ik.categolj.entity.Category;
 import am.ik.categolj.entity.Entry;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.service.PagerService;
 import am.ik.categolj.util.CategoryUtils;
 import am.ik.categolj.util.CommonUtils;
+import am.ik.yalf.logger.Logger;
 
 @Controller
 public class CategoryController {
 
-    private static final Logger logger = LoggerFactory
+    private static final Logger logger = Logger
             .getLogger(CategoryController.class);
 
     @Inject
@@ -44,7 +44,7 @@ public class CategoryController {
             Model model) {
         String path = (String) request
                 .getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-        logger.debug("category={}", path);
+        logger.debug(LogId.DCTGL001, path);
 
         List<Category> categories = CategoryUtils
                 .populateCategoriesFromPath(path);

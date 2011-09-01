@@ -8,8 +8,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,15 +18,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import am.ik.categolj.common.LogId;
 import am.ik.categolj.entity.Entry;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.util.BindingResultUtils;
 import am.ik.categolj.util.CategoryEditor;
+import am.ik.yalf.logger.Logger;
 
 @Controller
 @RequestMapping("/entry/*")
 public class EntryController {
-    private static final Logger logger = LoggerFactory
+    private static final Logger logger = Logger
             .getLogger(EntryController.class);
 
     private static final String FORM_VIEW = "entry/form";
@@ -65,7 +65,7 @@ public class EntryController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createOnSubmit(@Valid Entry entry,
             BindingResult bindingResult, Model model) {
-        logger.debug("create entry = {}", entry);
+        logger.debug(LogId.DCTGL002, entry);
 
         if (!BindingResultUtils.addModelIfErrorsExist(bindingResult, model)) {
             return FORM_VIEW;
@@ -85,7 +85,7 @@ public class EntryController {
     @RequestMapping(value = "/edit/**", method = RequestMethod.POST)
     public String editOnSubmit(@Valid Entry entry, BindingResult bindingResult,
             Model model) {
-        logger.debug("update entry = {}", entry);
+        logger.debug(LogId.DCTGL003, entry);
         if (!BindingResultUtils.addModelIfErrorsExist(bindingResult, model)) {
             return FORM_VIEW;
         }
@@ -106,7 +106,7 @@ public class EntryController {
     @RequestMapping(value = "/delete/**", method = RequestMethod.POST)
     public String deleteOnSubmit(@Valid Entry entry,
             BindingResult bindingResult, Model model) {
-        logger.debug("delete entry = {}", entry);
+        logger.debug(LogId.DCTGL004, entry);
         entryService.deleteEntry(entry);
         return "redirect:/";
     }

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.view.AbstractView;
 
-import am.ik.categolj.el.ELFunctions;
 import am.ik.categolj.entity.Entry;
 import am.ik.categolj.feed.CustomizedWireFeedOutput;
+import am.ik.categolj.util.MarkdownUtils;
 
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndContentImpl;
@@ -53,7 +53,7 @@ public class RssEntryFeedView extends AbstractView {
         for (Entry e : (List<Entry>) model.get("entryList")) {
             SyndContent description = new SyndContentImpl();
             description.setValue("<![CDATA["
-                    + ELFunctions.markdown(e.getContent()) + "]]>");
+                    + MarkdownUtils.markdown(e.getContent()) + "]]>");
             description.setType("text/html");
 
             SyndEntry entry = new SyndEntryImpl();

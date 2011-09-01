@@ -1,5 +1,8 @@
 package am.ik.categolj.util;
 
+import static am.ik.categolj.util.CommonUtils.postAppendIfNotEndsWithSlash;
+import static am.ik.categolj.util.CommonUtils.preAppendIfNotStartsWithSlash;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +18,8 @@ public class CategoryUtils {
         if (o instanceof Category) {
             return ((Category) o).getName();
         }
-        return o.toString();
+        return jp.sf.amateras.functions.utils.StringUtils.escapeHtml(o
+                .toString());
     }
 
     public static List<Category> populateCategoriesFromPath(String path) {
@@ -51,9 +55,10 @@ public class CategoryUtils {
             crumb.append(extractName(c));
             crumb.append("/");
             sb.append("<span class=\"category\"><a href=\"");
-            sb.append(Const.CONTEXT_PATH);
+            sb.append(preAppendIfNotStartsWithSlash(Const.CONTEXT_ROOT));
+            postAppendIfNotEndsWithSlash(sb);
             sb.append(Const.CATEGORY_PATH);
-            sb.append("/");
+            postAppendIfNotEndsWithSlash(sb);
             sb.append(crumb.toString());
             sb.append("\">");
             sb.append(extractName(c));

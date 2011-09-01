@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://amateras.sf.jp/functions" prefix="f" %>
 <%@ page session="false"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <c:import url="/WEB-INF/views/layout/layout.jsp" charEncoding="UTF-8">
@@ -28,7 +29,7 @@
     }
 
     function appendRow(obj, uploadDir, file) {
-        var path = contextPath + "/" + uploadDir +"/" + file.fileName;
+        var path = contextPath + uploadDir +"/" + file.fileName;
         var ext = file.ext;
         var id = file.id;
         var img;
@@ -58,7 +59,7 @@
 
     function deleteFile(id) {
         if (confirm("Are you sure to delete?")) {
-            $.post(contextPath + "/upload/delete/" + id, function(res) {
+            $.post(contextPath + "upload/delete/" + id, function(res) {
                 if (res.res == "ok") {
                     $("#row" + id).fadeOut();
                 } else {
@@ -89,7 +90,7 @@
 
     // init
     $(function() {
-        $.get(contextPath + "/upload/view/1/1", function(res) {
+        $.get(contextPath + "upload/view/1/1", function(res) {
             if (res.res == "ok") {
                 var files = res.files;
                 var target = $('#upload-result');
@@ -101,7 +102,7 @@
             }
         }, 'json');
         $("#upload-file").change(function() {
-            $(this).upload(contextPath + "/upload/post", function(res) {
+            $(this).upload(contextPath + "upload/post", function(res) {
                 if (res.res == "ok") {
                     appendRow($("#upload-result"), res.uploadDir, res.file);
                 } else {
@@ -118,7 +119,7 @@
         });
     });
 </script>
-        <h2><a class="article-title" href="<c:url value="/entry/view/id/${entry.id}" />">${entry.title}</a></h2>
+        <h2><a class="article-title" href="<c:url value="/entry/view/id/${f:h(entry.id)}" />">${f:h(entry.title)}</a></h2>
         <form:form method="POST" name="edit-form" modelAttribute="entry">
             <spring:hasBindErrors name="entry">
                 <ul>
@@ -169,7 +170,7 @@
                     type="submit" value="submit" /></li>
             </ul>
         </form:form>
-        <hr />
+        <hr>
         <h3 id="uploader" style="cursor: pointer">Uploader</h3>
         <div id="uploader-content" style="display: none"><input
             name="file" type="file" id="upload-file" />
@@ -185,7 +186,7 @@
             </tr>
         </table>
         </div>
-        <hr />
+        <hr>
         <h3 id="preview" style="cursor: pointer">Live Preview</h3>
         <div id="preview-content" class="wmd-preview"></div>
         </div>

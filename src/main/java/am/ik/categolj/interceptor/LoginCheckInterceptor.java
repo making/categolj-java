@@ -4,8 +4,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,8 +11,6 @@ import am.ik.categolj.common.Const;
 import am.ik.categolj.service.AuthenticationService;
 
 public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
-    protected static final Logger logger = LoggerFactory
-            .getLogger(LoginCheckInterceptor.class);
 
     @Inject
     protected AuthenticationService authenticationService;

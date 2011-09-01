@@ -23,7 +23,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
     <authentication-manager>
         <authentication-provider>
-            <user-service properties="/WEB-INF/spring/security/users.properties" />
+            <user-service properties="classpath:users.properties" />
         </authentication-provider>
     </authentication-manager>
 </beans:beans>
