@@ -16,7 +16,7 @@ public class LoggingExeptionResolver extends SimpleMappingExceptionResolver {
     @Override
     protected ModelAndView doResolveException(HttpServletRequest request,
             HttpServletResponse response, Object handler, Exception ex) {
-        logger.warn(LogId.WCTGL001, ex);
+        logger.fatal(LogId.FCTGL001, ex);
         return super.doResolveException(request, response, handler, ex);
     }
 }

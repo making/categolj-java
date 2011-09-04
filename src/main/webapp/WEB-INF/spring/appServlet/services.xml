@@ -25,4 +25,11 @@
     <!-- Authentication -->
     <bean
         class="am.ik.categolj.service.authentication.DefaultAuthenticationService" />
+
+    <bean class="am.ik.support.igo.TaggerFactoryBean">
+        <property name="dictDir" value="classpath:ipadic" />
+    </bean>
+
+    <!-- Entry Search -->
+    <bean class="am.ik.categolj.service.search.MongoEntrySearchService" />
 </beans>

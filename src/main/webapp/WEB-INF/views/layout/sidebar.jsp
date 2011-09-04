@@ -26,12 +26,21 @@
         </c:when>
     </c:choose>
 </ul>
+
+<h3>Search</h3>
+<form action="<c:url value="/search" />" method="get">
+    <input name="q" placeholder="Input Keywords">
+    <input type="submit" value="search">
+</form>
+
+
 <h3>Recently Posts</h3>
 <ul id="recently-posts">
     <c:forEach var="entry" items="${recentEntries}">
         <li class="post"><a
-            href="<c:url value="/entry/view/id/${f:h(entry.id)}/${f:h(entry.title)}/" />">${f:h(entry.title)}</a></li>
+            href="<c:url value="/entry/view/id/${f:h(entry.id)}/titie/${f:h(entry.title)}/" />">${f:h(entry.title)}</a></li>
     </c:forEach>
 </ul>
+
 </div>
 </div>

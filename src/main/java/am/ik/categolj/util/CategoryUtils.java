@@ -32,16 +32,18 @@ public class CategoryUtils {
 
     public static List<Category> populateCategoriesFromPath(
             List<String> categoriesPath) {
-        List<Category> categories = new ArrayList<Category>();
         if (categoriesPath != null) {
+            List<Category> categories = new ArrayList<Category>();
             for (int i = 0; i < categoriesPath.size(); i++) {
                 String name = categoriesPath.get(i);
                 Long index = Long.valueOf(i + 1);
                 Category category = new Category(null, name, index);
                 categories.add(category);
             }
+            return categories;
+        } else {
+            return null;
         }
-        return categories;
     }
 
     public static String categoryLinkString(List<?> categories) {

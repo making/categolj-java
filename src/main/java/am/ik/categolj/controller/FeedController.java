@@ -16,7 +16,7 @@ public class FeedController {
     @Inject
     protected EntryService entryService;
 
-    @RequestMapping("/feed")
+    @RequestMapping({ "/feed", "/rss" })
     public String feed(Model model) {
         List<Entry> entries = entryService.getEntriesByPage(1, 10);
         model.addAttribute(entries);

@@ -119,7 +119,7 @@
         });
     });
 </script>
-        <h2><a class="article-title" href="<c:url value="/entry/view/id/${f:h(entry.id)}" />">${f:h(entry.title)}</a></h2>
+        <h2><a class="article-title" href="<c:url value="/entry/view/id/${f:h(entry.id)}/title/${f:u(entry.title)}/" />">${f:h(entry.title)}</a></h2>
         <form:form method="POST" name="edit-form" modelAttribute="entry">
             <spring:hasBindErrors name="entry">
                 <ul>

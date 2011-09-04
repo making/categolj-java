@@ -2,8 +2,11 @@ package am.ik.categolj.dao.mongodb;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
+
+import net.reduls.igo.Tagger;
 
 import org.springframework.util.StringUtils;
 
@@ -13,6 +16,7 @@ import am.ik.categolj.entity.Category;
 import am.ik.categolj.entity.Entry;
 import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.categolj.util.CommonUtils;
+import am.ik.categolj.util.TaggerUtils;
 import am.ik.yalf.logger.Logger;
 
 import com.google.code.morphia.Datastore;
@@ -27,14 +31,27 @@ public class MongoEntryDao implements EntryDao {
 
     private static final String GET_ENTRY_ORDER = "-updated-at";
 
+    protected static final String[] RETRIEVE_FIELDS = { "category-index",
+            "distinct-category", "keywords" };
+
     @Inject
     private Datastore ds;
+
+    @Inject
+    private Tagger tagger;
+
+    public Tagger getTagger() {
+        return tagger;
+    }
+
+    public void setTagger(Tagger tagger) {
+        this.tagger = tagger;
+    }
 
     @Override
     public Entry getEntryById(Long id) throws NoSuchEntryException {
         Entry entry = ds.find(Entry.class, "id", id)
-                .retrievedFields(false, "category-index", "distinct-category")
-                .get();
+                .retrievedFields(false, RETRIEVE_FIELDS).get();
         LOGGER.debug(LogId.DCTGL009, entry);
         return entry;
     }
@@ -43,8 +60,8 @@ public class MongoEntryDao implements EntryDao {
     public List<Entry> getEntriesByPage(int page, int count) {
         int offset = CommonUtils.calcOffset(page);
         List<Entry> entries = ds.find(Entry.class).order(GET_ENTRY_ORDER)
-                .retrievedFields(false, "category-index", "distinct-category")
-                .offset(offset).limit(count).asList();
+                .retrievedFields(false, RETRIEVE_FIELDS).offset(offset)
+                .limit(count).asList();
         return entries;
     }
 
@@ -68,7 +85,7 @@ public class MongoEntryDao implements EntryDao {
         }
         Query<Entry> q = ds.createQuery(Entry.class)
                 .filter("category-index all", cl)
-                .retrievedFields(false, "category-index", "distinct-category");
+                .retrievedFields(false, RETRIEVE_FIELDS);
         LOGGER.debug(LogId.DCTGL010, q);
         return q;
     }
@@ -86,6 +103,29 @@ public class MongoEntryDao implements EntryDao {
     @Override
     public int getCategorizeEntryCount(List<Category> category) {
         return (int) getCategorizedQuery(category).countAll();
+    }
+
+    public Query<Entry> getKeywordSearchedQuery(Set<String> keywords) {
+        Query<Entry> q = ds.createQuery(Entry.class)
+                .filter("keywords all", keywords).order(GET_ENTRY_ORDER)
+                .retrievedFields(false, RETRIEVE_FIELDS);
+        LOGGER.debug(LogId.DCTGL010, q);
+        return q;
+    }
+
+    public List<Entry> getKeywordSearchedEntriesByPage(Set<String> keywords,
+            int page, int count) {
+        LOGGER.debug(LogId.DCTGL014, keywords);
+        int offset = CommonUtils.calcOffset(page);
+        List<Entry> entries = getKeywordSearchedQuery(keywords).offset(offset)
+                .limit(count).asList();
+        LOGGER.debug(LogId.DCTGL009, entries);
+        return entries;
+    }
+
+    public int getKeywordSearchedEntryCount(Set<String> keywords) {
+        Query<Entry> q = getKeywordSearchedQuery(keywords);
+        return (int) q.countAll();
     }
 
     protected Long incrementAndGet() {
@@ -106,6 +146,10 @@ public class MongoEntryDao implements EntryDao {
         entry.setCategoryIndex(indexes);
         entry.setDistinctCategory(StringUtils.collectionToDelimitedString(
                 categoriesPath, "|"));
+        Set<String> keywords = TaggerUtils.extractKeywords(tagger,
+                entry.getContent() + " " + entry.getTitle());
+        LOGGER.debug(false, "[DCTGLXXX] keywords={0}", keywords);
+        entry.setKeywords(keywords);
     }
 
     @Override

@@ -1,5 +1,9 @@
 package am.ik.categolj.util;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import am.ik.categolj.common.Const;
 
 public final class CommonUtils {
@@ -33,5 +37,28 @@ public final class CommonUtils {
         } else {
             return s;
         }
+    }
+
+    public static Set<String> createKeywordSet(List<String> keywords) {
+        Set<String> kws = new HashSet<String>();
+        for (String kw : keywords) {
+            if (isValidKeyword(kw)) {
+                kws.add(kw.toUpperCase());
+            }
+        }
+        return kws;
+    }
+
+    public static boolean isValidKeyword(String keyword) {
+        if (keyword == null || keyword.length() <= 1) {
+            return false;
+        }
+        try {
+            // 数字だけのものは飛ばす
+            Double.parseDouble(keyword);
+            return false;
+        } catch (Exception ignored) {
+        }
+        return true;
     }
 }

@@ -42,7 +42,7 @@ public class HomeController {
         int totalPage = CommonUtils.calcTotalPage(entryService
                 .getTotalEntryCount());
         List<String> pagerLink = pager.createPaginationLinks(totalPage, page,
-                null, entries);
+                entries, null);
         model.addAttribute(entries);
         model.addAttribute(Const.PAGER_ATTR, pagerLink);
         return "home";

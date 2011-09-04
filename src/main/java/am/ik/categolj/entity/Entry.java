@@ -3,6 +3,7 @@ package am.ik.categolj.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,6 +36,7 @@ public class Entry {
     private String distinctCategory;
     @Property("category-index")
     private List<String> categoryIndex;
+    private Set<String> keywords;
 
     public Entry() {
     }
@@ -117,8 +119,7 @@ public class Entry {
     public String toString() {
         return "Entry [id=" + id + ", title=" + title + ", content="
                 + (content == null ? 0 : content.length()) + ", createdAt="
-                + createdAt + ", updatedAt=" + updatedAt + ", category="
-                + categoriesPath + "]";
+                + createdAt + ", updatedAt=" + updatedAt;
     }
 
     public void setCategoriesPath(List<String> categoriesPath) {
@@ -143,5 +144,13 @@ public class Entry {
 
     public void setCategoryIndex(List<String> categoryIndex) {
         this.categoryIndex = categoryIndex;
+    }
+
+    public Set<String> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(Set<String> keywords) {
+        this.keywords = keywords;
     }
 }

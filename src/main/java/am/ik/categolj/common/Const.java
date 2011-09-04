@@ -8,6 +8,7 @@ public final class Const {
     public static final String CONTEXT_ROOT;
     public static final String CATEGORY_PATH = "category";
     public static final String PAGE_PATH = "page";
+    public static final String SEARCH_PATH = "search";
     public static final String TITLE_KEY = "categolj.title";
     public static final String CONTEXT_ROOT_KEY = "categolj.context.root";
     public static final String CATEGORY_DELIM = "::";

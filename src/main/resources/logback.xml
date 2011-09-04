@@ -30,20 +30,8 @@
         <level value="DEBUG" />
     </logger>
 
-    <logger name="org.springframework.core">
-        <level value="INFO" />
-    </logger>
-
-    <logger name="org.springframework.beans">
-        <level value="INFO" />
-    </logger>
-
-    <logger name="org.springframework.context">
-        <level value="INFO" />
-    </logger>
-
-    <logger name="org.springframework.web">
-        <level value="INFO" />
+    <logger name="org.springframework">
+        <level value="WARN" />
     </logger>
 
     <logger name="com.google.code.morphia">

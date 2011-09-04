@@ -55,6 +55,10 @@ public final class LogId {
      */
     public static final String DCTGL013 = "DCTGL013";
     /**
+     * <strong>DCTGL014 = search keywords : {0}</strong>
+     */
+    public static final String DCTGL014 = "DCTGL014";
+    /**
      * <strong>ICTGL001 = result : {0}</strong>
      */
     public static final String ICTGL001 = "ICTGL001";
@@ -83,10 +87,6 @@ public final class LogId {
      */
     public static final String ICTGL007 = "ICTGL007";
     /**
-     * <strong>WCTGL001 = Exception occurred</strong>
-     */
-    public static final String WCTGL001 = "WCTGL001";
-    /**
      * <strong>ECTGL001 = Exception occurred in uploading file ({0})</strong>
      */
     public static final String ECTGL001 = "ECTGL001";
@@ -98,4 +98,8 @@ public final class LogId {
      * <strong>ECTGL003 = Exception occurred in deleting uploaded file (id : {0})</strong>
      */
     public static final String ECTGL003 = "ECTGL003";
+    /**
+     * <strong>FCTGL001 = Unexpected exception occurred</strong>
+     */
+    public static final String FCTGL001 = "FCTGL001";
 }

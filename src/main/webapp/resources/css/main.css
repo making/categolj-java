@@ -57,6 +57,10 @@ ul {
     -moz-border-radius: 5px;
 }
 
+#sidebar form {
+    margin-left: 10px;
+}
+
 #main {
     margin-left: 230px;
     margin-right: 30px;

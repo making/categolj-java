@@ -53,8 +53,10 @@ public class CategoryController {
 
         int totalPage = CommonUtils.calcTotalPage(entryService
                 .getCategorizeEntryCount(categories));
+        String appendPath = Const.CATEGORY_PATH
+                + CategoryUtils.categoryPathString(categories);
         List<String> pagerLink = pager.createPaginationLinks(totalPage, page,
-                categories, entries);
+                entries, appendPath);
 
         model.addAttribute(entries);
         model.addAttribute(Const.PAGER_ATTR, pagerLink);
