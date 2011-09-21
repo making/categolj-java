@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public final class Const {
-    public static final String CONTEXT_ROOT;
     public static final String CATEGORY_PATH = "category";
     public static final String PAGE_PATH = "page";
     public static final String SEARCH_PATH = "search";
@@ -30,6 +29,5 @@ public final class Const {
             p.load(s);
         } catch (IOException ignored) {
         }
-        CONTEXT_ROOT = p.getProperty(CONTEXT_ROOT_KEY);
     }
 }
