@@ -44,7 +44,7 @@ function insertHtml(id) {
     var ext = $("#ext" + id).html();
     var path = $("#path" + id).attr("value");
     var html = "<a href='" + path + "'>";
-    var body = $("#field-body");
+    var body = $("#field-content");
     if (isImage(ext)) {
         html += "<img src='" + path + "' />";
     } else {

@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 
 import am.ik.categolj.common.Const;
 import am.ik.categolj.entity.Category;
+import am.ik.categolj.listener.RequestUtil;
 
 public class CategoryUtils {
 
@@ -57,7 +58,8 @@ public class CategoryUtils {
             crumb.append(extractName(c));
             crumb.append("/");
             sb.append("<span class=\"category\"><a href=\"");
-            sb.append(preAppendIfNotStartsWithSlash(Const.CONTEXT_ROOT));
+            sb.append(preAppendIfNotStartsWithSlash(RequestUtil
+                    .getContextRoot()));
             postAppendIfNotEndsWithSlash(sb);
             sb.append(Const.CATEGORY_PATH);
             postAppendIfNotEndsWithSlash(sb);
@@ -66,6 +68,32 @@ public class CategoryUtils {
             sb.append(extractName(c));
             sb.append("</a></span>");
         }
+        return sb.toString();
+    }
+
+    public static String categoryBreadCrumb(List<?> categories) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder crumb = new StringBuilder();
+        int i = 0;
+        sb.append("<ul class=\"breadcrumb\">");
+        for (Object c : categories) {
+            if (i++ > 0) {
+                sb.append(Const.CATEGORY_DELIM);
+            }
+            crumb.append(extractName(c));
+            crumb.append("/");
+            sb.append("<li><span class=\"divider\"><a href=\"");
+            sb.append(preAppendIfNotStartsWithSlash(RequestUtil
+                    .getContextRoot()));
+            postAppendIfNotEndsWithSlash(sb);
+            sb.append(Const.CATEGORY_PATH);
+            postAppendIfNotEndsWithSlash(sb);
+            sb.append(crumb.toString());
+            sb.append("\">");
+            sb.append(extractName(c));
+            sb.append("</a></span></li>");
+        }
+        sb.append("</ul>");
         return sb.toString();
     }
 

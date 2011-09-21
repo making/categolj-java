@@ -8,7 +8,7 @@
 <c:import url="/WEB-INF/views/layout/layout.jsp" charEncoding="UTF-8">
     <c:param name="title" value="${entry.title}" />
     <c:param name="content">
-        <h2 id="contents-header" class="contents-header">${entry.categoryLink}</h2>
+        ${entry.categoryBreadCrumb}
         <c:import url="/WEB-INF/views/entry/viewBase.jsp"
             charEncoding="UTF-8">
             <c:param name="id" value="${entry.id}" />

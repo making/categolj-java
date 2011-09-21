@@ -61,7 +61,7 @@ public class CategoryController {
         model.addAttribute(entries);
         model.addAttribute(Const.PAGER_ATTR, pagerLink);
         model.addAttribute(Const.CATEGORY_LINK_ATTR,
-                CategoryUtils.categoryLinkString(categories));
+                CategoryUtils.categoryBreadCrumb(categories));
         return "category/view";
     }
 

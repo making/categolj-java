@@ -107,6 +107,10 @@ public class Entry {
         return CategoryUtils.categoryLinkString(categoriesPath);
     }
 
+    public String getCategoryBreadCrumb() {
+        return CategoryUtils.categoryBreadCrumb(categoriesPath);
+    }
+
     public boolean isUpdateDate() {
         return updateDate;
     }

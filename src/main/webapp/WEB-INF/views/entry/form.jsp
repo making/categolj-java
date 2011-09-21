@@ -10,93 +10,78 @@
     <c:param name="content">
         <div class="contents edit-form">
             <script type="text/javascript">
-                                                    wmd_options = {
-                                                        output : 'Markdown'
-                                                    };
-                                                </script>
-            <script src='<c:url value="/resources/js/wmd/wmd.js" />'
-                type='text/javascript'></script>
-            <script
-                src='<c:url value="/resources/js/jquery-1.4.4.min.js" />'
-                type='text/javascript'></script>
-            <script
-                src='<c:url value="/resources/js/jquery.upload-1.0.2.modified.min.js" />'
-                type='text/javascript'></script>
-            <script src='<c:url value="/resources/js/form.js" />'
-                type='text/javascript'></script>
-            <script type='text/javascript'></script>
-            <h2>
-                <a class="article-title"
-                    href="<c:url value="/entry/view/id/${f:h(entry.id)}/title/${f:u(entry.title)}/" />">${f:h(entry.title)}</a>
-            </h2>
-            <form:form method="POST" name="edit-form"
-                modelAttribute="entry">
-                <spring:hasBindErrors name="entry">
-                    <ul>
-                        <c:forEach items="${errors.globalErrors}"
-                            var="error">
-                            <spring:message code="${error.code}" />
-                        </c:forEach>
-                    </ul>
-                </spring:hasBindErrors>
-                <ul>
-                    <li><label for="field-title" class="desc">title</label>
-                        <div>
-                            <form:input path="title" id="field-title"
-                                cssClass="field text medium"
-                                cssErrorClass="field-error" />
-                            <form:errors path="title"
-                                cssClass="field-error" />
-                            <form:hidden path="id" id="field-title" />
-                        </div></li>
-                    <li><label for="field-category" class="desc">category</label>
-                        <div>
-                            <form:input path="category"
-                                id="field-category"
-                                cssClass="field text medium"
-                                cssErrorClass="field-error" />
-                            <form:errors path="category"
-                                cssClass="field-error" />
-                        </div></li>
-                    <li><label for="field-body" class="desc">body</label>
-                        <div>
-                            <form:textarea path="content"
-                                id="field-body" cssClass="textarea"
-                                cssErrorClass="field-error" />
-                            <form:errors path="content"
-                                cssClass="field-error" />
-                        </div></li>
-                    <li><label for="field-created-at" class="desc">created_at</label>
-                        <div>
-                            <form:input path="createdAt"
-                                id="field-created-at"
-                                cssClass="field text medium"
-                                cssErrorClass="field-error" />
-                            <form:errors path="createdAt"
-                                cssClass="field-error" />
-                        </div></li>
-                    <li><label for="field-updated-at" class="desc">updated_at</label>
-                        <div>
-                            <form:input path="updatedAt"
-                                id="field-updated-at"
-                                cssClass="field text medium"
-                                cssErrorClass="field-error" />
-                            <form:errors path="updatedAt"
-                                cssClass="field-error" />
-                        </div></li>
-                    <li><label for="field-update-date" class="desc">update_date</label>
-                        <div>
-                            <form:checkbox path="updateDate"
-                                id="field-update-date"
-                                cssClass="field checkbox"
-                                cssErrorClass="field-error" />
-                            <form:errors path="updateDate"
-                                cssClass="field-error" />
-                        </div></li>
-                    <li class="buttons"><input name="submit"
-                        type="submit" value="submit" />
-                    </li>
-                </ul>
+                wmd_options = {
+                    output : 'Markdown'
+                };
+            </script>
+            <script src='<c:url value="/resources/js/wmd/wmd.js" />' type='text/javascript'></script>
+            <script src='<c:url value="/resources/js/jquery-1.4.4.min.js" />' type='text/javascript'></script>
+            <script src='<c:url value="/resources/js/jquery.upload-1.0.2.modified.min.js" />' type='text/javascript'></script>
+            <script src='<c:url value="/resources/js/form.js" />' type='text/javascript'></script>
+
+            <form:form method="post" modelAttribute="entry">
+                <fieldset>
+                    <legend>
+                    <a href="<c:url value="/entry/view/id/${f:h(entry.id)}/title/${f:u(entry.title)}/" />">${f:h(entry.title)}</a>
+                    </legend>
+                    <spring:hasBindErrors name="entry">
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                var errorDiv = $("div.clearfix>div.input>.error").parent().parent().addClass("error");
+                            });
+                        </script>
+                    </spring:hasBindErrors>
+                    
+                    <div class="clearfix">
+                        <label for="field-title">Title : </label>
+                        <div class="input">
+                            <form:input path="title" id="field-title" cssClass="span7" cssErrorClass="error span7" />
+                            <form:errors path="title" cssClass="error help-inline inline" element="span" />
+                            <form:hidden path="id" />
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label for="field-category">Category : </label>
+                        <div class="input">
+                            <form:input path="category" id="field-category" cssClass="span7" cssErrorClass="error span7" />
+                            <form:errors path="category" cssClass="error help-inline inline" element="span" />
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label for="field-content">Content : </label>
+                        <div class="input">
+                            <form:textarea path="content" id="field-content" rows="10" cssClass="span7" cssErrorClass="error span7" />
+                            <form:errors path="content" cssClass="error help-inline inline" element="span" />
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label for="field-createdAt">createdAt : </label>
+                        <div class="input">
+                            <form:input path="createdAt" id="field-createdAt" cssClass="" cssErrorClass="error" />
+                            <form:errors path="createdAt" cssClass="error help-inline inline" element="span" />
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label for="field-updatedAt">updatedAt : </label>
+                        <div class="input">
+                            <form:input path="updatedAt" id="field-updatedAt" cssClass="" cssErrorClass="error" />
+                            <form:errors path="updatedAt" cssClass="error help-inline inline" element="span" />
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label for="field-updateDate">updateDate : </label>
+                        <div class="input">
+                            <form:checkbox path="updateDate" id="field-updateDate" cssClass="" cssErrorClass="error" />
+                            <form:errors path="updateDate" cssClass="error help-inline inline" element="span" />
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="input">
+                             <input type="submit" class="btn primary" value="SUBMIT"> 
+                             <input type="reset" class="btn" value="RESET">
+                         </div>
+                    </div>
+                </fieldset>
             </form:form>
             <hr>
             <h3 id="uploader" style="cursor: pointer">Uploader</h3>

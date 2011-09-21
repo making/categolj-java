@@ -1,4 +1,2 @@
 <%@page pageEncoding="UTF-8"%>
-<div id="footer">
-<p>powered by <a href="http://github.com/making/categolj-java">CategoLJ for Java</a></p>
-</div>
+<p>Powered by <a href="http://github.com/making/categolj-java">CategoLJ for Java</a> and <a href="http://twitter.github.com/bootstrap/">bootstrap</a></p>
