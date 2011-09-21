@@ -14,6 +14,10 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+    <listener>
+        <listener-class>am.ik.categolj.listener.SetContextRootListener</listener-class>
+    </listener>
 
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
