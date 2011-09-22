@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import am.ik.categolj.util.CategoryUtils;
 
 import com.google.code.morphia.annotations.Entity;
@@ -17,9 +19,9 @@ import com.google.code.morphia.annotations.Transient;
 @Entity(value = "entry", noClassnameStored = true)
 public class Entry {
     private Long id;
-    @Size(min = 1)
+    @NotEmpty
     private String title;
-    @Size(min = 1)
+    @NotEmpty
     private String content;
     @NotNull
     @Property("created-at")
