@@ -3,6 +3,7 @@ package am.ik.categolj.dao.mongodb;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -10,6 +11,7 @@ import net.reduls.igo.Tagger;
 
 import org.springframework.util.StringUtils;
 
+import am.ik.categolj.common.Const;
 import am.ik.categolj.common.LogId;
 import am.ik.categolj.dao.EntryDao;
 import am.ik.categolj.entity.Category;
@@ -24,6 +26,7 @@ import com.google.code.morphia.Key;
 import com.google.code.morphia.query.Query;
 import com.google.code.morphia.query.UpdateOperations;
 import com.google.code.morphia.query.UpdateResults;
+import com.mongodb.BasicDBObject;
 import com.mongodb.WriteResult;
 
 public class MongoEntryDao implements EntryDao {
@@ -31,8 +34,12 @@ public class MongoEntryDao implements EntryDao {
 
     private static final String GET_ENTRY_ORDER = "-updated-at";
 
+    private static final String DISTINCT_CATEGORY = "distinct-category";
+
     protected static final String[] RETRIEVE_FIELDS = { "category-index",
-            "distinct-category", "keywords" };
+            DISTINCT_CATEGORY, "keywords" };
+
+    private static final String DISTINCT_DELIM = "|";
 
     @Inject
     private Datastore ds;
@@ -65,6 +72,23 @@ public class MongoEntryDao implements EntryDao {
         return entries;
     }
 
+    public List<String> getAllCategoryPath(String term) {
+        LOGGER.debug(false, "[CTGLXX08] term={0}", term);
+        List<String> path = new ArrayList<String>();
+        if (term != null) {
+            Pattern p = Pattern.compile(Pattern.quote(term.replace(
+                    Const.CATEGORY_DELIM, DISTINCT_DELIM)),
+                    Pattern.CASE_INSENSITIVE);
+            @SuppressWarnings("unchecked")
+            List<String> categories = ds.getCollection(Entry.class).distinct(
+                    DISTINCT_CATEGORY, new BasicDBObject(DISTINCT_CATEGORY, p));
+            for (String c : categories) {
+                path.add(c.replace(DISTINCT_DELIM, Const.CATEGORY_DELIM));
+            }
+        }
+        return path;
+    }
+
     @Override
     public List<Entry> getEntriesOnlyIdTitle(int count) {
         List<Entry> entries = ds.find(Entry.class).order(GET_ENTRY_ORDER)
@@ -81,7 +105,7 @@ public class MongoEntryDao implements EntryDao {
 
         List<String> cl = new ArrayList<String>();
         for (Category c : category) {
-            cl.add(c.getName() + "|" + c.getIndex());
+            cl.add(c.getName() + DISTINCT_DELIM + c.getIndex());
         }
         Query<Entry> q = ds.createQuery(Entry.class)
                 .filter("category-index all", cl)
@@ -141,11 +165,11 @@ public class MongoEntryDao implements EntryDao {
         List<String> indexes = new ArrayList<String>();
         for (int i = 0; i < categoriesPath.size(); i++) {
             String c = categoriesPath.get(i);
-            indexes.add(c + "|" + (i + 1));
+            indexes.add(c + DISTINCT_DELIM + (i + 1));
         }
         entry.setCategoryIndex(indexes);
         entry.setDistinctCategory(StringUtils.collectionToDelimitedString(
-                categoriesPath, "|"));
+                categoriesPath, DISTINCT_DELIM));
         Set<String> keywords = TaggerUtils.extractKeywords(tagger,
                 entry.getContent() + " " + entry.getTitle());
         LOGGER.debug(false, "[DCTGLXXX] keywords={0}", keywords);

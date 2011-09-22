@@ -20,7 +20,7 @@
     <div class="clearfix">
         <label for="_spring_security_remember_me">Remember me : </label>
         <div class="input">
-            <input name="_spring_security_remember_me" id="_spring_security_remember_me" type="checkbox">
+            <input name="_spring_security_remember_me" id="_spring_security_remember_me" type="checkbox" checked="checked">
         </div>
     </div>
     <div class="clearfix">

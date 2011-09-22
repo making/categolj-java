@@ -18,6 +18,8 @@
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<c:url value="/resources/images/favicon.ico" />">
 <link rel="icon" type="image/vnd.microsoft.icon" href="<c:url value="/resources/images/favicon.ico" />">
 <link id="rss" rel="alternate" type="application/rss+xml" title="<spring:message code="categolj.title" />" href="<c:url value="/feed" />">
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.4.4.min.js" />"></script>
+${param.meta}
 <title><c:if test="${not empty param.title}">${f:h(param.title)} - </c:if><spring:message code="categolj.title" /></title>
 </head>
 <body>
@@ -73,7 +75,6 @@
     </div>
     
     <!-- scripts -->
-    <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.4.4.min.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/bootstrap/bootstrap-modal.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/highlight.pack.js" />"></script>
     <script type="text/javascript">

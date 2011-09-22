@@ -1,6 +1,9 @@
 package am.ik.categolj.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -10,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.HandlerMapping;
 
 import am.ik.categolj.common.Const;
@@ -70,5 +75,16 @@ public class CategoryController {
         Set<String> linkSet = entryService.getAllCategoryLinkSet();
         model.addAttribute(Const.CATEGORY_LINK_SET_ATTR, linkSet);
         return "category/all";
+    }
+
+    @RequestMapping("/category.json")
+    public @ResponseBody
+    List<Map<String, String>> allJson(@RequestParam("term") String term) {
+        List<String> paths = entryService.getAllCategoryPath(term);
+        List<Map<String, String>> response = new ArrayList<Map<String, String>>();
+        for (String path : paths) {
+            response.add(Collections.singletonMap("label", path));
+        }
+        return response;
     }
 }

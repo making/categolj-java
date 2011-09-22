@@ -16,32 +16,3 @@
 </ul>
 </c:when>
 </c:choose>
-<!-- 
-<div id="sidebar">
-<div id="navi">
-<h3>Menu</h3>
-<ul id="menu">
-    <c:choose>
-        <c:when test="${empty loginUser}">
-            <li><a href="<c:url value="/" />">top</a></li>
-            <li><a
-                href="<c:url value="/all" />">all
-            categories</a></li>
-            <li><a
-                href="<c:url value="/login" />">login</a></li>
-        </c:when>
-        <c:when test="${not empty loginUser}">
-            <li><a href="<c:url value="/" />">top</a></li>
-            <li><a
-                href="<c:url value="/all" />">all
-            categories</a></li>
-            <li><a
-                href="<c:url value="/entry/create" />">create</a></li>
-            <li><a
-                href="<c:url value="/logout" />">logout</a></li>
-        </c:when>
-    </c:choose>
-</ul>
-</div>
-</div>
- -->

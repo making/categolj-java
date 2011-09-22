@@ -28,4 +28,6 @@ public interface EntryService {
     void deleteEntry(Entry entry);
 
     Set<String> getAllCategoryLinkSet();
+
+    List<String> getAllCategoryPath(String term);
 }

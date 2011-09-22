@@ -9,8 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import am.ik.categolj.common.Const;
-import am.ik.categolj.dao.CategoryDao;
-import am.ik.categolj.dao.EntryDao;
+import am.ik.categolj.dao.mongodb.MongoEntryDao;
 import am.ik.categolj.entity.Category;
 import am.ik.categolj.entity.Entry;
 import am.ik.categolj.exception.NoSuchEntryException;
@@ -18,11 +17,9 @@ import am.ik.categolj.service.EntryService;
 import am.ik.categolj.util.CategoryUtils;
 
 @Service
-public class EntryServiceImpl implements EntryService {
+public class MongoEntryService implements EntryService {
     @Inject
-    protected EntryDao entryDao;
-    @Inject
-    protected CategoryDao categoryDao;
+    protected MongoEntryDao entryDao;
 
     @Override
     public Entry getEntryById(Long id) throws NoSuchEntryException {
@@ -57,34 +54,16 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public void insertEntry(Entry entry) {
-        List<Category> categories = entry.getCategory();
-        if (categories != null) {
-            for (Category category : categories) {
-                categoryDao.insertCategory(category);
-            }
-        }
         entryDao.insertEntry(entry);
     }
 
     @Override
     public void updateEntry(Entry entry) {
-        List<Category> categories = entry.getCategory();
-        if (categories != null) {
-            for (Category category : categories) {
-                categoryDao.updateCategory(category);
-            }
-        }
         entryDao.updateEntry(entry);
     }
 
     @Override
     public void deleteEntry(Entry entry) {
-        List<Category> categories = entry.getCategory();
-        if (categories != null) {
-            for (Category category : categories) {
-                categoryDao.deleteCategory(category);
-            }
-        }
         entryDao.deleteEntry(entry);
     }
 
@@ -97,6 +76,11 @@ public class EntryServiceImpl implements EntryService {
             linkSet.add(CategoryUtils.categoryLinkString(e.getCategory()));
         }
         return linkSet;
+    }
+
+    @Override
+    public List<String> getAllCategoryPath(String term) {
+        return entryDao.getAllCategoryPath(term);
     }
 
 }

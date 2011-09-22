@@ -84,4 +84,9 @@ $(function() {
     $("#preview").click(function() {
         $("#preview-content").slideToggle();
     });
+    // autocomplete
+    $("#field-category").autocomplete({
+        source : "../../category.json",
+        minLength: 2
+    });
 })
