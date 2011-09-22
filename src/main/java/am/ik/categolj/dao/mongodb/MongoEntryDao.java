@@ -73,7 +73,7 @@ public class MongoEntryDao implements EntryDao {
     }
 
     public List<String> getAllCategoryPath(String term) {
-        LOGGER.debug(false, "[CTGLXX08] term={0}", term);
+        LOGGER.debug(false, "[DCTGLX08] autocomplete from term={0}", term);
         List<String> path = new ArrayList<String>();
         if (term != null) {
             Pattern p = Pattern.compile(Pattern.quote(term.replace(
