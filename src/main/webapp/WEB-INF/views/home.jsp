@@ -8,7 +8,7 @@
     <c:param name="title" />
     <c:param name="content">
         <c:if test="${not empty categoryLink}">
-            <h2 id="contents-header" class="contents-header">${categoyLink}</h2>
+        ${categoryLink}
         </c:if>
         <c:forEach var="entry" items="${entryList}">
             <c:import url="/WEB-INF/views/entry/viewBase.jsp"

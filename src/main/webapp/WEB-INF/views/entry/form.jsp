@@ -9,19 +9,20 @@
     <c:param name="title" value="" />
     <c:param name="meta">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/js/jquery-ui/css/cupertino/jquery-ui-1.8.16.custom.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/js/pagedown/pagedown.css" />">
+    
     </c:param>
     <c:param name="content">
-        <script type="text/javascript">
-            wmd_options = {
-                output : 'Markdown'
-            };
-        </script>
-        <script src='<c:url value="/resources/js/wmd/wmd.js" />' type='text/javascript'></script>
+        <script src='<c:url value="/resources/js/pagedown/Markdown.Converter.js" />' type='text/javascript'></script>
+        <script src='<c:url value="/resources/js/pagedown/Markdown.Editor.js" />' type='text/javascript'></script>
         <script src='<c:url value="/resources/js/jquery-ui/js/jquery-ui-1.8.16.custom.min.js" />' type='text/javascript'></script>
         <script src='<c:url value="/resources/js/jquery.upload-1.0.2.modified.min.js" />' type='text/javascript'></script>
         <script src='<c:url value="/resources/js/form.js" />' type='text/javascript'></script>
         <script type="text/javascript">
             $(document).ready(function() {
+                var converter = new Markdown.Converter(); // not sanitize
+                var editor = new Markdown.Editor(converter);
+                editor.run();
                 am.ik.categolj.entry.Form.init('<c:url value="/" />');
             });
         </script>
@@ -54,9 +55,10 @@
                     </div>
                 </div>
                 <div class="clearfix">
-                    <label for="field-content">Content : </label>
-                    <div class="input">
-                        <form:textarea path="content" id="field-content" rows="10" cssClass="span7" cssErrorClass="error span7" />
+                    <label for="wmd-input">Content : </label>
+                    <div class="input wmd-panel">
+                        <div id="wmd-button-bar" class="wmd-button-bar"></div>
+                        <form:textarea path="content" id="wmd-input" cssClass="wmd-input span7" cssErrorClass="wmd-input error span7" />
                         <form:errors path="content" cssClass="error help-inline inline" element="span" />
                     </div>
                 </div>
@@ -107,6 +109,6 @@
         </div>
         <hr>
         <h3 id="preview" style="cursor: pointer">Live Preview</h3>
-        <div id="preview-content" class="wmd-preview"></div>
+        <div id="wmd-preview" class="wmd-preview"></div>
     </c:param>
 </c:import>

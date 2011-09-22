@@ -341,6 +341,7 @@
                 <version>1.1</version>
                 <configuration>
                     <path>/</path>
+                    <port>8080</port>
                 </configuration>
             </plugin>
             <plugin>

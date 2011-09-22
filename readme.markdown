@@ -1,4 +1,6 @@
-$ mvn tomcat:run
+    $ MAVEN_OPTS=-Xmx512m mvn tomcat:run
+
+(in case of Windows `set MAVEN_OPTS=-Xmx512m`)
 
 access http://localhost:8080
 

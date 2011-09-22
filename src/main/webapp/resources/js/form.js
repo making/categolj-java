@@ -11,7 +11,7 @@ am.ik.categolj.entry.Form = {
         var ext = $("#ext" + id).html();
         var path = $("#path" + id).attr("value");
         var html = "<a href='" + path + "'>";
-        var body = $("#field-content");
+        var body = $("#wmd-input");
         if (am.ik.categolj.entry.Form.isImage(ext)) {
             html += "<img src='" + path + "' />";
         } else {
@@ -92,7 +92,7 @@ am.ik.categolj.entry.Form = {
             $("#uploader-content").slideToggle();
         });
         $("#preview").click(function() {
-            $("#preview-content").slideToggle();
+            $("#wmd-preview").slideToggle();
         });
         // autocomplete
         $("#field-category").autocomplete({
