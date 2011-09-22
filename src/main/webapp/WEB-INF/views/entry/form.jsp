@@ -90,7 +90,7 @@
         </form:form>
         <hr>
         <h3 id="search-product" style="cursor: pointer">Amazon Product Search</h3>
-        <div id="search-product-content" style="min-height: 150px;">
+        <div id="search-product-content" style="min-height: 150px;display: none;">
             <input id="search-product-term" class="span3" type="search" placeholder="Title or Keyword"> 
             <input type="radio" id="search-product-title" name="searchType" value="title" checked="checked"> <label style="float: none;" for="search-product-title">title</label>
             <input type="radio" id="search-product-keyword" name="searchType" value="keyword"> <label style="float: none;" for="search-product-keyword">keyword</label>
