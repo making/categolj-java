@@ -20,9 +20,6 @@
         <script src='<c:url value="/resources/js/form.js" />' type='text/javascript'></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                var converter = new Markdown.Converter(); // not sanitize
-                var editor = new Markdown.Editor(converter);
-                editor.run();
                 am.ik.categolj.entry.Form.init('<c:url value="/" />');
             });
         </script>
@@ -92,18 +89,27 @@
             </fieldset>
         </form:form>
         <hr>
+        <h3 id="search-product" style="cursor: pointer">Amazon Product Search</h3>
+        <div id="search-product-content" style="min-height: 150px;">
+            <input id="search-product-term" class="span3" type="search" placeholder="Title or Keyword"> 
+            <input type="radio" id="search-product-title" name="searchType" value="title" checked="checked"> <label style="float: none;" for="search-product-title">title</label>
+            <input type="radio" id="search-product-keyword" name="searchType" value="keyword"> <label style="float: none;" for="search-product-keyword">keyword</label>
+            <input id="search-product-btn" class="btn primary disabled" type="button" value="SEARCH"> 
+            <input id="search-product-reset-btn" class="btn" type="reset" value="RESET"> 
+            <div id="search-product-result" style="margin-top: 10px;"></div>
+        </div>
+        <hr>
         <h3 id="uploader" style="cursor: pointer">Uploader</h3>
         <div id="uploader-content" style="display: none">
             <input name="file" type="file" id="upload-file" />
-            <table id="upload-result">
+            <table id="upload-result" class="zebra-striped">
                 <tr>
                     <th>ID</th>
                     <th>IMG</th>
                     <th>PATH</th>
                     <th>EXT</th>
                     <th>SIZE</th>
-                    <th>DEL</th>
-                    <th>INS</th>
+                    <th>ACTION</th>
                 </tr>
             </table>
         </div>

@@ -6,8 +6,6 @@ import java.util.TreeSet;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Service;
-
 import am.ik.categolj.common.Const;
 import am.ik.categolj.dao.mongodb.MongoEntryDao;
 import am.ik.categolj.entity.Category;
@@ -16,7 +14,6 @@ import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.util.CategoryUtils;
 
-@Service
 public class MongoEntryService implements EntryService {
     @Inject
     protected MongoEntryDao entryDao;

@@ -7,12 +7,13 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:property-placeholder location="classpath:categolj.properties" />
-    <!-- Entry -->
-    <!-- <bean class="am.ik.categolj.service.entry.EntryServiceImpl" /> -->
+
     <!-- Dao -->
     <import resource="dao/mongodb.xml" />
-    <!-- <import resource="dao/mock.xml"/> -->
-
+    
+    <!-- Entry -->
+    <bean class="am.ik.categolj.service.entry.MongoEntryService" />
+    
     <!-- Uploader -->
     <mvc:resources mapping="/upload/*/*" location="${categolj.upload.dir}/" />
     <bean class="am.ik.categolj.service.uploader.LocalUploaderService">
@@ -27,9 +28,20 @@
         class="am.ik.categolj.service.authentication.DefaultAuthenticationService" />
 
     <bean class="am.ik.support.igo.TaggerFactoryBean">
-        <property name="dictDir" value="classpath:ipadic" />
+        <property name="dictDir" value="${categolj.mecab.dict.dir}" />
     </bean>
 
     <!-- Entry Search -->
     <bean class="am.ik.categolj.service.search.MongoEntrySearchService" />
+    
+    <!-- Amazon -->
+    <bean class="am.ik.aws.apa.AwsApaRequesterImpl">
+        <constructor-arg name="endpoint" value="${categolj.aws.endpoint}" />
+        <constructor-arg name="accessKeyId" value="${categolj.aws.accesskey.id}" />
+        <constructor-arg name="secretAccessKey" value="${categolj.aws.secret.accesskey}" />
+        <constructor-arg name="associateTag" value="${categolj.aws.associate.tag}" />
+        <property name="retryCount" value="0" />
+    </bean>
+    
+    <bean class="am.ik.categolj.service.amazon.AmazonProductServiceImpl" />
 </beans>
