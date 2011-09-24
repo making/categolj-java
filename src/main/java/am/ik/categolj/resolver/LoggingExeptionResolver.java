@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import am.ik.categolj.common.LogId;
+import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.yalf.logger.Logger;
 
 public class LoggingExeptionResolver extends SimpleMappingExceptionResolver {
@@ -17,6 +18,11 @@ public class LoggingExeptionResolver extends SimpleMappingExceptionResolver {
     protected ModelAndView doResolveException(HttpServletRequest request,
             HttpServletResponse response, Object handler, Exception ex) {
         logger.fatal(LogId.FCTGL001, ex);
+        if (ex instanceof NoSuchEntryException) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        } else {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
         return super.doResolveException(request, response, handler, ex);
     }
 }
