@@ -58,7 +58,8 @@ public class RssEntryFeedView extends AbstractView {
 
             SyndEntry entry = new SyndEntryImpl();
             entry.setTitle(e.getTitle());
-            entry.setLink(feed.getLink() + "/entry/view/id/" + e.getId());
+            entry.setLink(feed.getLink() + "/entry/view/id/" + e.getId() + "/"
+                    + e.getTitle());
             entry.setPublishedDate(e.getCreatedAt());
             entry.setUpdatedDate(e.getUpdatedAt());
             entry.setDescription(description);
