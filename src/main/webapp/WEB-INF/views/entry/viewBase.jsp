@@ -1,11 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://amateras.sf.jp/functions" prefix="f"%>
-<%@ taglib uri="/categolj" prefix="categolj"%>
-<%@ page session="false"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
 <article>
     <h2><a href="<c:url value="/entry/view/id/${f:h(param.id)}/title/${f:h(param.title)}/" />">${f:h(param.title)}</a></h2>
     ${categolj:markdown(param.content)}

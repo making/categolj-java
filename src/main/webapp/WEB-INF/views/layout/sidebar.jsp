@@ -1,6 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://amateras.sf.jp/functions" prefix="f" %>
-<%@ page pageEncoding="UTF-8"%>
 <h3 class="label">Recently Posts</h3>
 <ul>
 <c:forEach var="entry" items="${recentEntries}">
