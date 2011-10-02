@@ -48,7 +48,7 @@ public class MockEntryDao implements EntryDao {
     private static List<Entry> getPaged(List<Entry> list, int page, int count) {
         Collections.reverse(list);
         List<Entry> result = new ArrayList<Entry>();
-        int offset = CommonUtils.calcOffset(page);
+        int offset = CommonUtils.calcOffset(page, count);
         int len = Math.min(count, list.size()) - offset;
         for (int i = 0; i < len; i++) {
             Entry e = list.get(i + offset);
