@@ -8,8 +8,12 @@ import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import am.ik.categolj.serializer.CategorySerializer;
+import am.ik.categolj.serializer.DateSerializer;
 import am.ik.categolj.util.CategoryUtils;
 
 import com.google.code.morphia.annotations.Entity;
@@ -69,6 +73,7 @@ public class Entry {
         this.title = title;
     }
 
+    @JsonIgnore
     public String getContent() {
         return content;
     }
@@ -77,6 +82,7 @@ public class Entry {
         this.content = content;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -85,6 +91,7 @@ public class Entry {
         this.createdAt = createdAt;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -93,6 +100,7 @@ public class Entry {
         this.updatedAt = updatedAt;
     }
 
+    @JsonSerialize(using = CategorySerializer.class)
     public List<Category> getCategory() {
         return CategoryUtils.populateCategoriesFromPath(categoriesPath);
     }
@@ -105,14 +113,17 @@ public class Entry {
         this.categoriesPath = paths;
     }
 
+    @JsonIgnore
     public String getCategoryLink() {
         return CategoryUtils.categoryLinkString(categoriesPath);
     }
 
+    @JsonIgnore
     public String getCategoryBreadCrumb() {
         return CategoryUtils.categoryBreadCrumb(categoriesPath);
     }
 
+    @JsonIgnore
     public boolean isUpdateDate() {
         return updateDate;
     }
@@ -132,10 +143,12 @@ public class Entry {
         this.categoriesPath = categoriesPath;
     }
 
+    @JsonIgnore
     public List<String> getCategoriesPath() {
         return categoriesPath;
     }
 
+    @JsonIgnore
     public String getDistinctCategory() {
         return distinctCategory;
     }
@@ -144,6 +157,7 @@ public class Entry {
         this.distinctCategory = distinctCategory;
     }
 
+    @JsonIgnore
     public List<String> getCategoryIndex() {
         return categoryIndex;
     }
@@ -152,6 +166,7 @@ public class Entry {
         this.categoryIndex = categoryIndex;
     }
 
+    @JsonIgnore
     public Set<String> getKeywords() {
         return keywords;
     }

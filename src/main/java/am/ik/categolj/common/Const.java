@@ -18,7 +18,7 @@ public final class Const {
     public static final String CATEGORY_LINK_SET_ATTR = "categoryLinkSet";
     public static final int START_PAGE = 1;
     public static final int VIEW_COUNT = 3;
-    public static final int RECENT_COUNT = 5;
+    public static final int RECENT_COUNT = 10;
     public static final String ROLE_USER = "ROLE_USER";
 
     static {

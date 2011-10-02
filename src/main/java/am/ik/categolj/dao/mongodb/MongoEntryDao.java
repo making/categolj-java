@@ -65,7 +65,7 @@ public class MongoEntryDao implements EntryDao {
 
     @Override
     public List<Entry> getEntriesByPage(int page, int count) {
-        int offset = CommonUtils.calcOffset(page);
+        int offset = CommonUtils.calcOffset(page, count);
         List<Entry> entries = ds.find(Entry.class).order(GET_ENTRY_ORDER)
                 .retrievedFields(false, RETRIEVE_FIELDS).offset(offset)
                 .limit(count).asList();
@@ -117,7 +117,7 @@ public class MongoEntryDao implements EntryDao {
     @Override
     public List<Entry> getCategorizedEntriesByPage(List<Category> category,
             int page, int count) {
-        int offset = CommonUtils.calcOffset(page);
+        int offset = CommonUtils.calcOffset(page, count);
         List<Entry> entries = getCategorizedQuery(category)
                 .order(GET_ENTRY_ORDER).offset(offset).limit(count).asList();
         LOGGER.debug(LogId.DCTGL009, entries);
@@ -140,7 +140,7 @@ public class MongoEntryDao implements EntryDao {
     public List<Entry> getKeywordSearchedEntriesByPage(Set<String> keywords,
             int page, int count) {
         LOGGER.debug(LogId.DCTGL014, keywords);
-        int offset = CommonUtils.calcOffset(page);
+        int offset = CommonUtils.calcOffset(page, count);
         List<Entry> entries = getKeywordSearchedQuery(keywords).offset(offset)
                 .limit(count).asList();
         LOGGER.debug(LogId.DCTGL009, entries);

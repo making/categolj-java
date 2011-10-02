@@ -7,14 +7,22 @@ import java.util.Set;
 import am.ik.categolj.common.Const;
 
 public final class CommonUtils {
-    public static int calcTotalPage(int totalCount) {
-        int totalPage = (int) Math.ceil((totalCount + 0.0) / Const.VIEW_COUNT);
+    public static int calcTotalPage(int totalCount, int viewCount) {
+        int totalPage = (int) Math.ceil((totalCount + 0.0) / viewCount);
         return totalPage;
     }
 
-    public static int calcOffset(int page) {
-        int offset = (page - 1) * Const.VIEW_COUNT;
+    public static int calcTotalPage(int totalCount) {
+        return calcTotalPage(totalCount, Const.VIEW_COUNT);
+    }
+
+    public static int calcOffset(int page, int viewCount) {
+        int offset = (page - 1) * viewCount;
         return offset;
+    }
+
+    public static int calcOffset(int page) {
+        return calcOffset(page, Const.VIEW_COUNT);
     }
 
     public static String preAppendIfNotStartsWithSlash(String s) {
