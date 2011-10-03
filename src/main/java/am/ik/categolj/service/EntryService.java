@@ -14,6 +14,8 @@ public interface EntryService {
 
     List<Entry> getEntriesOnlyIdTitle(int count);
 
+    List<Entry> getEntriesForGrid(int page, int rows, String sidx, String sord);
+
     int getTotalEntryCount();
 
     List<Entry> getCategorizedEntriesByPage(List<Category> category, int page,

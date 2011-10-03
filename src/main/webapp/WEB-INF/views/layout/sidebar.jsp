@@ -1,3 +1,11 @@
+<h3 class="label">Links</h3>
+<ul>
+    <li><a href="http://twitter.com/making">Twitter</a></li>
+    <li><a href="http://github.com/making">Github</a></li>
+    <li><a href="http://www.facebook.com/toshiaki.maki">Facebook</a></li>
+    <li><a href="http://jp.linkedin.com/pub/toshiaki-maki/37/148/703">LinkedIn</a></li>
+</ul>
+
 <h3 class="label">Recently Posts</h3>
 <ul>
 <c:forEach var="entry" items="${recentEntries}">

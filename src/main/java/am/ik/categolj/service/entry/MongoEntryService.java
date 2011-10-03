@@ -34,6 +34,12 @@ public class MongoEntryService implements EntryService {
     }
 
     @Override
+    public List<Entry> getEntriesForGrid(int page, int rows, String sidx,
+            String sord) {
+        return entryDao.getEntriesForGrid(page, rows, sidx, sord);
+    }
+
+    @Override
     public int getTotalEntryCount() {
         return entryDao.getTotalEntryCount();
     }

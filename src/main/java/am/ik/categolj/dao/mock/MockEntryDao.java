@@ -71,6 +71,13 @@ public class MockEntryDao implements EntryDao {
     }
 
     @Override
+    public List<Entry> getEntriesForGrid(int page, int rows, String sidx,
+            String sord) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public int getTotalEntryCount() {
         return entryMap.size();
     }

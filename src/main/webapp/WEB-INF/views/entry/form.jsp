@@ -1,4 +1,4 @@
-<c:import url="/WEB-INF/views/layout/layout.jsp" charEncoding="UTF-8">
+<c:import url="/WEB-INF/views/admin/layout.jsp" charEncoding="UTF-8">
     <c:param name="title" value="" />
     <c:param name="meta">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/js/jquery-ui/css/cupertino/jquery-ui-1.8.16.custom.css" />">
@@ -32,7 +32,7 @@
                 <div class="clearfix">
                     <label for="field-title">Title : </label>
                     <div class="input">
-                        <form:input path="title" id="field-title" cssClass="span7" cssErrorClass="error span7" />
+                        <form:input path="title" id="field-title" cssClass="span10" cssErrorClass="error span7" />
                         <form:errors path="title" cssClass="error help-inline inline" element="span" />
                         <form:hidden path="id" />
                     </div>
@@ -40,7 +40,7 @@
                 <div class="clearfix">
                     <label for="field-category">Category : </label>
                     <div class="input">
-                        <form:input path="category" id="field-category" cssClass="span7" cssErrorClass="error span7" />
+                        <form:input path="category" id="field-category" cssClass="span10" cssErrorClass="error span7" />
                         <form:errors path="category" cssClass="error help-inline inline" element="span" />
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <label for="wmd-input">Content : </label>
                     <div class="input wmd-panel">
                         <div id="wmd-button-bar" class="wmd-button-bar"></div>
-                        <form:textarea path="content" id="wmd-input" cssClass="wmd-input span7" cssErrorClass="wmd-input error span7" />
+                        <form:textarea path="content" id="wmd-input" cssClass="wmd-input span10" cssErrorClass="wmd-input error span7" />
                         <form:errors path="content" cssClass="error help-inline inline" element="span" />
                     </div>
                 </div>

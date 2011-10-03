@@ -30,6 +30,7 @@
             <mvc:mapping path="/search/**" />
             <mvc:mapping path="/page/**" />
             <mvc:mapping path="/login" />
+            <mvc:mapping path="/admin/**" />
             <bean class="am.ik.categolj.interceptor.LoginCheckInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>

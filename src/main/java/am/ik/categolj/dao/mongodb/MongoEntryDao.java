@@ -72,6 +72,24 @@ public class MongoEntryDao implements EntryDao {
         return entries;
     }
 
+    @Override
+    public List<Entry> getEntriesForGrid(int page, int rows, String sidx,
+            String sord) {
+        String order = sidx;
+        if ("desc".equalsIgnoreCase(sord)) {
+            order = "-" + order;
+        }
+        int offset = CommonUtils.calcOffset(page, rows);
+        LOGGER.debug(false, "[DCTGLX20] offset={0}, limit={1}, order={2}",
+                offset, rows, order);
+        List<Entry> entries = ds
+                .find(Entry.class)
+                .order(order)
+                .retrievedFields(true, "id", "title", "category", "created-at",
+                        "updated-at").offset(offset).limit(rows).asList();
+        return entries;
+    }
+
     public List<String> getAllCategoryPath(String term) {
         LOGGER.debug(false, "[DCTGLX08] autocomplete from term={0}", term);
         List<String> path = new ArrayList<String>();

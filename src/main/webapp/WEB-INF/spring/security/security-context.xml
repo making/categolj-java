@@ -11,6 +11,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
         <intercept-url pattern="/entry/delete/**" access="ROLE_USER" />
         <intercept-url pattern="/upload/post" access="ROLE_USER" />
         <intercept-url pattern="/upload/delete/*" access="ROLE_USER" />
+        <intercept-url pattern="/admin/**" access="ROLE_USER" />
 
         <form-login login-page="/login" default-target-url="/"
             authentication-failure-url="/login?error=true" />

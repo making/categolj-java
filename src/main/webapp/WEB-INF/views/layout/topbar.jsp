@@ -7,6 +7,10 @@
             <c:if test="${empty loginUser}">
             <li><a data-controls-modal="login-modal" data-backdrop="true" data-keyboard="true">Login</a></li>
             </c:if>
+            <c:if test="${not empty loginUser}">
+            <li><a href="<c:url value="/admin/index" />">Admin</a></li>
+            <li><a href="<c:url value="/logout" />">Logout</a></li>
+            </c:if>
         </ul>
         <!-- search form -->
         <form action="<c:url value="/search" />" method="get" class="pull-right">
