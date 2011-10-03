@@ -30,6 +30,9 @@ public class LocalUploaderService implements UploaderService, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         Assert.notNull(uploadDir);
         File dir = uploadDir.getFile();
+        if (!dir.exists()) {
+            throw new RuntimeException(dir + " is not exists!");
+        }
         if (logger.isInfoEnabled()) {
             logger.info(LogId.ICTGL007, dir, dir.getAbsoluteFile());
         }
