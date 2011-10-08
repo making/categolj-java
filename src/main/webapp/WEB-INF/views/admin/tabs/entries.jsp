@@ -10,7 +10,7 @@ $(document).ready(function() {
     var rows = localStorage.getItem("rows") || 10;
     var page = localStorage.getItem("page") || 1;
     grid.jqGrid({
-        url : "entry/list",
+        url : "<c:url value="/entry/json" />",
         datatype : "json",
         colNames : ["ID", "TITLE", "CATEGORY", "CREATED_AT", "UPDATED_AT"],
         colModel : [ {

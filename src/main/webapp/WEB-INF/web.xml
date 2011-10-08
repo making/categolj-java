@@ -43,7 +43,7 @@
         <filter-class>am.ik.categolj.filter.MobileRedirectFilter</filter-class>
         <init-param>
             <param-name>excludePathPatterns</param-name>
-            <param-value>/resources/**,/upload/**,/rss*,/feed*,/admin/**,/entry/edit/**,/entry/create,/entry/delete/**</param-value>
+            <param-value>/resources/**,/upload/**,/entry/json*,/admin/**,/entry/edit/**,/entry/create,/entry/delete/**,/log*,/rss*,/feed*</param-value>
         </init-param>
         <init-param>
             <param-name>viewPcKey</param-name>

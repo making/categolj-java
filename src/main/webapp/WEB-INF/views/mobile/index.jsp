@@ -20,7 +20,7 @@
                 $.mobile.showPageLoadingMsg();
                 page++;
                 $.ajax({
-                    url : "<c:url value="/admin/entry/list" />?page=" + page + "&rows=" + count + "&sidx=updated-at&sord=desc&_search=false",
+                    url : "<c:url value="/entry/json" />?page=" + page + "&rows=" + count + "&sidx=updated-at&sord=desc&_search=false",
                     dataType : "json",
                     success : function (data) {
                         if (data.page == data.total) {

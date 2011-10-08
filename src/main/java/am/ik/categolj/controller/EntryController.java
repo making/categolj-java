@@ -17,12 +17,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import am.ik.categolj.common.LogId;
 import am.ik.categolj.entity.Entry;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.util.BindingResultUtils;
 import am.ik.categolj.util.CategoryEditor;
+import am.ik.support.jqgrid.JqGridRequest;
+import am.ik.support.jqgrid.JqGridResponse;
+import am.ik.support.jqgrid.JqGridResponseBuilder;
 import am.ik.yalf.logger.Logger;
 
 @Controller
@@ -109,5 +114,18 @@ public class EntryController {
         logger.debug(LogId.DCTGL004, entry);
         entryService.deleteEntry(entry);
         return "redirect:/";
+    }
+
+    @RequestMapping("/json")
+    @ResponseBody
+    public JqGridResponse<Entry> entryList(JqGridRequest req,
+            @RequestParam("_search") boolean isSearch) {
+        logger.debug(false, "req={0} isSearch={1}", req, isSearch);
+        int records = entryService.getTotalEntryCount();
+        int total = (int) Math.ceil((double) records / req.getRows());
+        List<Entry> entries = entryService.getEntriesForGrid(req.getPage(),
+                req.getRows(), req.getSidx(), req.getSord());
+        return new JqGridResponseBuilder<Entry>().page(req.getPage())
+                .records(records).total(total).addAll(entries).build();
     }
 }
