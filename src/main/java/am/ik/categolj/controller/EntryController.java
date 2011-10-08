@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import am.ik.categolj.common.LogId;
 import am.ik.categolj.entity.Entry;
-import am.ik.categolj.exception.NoSuchEntryException;
 import am.ik.categolj.service.EntryService;
 import am.ik.categolj.util.BindingResultUtils;
 import am.ik.categolj.util.CategoryEditor;
@@ -51,9 +50,6 @@ public class EntryController {
     @RequestMapping("/view/id/{id}/**")
     public String view(@PathVariable Long id, Model model) {
         Entry entry = entryService.getEntryById(id);
-        if (entry == null) {
-            throw new NoSuchEntryException(id);
-        }
         model.addAttribute(entry);
         return "entry/view";
     }

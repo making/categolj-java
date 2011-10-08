@@ -60,6 +60,9 @@ public class MongoEntryDao implements EntryDao {
         Entry entry = ds.find(Entry.class, "id", id)
                 .retrievedFields(false, RETRIEVE_FIELDS).get();
         LOGGER.debug(LogId.DCTGL009, entry);
+        if (entry == null) {
+            throw new NoSuchEntryException(id);
+        }
         return entry;
     }
 
