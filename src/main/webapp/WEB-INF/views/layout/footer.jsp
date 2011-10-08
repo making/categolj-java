@@ -1,1 +1,1 @@
-<p>Powered by <a href="http://github.com/making/categolj-java">CategoLJ for Java</a> and <a href="http://twitter.github.com/bootstrap/">bootstrap</a></p>
+<p>Powered by <a href="http://github.com/making/categolj-java">CategoLJ for Java</a> and <a href="http://twitter.github.com/bootstrap/">bootstrap</a> [<a href="<c:url value="/?mobile=true" />" rel="external">mobile</a>]</p>

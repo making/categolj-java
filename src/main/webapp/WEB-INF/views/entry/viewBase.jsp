@@ -11,8 +11,7 @@
     </div>
     <div class="date">
         <p>
-            Created at : <span class="article-created-at">${f:h(param.createdAt)}</span>
-            &nbsp; Updated at : <span class="article-updated-at">${f:h(param.updatedAt)}</span>
+            Created at : ${f:h(param.createdAt)}&nbsp; Updated at : ${f:h(param.updatedAt)}
             <br> Category : <span class="article-category">${param.categoryLink}</span>
             <br> <br> <a
                 href="http://b.hatena.ne.jp/entry/<spring:message code="categolj.url" />/entry/view/id/${f:h(param.id)}/title/${f:u(param.title)}/"
