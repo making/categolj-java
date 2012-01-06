@@ -1,4 +1,4 @@
-<p><a href="<c:url value="/entry/create" />" class="btn info">CREATE NEW ENTRY</a></p>
+<p><a href="<c:url value="/entry/create" />" class="btn primary">CREATE NEW ENTRY</a></p>
 <table id="entry-grid"></table>
 <div id="entry-pager"></div>
 <script>

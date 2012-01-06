@@ -1,7 +1,8 @@
 <c:import url="/WEB-INF/views/admin/layout.jsp" charEncoding="UTF-8">
     <c:param name="title" />
     <c:param name="content">
-        <ul class="tabs">
+    <div class="tabs">
+        <ul>
             <li class="active"><a href="#home">Home</a></li>
             <li><a href="#entries">Entries</a></li>
             <li><a href="#users">Users</a></li>
@@ -25,6 +26,7 @@
             <div id="settings">
                 <c:import url="/WEB-INF/views/admin/tabs/settings.jsp" />
             </div>
+        </div>
         </div>
         <script>
           $(function () {

@@ -9,7 +9,7 @@
 <![endif]-->
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap/bootstrap.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/js/jquery-ui/css/cupertino/jquery-ui-1.8.16.custom.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/js/jquery-ui/css/bootstrap/jquery-ui-1.8.16.custom.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/js/jqgrid/css/ui.jqgrid.css" />">
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<c:url value="/resources/images/favicon.ico" />">
 <link rel="icon" type="image/vnd.microsoft.icon" href="<c:url value="/resources/images/favicon.ico" />">
@@ -53,7 +53,7 @@ ${param.meta}
     <script type="text/javascript" src="<c:url value="/resources/js/jqgrid/js/i18n/grid.locale-en.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/jqgrid/js/jquery.jqGrid.src.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/bootstrap/bootstrap-modal.js" />"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/bootstrap/bootstrap-tabs.js" />"></script>
+<%--     <script type="text/javascript" src="<c:url value="/resources/js/bootstrap/bootstrap-tabs.js" />"></script> --%>
     
     
 </body>
