@@ -9,6 +9,7 @@ body {
 
 .container>footer p {
     text-align: right;
+    padding: 10px;
 }
 
 .container>div div p {
@@ -28,11 +29,6 @@ pre {
 
 .breadcrumb {
     width: 533px;
-}
-
-.container {
-    width: 820px;
-    /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
 }
 
 .sidebar>.label {
@@ -91,7 +87,7 @@ pre>code {
 }
 
 article {
-    width: 540px;
+    width: 93%;
     padding: 10px;
     border: 1px solid #eee;
     margin-bottom: 18px;
@@ -122,13 +118,6 @@ article h2 {
     width: 50%;
 }
 
-.alert-message {
-    width: 90%;
-}
-
 .inline {
   display: inline-table;
-}
-
-form .clearfix {
 }

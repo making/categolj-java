@@ -47,8 +47,8 @@ am.ik.categolj.entry.Form = {
                 + "</td><td><input id='path" + id + "' value='" + path
                 + "' /></td><td id='ext" + id + "'>" + ext + "</td><td>"
                 + file.size
-                + "</td><td><input type='button' class='btn info' value='INSERT' onclick='am.ik.categolj.entry.Form.insertUploadHtml(" + id
-                + ")' /> <input type='button' class='btn danger' value='DELETE' onclick='am.ik.categolj.entry.Form.deleteFile("
+                + "</td><td><input type='button' class='btn btn-info' value='INSERT' onclick='am.ik.categolj.entry.Form.insertUploadHtml(" + id
+                + ")' /> <input type='button' class='btn btn-danger' value='DELETE' onclick='am.ik.categolj.entry.Form.deleteFile("
                 + id + ")' /></td></tr>");
     },
     
@@ -69,10 +69,10 @@ am.ik.categolj.entry.Form = {
         div.html("<p><img src=\""+ am.ik.categolj.entry.Form.contextRoot +"resources/images/ajax-loader.gif\"></p>");
         $.get(am.ik.categolj.entry.Form.contextRoot + "apa/search/" + target, function(res) {
             if (res.error) {
-                div.html("<div class='alert-message error'><p><strong>Error!</strong> : " + res.error + "</p>" 
+                div.html("<div class='alert alert-error'><p><strong>Error!</strong> : " + res.error + "</p>" 
                         + "<p>Please check properties whose key starts with <code>categolj.aws</code> in <code>categolj.properties</code></p></div>");
             } else {
-                var result = "<table class=\"zebra-striped\"><tr><th>TITLE</th><th>IMG</th><th>DATE</th><th>AUTHOR</th><th>ACTION</th></tr>";
+                var result = "<table class=\"table table-striped table-bordered table-condensed\"><tr><th>TITLE</th><th>IMG</th><th>DATE</th><th>AUTHOR</th><th>ACTION</th></tr>";
                 var products = res.products;
                 for (var i = 0; i < products.length; i++) {
                     var product = products[i];
@@ -80,7 +80,7 @@ am.ik.categolj.entry.Form = {
                             + "<td><a href='" + product.imageLink +"'><img width='50' src='" + product.imageLink +"'></a></td>" 
                             + "<td>" + product.publicationDate +"</td>" 
                             + "<td>" + product.authors +"</td>" 
-                            + "<td><button class='btn info' onclick='am.ik.categolj.entry.Form.insertProductHtml(" 
+                            + "<td><button class='btn btn-info' onclick='am.ik.categolj.entry.Form.insertProductHtml(" 
                             + JSON.stringify(product) + ")'>INSERT</button></td></tr>";
                 }
                 result = result + "</table>";

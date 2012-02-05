@@ -31,7 +31,7 @@ ${param.meta}
                 </h1>
             </div>
             <div class="row">
-                <div class="articles span10">
+                <div class="articles span8">
                     ${param.content}
                     
                     <div class="pagination">
@@ -57,11 +57,11 @@ ${param.meta}
     
     <div id="login-modal" class="modal hide fade">
         <div class="modal-header">
-            <a href="#" class="close">&times;</a>
+            <a href="#" class="close" data-dismiss="modal">&times;</a>
             <h3>Login Form</h3>
         </div>
         <div class="modal-body">
-            <form action="<c:url value="/j_spring_security_check" />" method="post">
+            <form action="<c:url value="/j_spring_security_check" />" method="post" class="form-horizontal">
                 <c:import url="/WEB-INF/views/login/fieldset.jsp" />
             </form>
         </div>

@@ -26,7 +26,7 @@ public class DefaultPagerService implements PagerService {
     public List<String> createPaginationLinks(int totalPage, int currentPage,
             List<Entry> entries, String appendPath, Map<String, Object> params) {
         LinkedList<String> links = new LinkedList<String>();
-        int maxLen = 9;
+        int maxLen = 10;
 
         // max=7,total=10,current=1 -> 1,2,3,4,5,6,7 0
         // max=7,total=10,current=2 -> 1,2,3,4,5,6,7 0

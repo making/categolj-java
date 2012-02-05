@@ -4,7 +4,7 @@
     <div class="edit">
         <c:choose>
             <c:when test="${not empty loginUser}">
-                <a class="btn primary" href="<c:url value="/entry/edit/id/${f:h(param.id)}/" />">EDIT</a> 
+                <a class="btn btn-primary" href="<c:url value="/entry/edit/id/${f:h(param.id)}/" />">EDIT</a> 
                 <a class="btn delete-link" href="<c:url value="/entry/delete/id/${f:h(param.id)}/" />">DELETE</a>
             </c:when>
         </c:choose>
