@@ -30,8 +30,16 @@
     <bean class="am.ik.categolj.dao.mongodb.MongoEntryDao">
         <property name="ds" ref="ds" />
     </bean>
-    
+
+    <bean class="am.ik.categolj.dao.mongodb.MongoLinkDao">
+        <property name="ds" ref="ds" />
+        <property name="mongoSequencer" ref="mongoSequencer" />
+    </bean>
+
     <bean class="am.ik.categolj.dao.mock.MockCategoryDao" />
     <bean class="am.ik.categolj.dao.mock.MockUserDao" />
 
+    <bean id="mongoSequencer" class="am.ik.categolj.dao.mongodb.MongoSequencer">
+        <property name="ds" ref="ds" />
+    </bean>
 </beans>

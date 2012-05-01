@@ -24,7 +24,6 @@ import am.ik.yalf.logger.Logger;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Key;
 import com.google.code.morphia.query.Query;
-import com.google.code.morphia.query.UpdateOperations;
 import com.google.code.morphia.query.UpdateResults;
 import com.mongodb.BasicDBObject;
 import com.mongodb.WriteResult;
@@ -46,6 +45,9 @@ public class MongoEntryDao implements EntryDao {
 
     @Inject
     private Tagger tagger;
+
+    @Inject
+    protected MongoSequencer mongoSequencer;
 
     public Tagger getTagger() {
         return tagger;
@@ -174,11 +176,7 @@ public class MongoEntryDao implements EntryDao {
     }
 
     protected Long incrementAndGet() {
-        Query<Sequence> q = ds.find(Sequence.class).filter("key", "entry");
-        UpdateOperations<Sequence> ops = ds.createUpdateOperations(
-                Sequence.class).inc("value", 1);
-        Sequence seq = ds.findAndModify(q, ops, false, true);
-        return seq.getValue();
+        return mongoSequencer.incrementAndGet("entry");
     }
 
     protected void prepareEntry(Entry entry) {

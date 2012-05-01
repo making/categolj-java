@@ -13,6 +13,7 @@ public final class Const {
     public static final String CATEGORY_DELIM = "::";
     public static final String LOGIN_USER_ATTR = "loginUser";
     public static final String RECENT_ENTRIES_ATTR = "recentEntries";
+    public static final String LINKS_ATTR = "links";
     public static final String PAGER_ATTR = "pagerLink";
     public static final String CATEGORY_LINK_ATTR = "categoryLink";
     public static final String CATEGORY_LINK_SET_ATTR = "categoryLinkSet";

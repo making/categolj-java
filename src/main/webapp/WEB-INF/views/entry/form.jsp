@@ -13,7 +13,7 @@
         <script src='<c:url value="/resources/js/form.js" />' type='text/javascript'></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                am.ik.categolj.entry.Form.init('<c:url value="/" />');
+                new categolj.entry.Form().initialize();
             });
         </script>
         <form:form method="post" modelAttribute="entry" cssClass="form-horizontal">

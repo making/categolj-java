@@ -1,15 +1,12 @@
 package am.ik.categolj.dao.mongodb;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import am.ik.categolj.entity.Entry;
-
-import com.google.code.morphia.Datastore;
-import com.mongodb.BasicDBObject;
+import am.ik.categolj.dao.LinkDao;
+import am.ik.categolj.entity.Link;
 
 public class MongoDemo {
 
@@ -19,16 +16,19 @@ public class MongoDemo {
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx = new FileSystemXmlApplicationContext(
                 "src/main/webapp/WEB-INF/spring/appServlet/dao/mongodb.xml");
-        Datastore ds = ctx.getBean(Datastore.class);
-        MongoEntryDao entryDao = ctx.getBean(MongoEntryDao.class);
+        LinkDao linkDao = ctx.getBean(LinkDao.class);
+        linkDao.save(new Link("Twitter", "http://twitter.com/#!/making"));
+        linkDao.save(new Link("Github", "http://github.com/making"));
+        linkDao.save(new Link("Facebook",
+                "http://www.facebook.com/toshiaki.maki"));
+        linkDao.save(new Link("LinkedIn",
+                "http://jp.linkedin.com/pub/toshiaki-maki/37/148/703"));
 
-        List<?> col = ds.getCollection(Entry.class).distinct(
-                "distinct-category",
-                new BasicDBObject("distinct-category",
-                        Pattern.compile(Pattern.quote("dev|o") + ".+",
-                                Pattern.CASE_INSENSITIVE)));
-        for (Object c : col) {
-            System.out.println(c);
+        List<Link> links = linkDao.findAll();
+        System.out.println(links);
+
+        for (Link l : links) {
+            // linkDao.delete(l.getId());
         }
     }
 }
