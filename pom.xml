@@ -16,6 +16,9 @@
         <spring.data.mongo.version>1.0.0.M3</spring.data.mongo.version>
         <org.aspectj-version>1.6.9</org.aspectj-version>
         <org.slf4j-version>1.6.1</org.slf4j-version>
+        <findbugs.maven.plugin.version>2.4.0</findbugs.maven.plugin.version>
+        <checkstyle.maven.plugin.version>2.9.1</checkstyle.maven.plugin.version>
+        <pmd.maven.plugin.version>2.7.1</pmd.maven.plugin.version>
     </properties>
     <dependencies>
         <!-- Spring -->
@@ -170,7 +173,7 @@
             <artifactId>guava</artifactId>
             <version>r09</version>
         </dependency>
-        
+
         <!-- Servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -248,14 +251,14 @@
             <artifactId>igo</artifactId>
             <version>0.4.3-patched</version>
         </dependency>
-        
+
         <!-- jqGrid -->
         <dependency>
             <groupId>am.ik.support.jqgrid</groupId>
             <artifactId>jqgrid-support</artifactId>
             <version>1.0.0</version>
         </dependency>
-        
+
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -371,6 +374,26 @@
                     <downloadSources>true</downloadSources>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs.maven.plugin.version}</version>
+                <configuration>
+                    <findbugsXmlOutput>true</findbugsXmlOutput>
+                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.maven.plugin.version}</version>
+                <configuration>
+                    <enableRulesSummary>false</enableRulesSummary>
+                </configuration>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -426,4 +449,25 @@ encoding/<project>=${encoding}
             </plugins>
         </pluginManagement>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs.maven.plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.maven.plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmd.maven.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
