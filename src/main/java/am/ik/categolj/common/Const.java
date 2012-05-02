@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.commons.io.IOUtils;
+
 public final class Const {
     public static final String CATEGORY_PATH = "category";
     public static final String PAGE_PATH = "page";
@@ -29,6 +31,9 @@ public final class Const {
         try {
             p.load(s);
         } catch (IOException ignored) {
+            // ignore exception
+        } finally {
+            IOUtils.closeQuietly(s);
         }
     }
 }

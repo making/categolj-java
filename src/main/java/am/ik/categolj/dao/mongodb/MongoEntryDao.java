@@ -35,7 +35,7 @@ public class MongoEntryDao implements EntryDao {
 
     private static final String DISTINCT_CATEGORY = "distinct-category";
 
-    protected static final String[] RETRIEVE_FIELDS = { "category-index",
+    static final String[] RETRIEVE_FIELDS = { "category-index",
             DISTINCT_CATEGORY, "keywords" };
 
     private static final String DISTINCT_DELIM = "|";
