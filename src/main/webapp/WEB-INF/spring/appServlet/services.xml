@@ -10,40 +10,48 @@
 
     <!-- Dao -->
     <import resource="dao/mongodb.xml" />
-    
+
     <!-- Entry -->
-    <bean class="am.ik.categolj.service.entry.MongoEntryService" />
-    
-    <bean class="am.ik.categolj.service.link.MongoLinkService" />
-    
+    <bean
+        class="am.ik.categolj.app.common.service.impl.mongodb.MongoEntryService" />
+
+    <bean
+        class="am.ik.categolj.app.common.service.impl.mongodb.MongoLinkService" />
+
     <!-- Uploader -->
     <mvc:resources mapping="/upload/*/*" location="${categolj.upload.dir}/" />
-    <bean class="am.ik.categolj.service.uploader.LocalUploaderService">
+    <bean
+        class="am.ik.categolj.app.admin.service.impl.local.LocalUploaderService">
         <property name="uploadDir" value="${categolj.upload.dir}" />
     </bean>
 
     <!-- Pager -->
-    <bean class="am.ik.categolj.service.pager.DefaultPagerService" />
+    <bean class="am.ik.categolj.app.blog.service.impl.DefaultPagerService" />
 
     <!-- Authentication -->
     <bean
-        class="am.ik.categolj.service.authentication.DefaultAuthenticationService" />
+        class="am.ik.categolj.app.common.service.impl.DefaultAuthenticationService" />
 
-    <bean class="am.ik.support.igo.TaggerFactoryBean">
+    <bean class="am.ik.categolj.common.fw.support.igo.TaggerFactoryBean">
         <property name="dictDir" value="${categolj.mecab.dict.dir}" />
     </bean>
 
     <!-- Entry Search -->
-    <bean class="am.ik.categolj.service.search.MongoEntrySearchService" />
-    
+    <bean
+        class="am.ik.categolj.app.blog.service.impl.mongodb.MongoEntrySearchService" />
+
     <!-- Amazon -->
     <bean class="am.ik.aws.apa.AwsApaRequesterImpl">
         <constructor-arg name="endpoint" value="${categolj.aws.endpoint}" />
-        <constructor-arg name="accessKeyId" value="${categolj.aws.accesskey.id}" />
-        <constructor-arg name="secretAccessKey" value="${categolj.aws.secret.accesskey}" />
-        <constructor-arg name="associateTag" value="${categolj.aws.associate.tag}" />
+        <constructor-arg name="accessKeyId"
+            value="${categolj.aws.accesskey.id}" />
+        <constructor-arg name="secretAccessKey"
+            value="${categolj.aws.secret.accesskey}" />
+        <constructor-arg name="associateTag"
+            value="${categolj.aws.associate.tag}" />
         <property name="retryCount" value="0" />
     </bean>
-    
-    <bean class="am.ik.categolj.service.amazon.AmazonProductServiceImpl" />
+
+    <bean
+        class="am.ik.categolj.app.admin.service.impl.AmazonProductServiceImpl" />
 </beans>

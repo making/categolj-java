@@ -17,8 +17,10 @@
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
         up static resources in the ${webappRoot}/resources directory -->
-    <mvc:resources mapping="/resources/**" location="/resources/" cache-period="604800" />
-    <mvc:resources mapping="/favicon.ico" location="/resources/images/favicon.ico" cache-period="604800" />
+    <mvc:resources mapping="/resources/**" location="/resources/"
+        cache-period="604800" />
+    <mvc:resources mapping="/favicon.ico" location="/resources/images/favicon.ico"
+        cache-period="604800" />
 
     <!-- Configures Handler Interceptors -->
     <mvc:interceptors>
@@ -31,7 +33,8 @@
             <mvc:mapping path="/page/**" />
             <mvc:mapping path="/login" />
             <mvc:mapping path="/admin/**" />
-            <bean class="am.ik.categolj.interceptor.LoginCheckInterceptor" />
+            <bean
+                class="am.ik.categolj.app.common.web.interceptor.LoginCheckInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/" />
@@ -42,7 +45,7 @@
             <mvc:mapping path="/page/**" />
             <mvc:mapping path="/login" />
             <bean
-                class="am.ik.categolj.interceptor.SetRecentEntriesInterceptor" />
+                class="am.ik.categolj.app.common.web.interceptor.SetRecentEntriesInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/" />
@@ -54,7 +57,7 @@
             <mvc:mapping path="/login" />
             <mvc:mapping path="/admin/**" />
             <bean
-                class="am.ik.categolj.interceptor.SetLinkInterceptor" />
+                class="am.ik.categolj.app.common.web.interceptor.SetLinkInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -77,21 +80,23 @@
         <property name="maxInMemorySize" value="104857600" />
     </bean>
 
-    <bean id="rssEntryFeedView" class="am.ik.categolj.view.RssEntryFeedView">
+    <bean id="rssEntryFeedView" class="am.ik.categolj.app.common.web.view.RssEntryFeedView">
         <property name="feedTitle" value="${categolj.title}" />
         <property name="feedLink" value="${categolj.url}"></property>
         <property name="feedDescription" value="${categolj.description}" />
     </bean>
 
-    <bean class="am.ik.categolj.resolver.LoggingExeptionResolver">
+    <bean class="am.ik.categolj.common.fw.resolver.LoggingExeptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="am.ik.categolj.exception.NoSuchEntryException">error/noSuchEntry</prop>
+                <prop
+                    key="am.ik.categolj.app.common.exception.NoSuchEntryException">error/noSuchEntry</prop>
             </props>
         </property>
         <property name="statusCodes">
             <props>
-                <prop key="am.ik.categolj.exception.NoSuchEntryException">404</prop>
+                <prop
+                    key="am.ik.categolj.app.common.exception.NoSuchEntryException">404</prop>
             </props>
         </property>
         <property name="defaultErrorView" value="error/default" />
