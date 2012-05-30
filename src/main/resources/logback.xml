@@ -1,5 +1,5 @@
 <!DOCTYPE logback>
-<configuration debug="false">
+<configuration DEBUG="false">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <Target>System.out</Target>
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -26,12 +26,28 @@
         <level value="DEBUG" />
     </logger>
 
-    <logger name="java.sql">
-        <level value="DEBUG" />
+    <logger name="org.springframework.core">
+        <level value="WARN" />
     </logger>
 
-    <logger name="org.springframework">
+    <logger name="org.springframework.beans">
         <level value="WARN" />
+    </logger>
+
+    <logger name="org.springframework.context">
+        <level value="WARN" />
+    </logger>
+
+    <logger name="org.springframework.web">
+        <level value="WARN" />
+    </logger>
+
+    <logger name="org.springframework.web.servlet">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="org.springframework.security.core.userdetails">
+        <level value="DEBUG" />
     </logger>
 
     <logger name="com.google.code.morphia">
@@ -39,7 +55,7 @@
     </logger>
 
     <root>
-        <level value="INFO" />
+        <level value="WARN" />
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ROLLING" />
     </root>

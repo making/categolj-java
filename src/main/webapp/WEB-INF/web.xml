@@ -6,8 +6,8 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-        /WEB-INF/spring/root-context.xml
-        /WEB-INF/spring/security/security-context.xml
+        classpath:/META-INF/spring/applicationContext.xml
+        /WEB-INF/spring/spring-security.xml
         </param-value>
     </context-param>
 
@@ -79,7 +79,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+            <param-value>/WEB-INF/spring/spring-mvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

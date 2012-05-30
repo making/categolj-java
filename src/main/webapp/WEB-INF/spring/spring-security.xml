@@ -1,0 +1,30 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http auto-config="true">
+        <intercept-url pattern="/entry/create/**" access="ROLE_USER" />
+        <intercept-url pattern="/entry/edit/**" access="ROLE_USER" />
+        <intercept-url pattern="/entry/delete/**" access="ROLE_USER" />
+        <intercept-url pattern="/upload/post" access="ROLE_USER" />
+        <intercept-url pattern="/upload/delete/*" access="ROLE_USER" />
+        <intercept-url pattern="/admin/**" access="ROLE_USER" />
+
+        <form-login login-page="/login" default-target-url="/"
+            authentication-failure-url="/login?error=true" />
+
+        <logout logout-url="/logout" logout-success-url="/" />
+
+        <remember-me key="categoljKey"
+            token-validity-seconds="2419200" />
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service properties="classpath:users.properties" />
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>
