@@ -14,20 +14,6 @@
         <property name="dbName" value="${categolj.mongo.database}" />
     </bean>
 
-    <bean class="am.ik.categolj.app.common.dao.impl.mongodb.MongoEntryDao">
-        <property name="ds" ref="ds" />
-    </bean>
-
-    <bean class="am.ik.categolj.app.common.dao.impl.mongodb.MongoLinkDao">
-        <property name="ds" ref="ds" />
-        <property name="mongoSequencer" ref="mongoSequencer" />
-    </bean>
-
     <bean class="am.ik.categolj.app.common.dao.impl.mock.MockCategoryDao" />
     <bean class="am.ik.categolj.app.common.dao.impl.mock.MockUserDao" />
-
-    <bean id="mongoSequencer"
-        class="am.ik.categolj.app.common.dao.impl.mongodb.MongoSequencer">
-        <property name="ds" ref="ds" />
-    </bean>
 </beans>

@@ -7,12 +7,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import jp.sf.amateras.functions.utils.StringUtils;
 import am.ik.categolj.app.blog.service.PagerService;
 import am.ik.categolj.app.common.consts.Const;
 import am.ik.categolj.app.common.domain.Entry;
 import am.ik.categolj.common.fw.listener.RequestUtil;
 
+@Service
 public class DefaultPagerService implements PagerService {
 
     @Override

@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Repository;
+
 import am.ik.categolj.app.common.dao.LinkDao;
 import am.ik.categolj.app.common.domain.Link;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 
+@Repository
 public class MongoLinkDao implements LinkDao {
 
     @Inject

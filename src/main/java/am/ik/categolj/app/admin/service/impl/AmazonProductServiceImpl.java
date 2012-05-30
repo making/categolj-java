@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import am.ik.aws.apa.AwsApaRequester;
 import am.ik.aws.apa.jaxws.Image;
 import am.ik.aws.apa.jaxws.Item;
@@ -16,6 +18,7 @@ import am.ik.categolj.app.admin.service.AmazonProductService;
 import am.ik.categolj.app.admin.service.amazon.Product;
 import am.ik.yalf.logger.Logger;
 
+@Service
 public class AmazonProductServiceImpl implements AmazonProductService {
     @Inject
     protected AwsApaRequester requester;

@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import net.reduls.igo.Tagger;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import am.ik.categolj.app.common.consts.Const;
@@ -28,6 +29,7 @@ import com.google.code.morphia.query.UpdateResults;
 import com.mongodb.BasicDBObject;
 import com.mongodb.WriteResult;
 
+@Repository
 public class MongoEntryDao implements EntryDao {
     private static final Logger LOGGER = Logger.getLogger(MongoEntryDao.class);
 

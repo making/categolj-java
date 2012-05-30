@@ -8,7 +8,9 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,8 +20,10 @@ import am.ik.categolj.app.admin.service.uploader.UploadResponse;
 import am.ik.categolj.common.fw.consts.LogId;
 import am.ik.yalf.logger.Logger;
 
+@Service
 public class LocalUploaderService implements UploaderService, InitializingBean {
 
+    @Value("${categolj.upload.dir}")
     protected Resource uploadDir;
     protected int fileIdDigits = 5;
 
