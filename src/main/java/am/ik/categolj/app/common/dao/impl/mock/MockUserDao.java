@@ -1,8 +1,11 @@
 package am.ik.categolj.app.common.dao.impl.mock;
 
+import org.springframework.stereotype.Repository;
+
 import am.ik.categolj.app.common.dao.UserDao;
 import am.ik.categolj.app.common.domain.User;
 
+@Repository
 public class MockUserDao implements UserDao {
 
     @Override

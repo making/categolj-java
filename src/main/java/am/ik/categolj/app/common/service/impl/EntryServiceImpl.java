@@ -1,4 +1,4 @@
-package am.ik.categolj.app.common.service.impl.mongodb;
+package am.ik.categolj.app.common.service.impl;
 
 import java.util.List;
 import java.util.Set;
@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import am.ik.categolj.app.common.consts.Const;
-import am.ik.categolj.app.common.dao.impl.mongodb.MongoEntryDao;
+import am.ik.categolj.app.common.dao.EntryDao;
 import am.ik.categolj.app.common.domain.Category;
 import am.ik.categolj.app.common.domain.Entry;
 import am.ik.categolj.app.common.exception.NoSuchEntryException;
@@ -17,9 +17,9 @@ import am.ik.categolj.app.common.service.EntryService;
 import am.ik.categolj.common.fw.util.CategoryUtils;
 
 @Service
-public class MongoEntryService implements EntryService {
+public class EntryServiceImpl implements EntryService {
     @Inject
-    protected MongoEntryDao entryDao;
+    protected EntryDao entryDao;
 
     @Override
     public Entry getEntryById(Long id) throws NoSuchEntryException {

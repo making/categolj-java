@@ -1,4 +1,4 @@
-package am.ik.categolj.app.common.service.impl.mongodb;
+package am.ik.categolj.app.common.service.impl;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import am.ik.categolj.app.common.domain.Link;
 import am.ik.categolj.app.common.service.LinkService;
 
 @Service
-public class MongoLinkService implements LinkService {
+public class LinkServiceImpl implements LinkService {
     @Inject
     protected LinkDao linkDao;
 

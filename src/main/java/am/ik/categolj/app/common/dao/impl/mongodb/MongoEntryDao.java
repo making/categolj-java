@@ -97,6 +97,7 @@ public class MongoEntryDao implements EntryDao {
         return entries;
     }
 
+    @Override
     public List<String> getAllCategoryPath(String term) {
         LOGGER.debug(false, "[DCTGLX08] autocomplete from term={0}", term);
         List<String> path = new ArrayList<String>();

@@ -27,4 +27,6 @@ public interface EntryDao {
     void updateEntry(Entry entry);
 
     void deleteEntry(Entry entry);
+
+    List<String> getAllCategoryPath(String term);
 }

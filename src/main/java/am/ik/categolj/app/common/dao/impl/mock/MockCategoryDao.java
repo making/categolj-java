@@ -3,9 +3,12 @@ package am.ik.categolj.app.common.dao.impl.mock;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import am.ik.categolj.app.common.dao.CategoryDao;
 import am.ik.categolj.app.common.domain.Category;
 
+@Repository
 public class MockCategoryDao implements CategoryDao {
 
     @Override

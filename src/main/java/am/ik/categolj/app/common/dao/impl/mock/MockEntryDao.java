@@ -8,12 +8,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import am.ik.categolj.app.common.dao.EntryDao;
 import am.ik.categolj.app.common.domain.Category;
 import am.ik.categolj.app.common.domain.Entry;
 import am.ik.categolj.app.common.exception.NoSuchEntryException;
 import am.ik.categolj.common.fw.util.CommonUtils;
 
+@Repository
 public class MockEntryDao implements EntryDao {
     protected Map<Long, Entry> entryMap = new LinkedHashMap<Long, Entry>();
     {
@@ -126,6 +129,11 @@ public class MockEntryDao implements EntryDao {
     @Override
     public void deleteEntry(Entry entry) {
         entryMap.remove(entry.getId());
+    }
+
+    @Override
+    public List<String> getAllCategoryPath(String term) {
+        return Arrays.asList(new String[] { "foo", "bar" });
     }
 
 }

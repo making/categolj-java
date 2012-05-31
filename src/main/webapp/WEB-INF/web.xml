@@ -10,6 +10,11 @@
         /WEB-INF/spring/spring-security.xml
         </param-value>
     </context-param>
+    
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>mock</param-value>
+    </context-param>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

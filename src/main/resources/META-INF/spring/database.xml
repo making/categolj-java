@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="ds"
-        class="am.ik.categolj.app.common.dao.impl.mongodb.MongoDataStoreFactoryBean">
-        <property name="host" value="${categolj.mongo.url}" />
-        <property name="port" value="${categolj.mongo.port}" />
-        <property name="dbName" value="${categolj.mongo.database}" />
-    </bean>
 
-    <bean class="am.ik.categolj.app.common.dao.impl.mock.MockCategoryDao" />
-    <bean class="am.ik.categolj.app.common.dao.impl.mock.MockUserDao" />
+    <beans profile="mongodb">
+        <bean id="ds"
+            class="am.ik.categolj.app.common.dao.impl.mongodb.MongoDataStoreFactoryBean">
+            <property name="host" value="${categolj.mongo.url}" />
+            <property name="port" value="${categolj.mongo.port}" />
+            <property name="dbName" value="${categolj.mongo.database}" />
+        </bean>
+    </beans>
 </beans>
