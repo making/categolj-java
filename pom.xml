@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>am.ik.categolj</groupId>
     <artifactId>categolj-java</artifactId>
@@ -18,37 +19,37 @@
                         <downloadSources>true</downloadSources>
                         <additionalConfig>
                             <file>
-<name>.settings/org.eclipse.jdt.ui.prefs</name>
-<content>
-        
-editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=true
-sp_cleanup.format_source_code=true
-sp_cleanup.organize_imports=true
-        
+                                <name>.settings/org.eclipse.jdt.ui.prefs</name>
+                                <content>
+
+                                    editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=true
+                                    sp_cleanup.format_source_code=true
+                                    sp_cleanup.organize_imports=true
+
                                 </content>
                             </file>
                             <file>
-<name>.settings/org.eclipse.jdt.core.prefs</name>
-<content>
-        
-encoding//src/test/java=${encoding}
-org.eclipse.jdt.core.compiler.codegen.targetPlatform=${jdk.version}
-eclipse.preferences.version=1
-encoding//src/test/resources=${encoding}
-org.eclipse.jdt.core.compiler.source=${jdk.version}
-encoding//src/main/java=${encoding}
-encoding//src/main/resources=UTF-8
-org.eclipse.jdt.core.compiler.compliance=${jdk.version}
-        
+                                <name>.settings/org.eclipse.jdt.core.prefs</name>
+                                <content>
+
+                                    encoding//src/test/java=${encoding}
+                                    org.eclipse.jdt.core.compiler.codegen.targetPlatform=${jdk.version}
+                                    eclipse.preferences.version=1
+                                    encoding//src/test/resources=${encoding}
+                                    org.eclipse.jdt.core.compiler.source=${jdk.version}
+                                    encoding//src/main/java=${encoding}
+                                    encoding//src/main/resources=UTF-8
+                                    org.eclipse.jdt.core.compiler.compliance=${jdk.version}
+
                                 </content>
                             </file>
                             <file>
-<name>.settings/org.eclipse.core.resources.prefs</name>
-<content>
-        
-eclipse.preferences.version=1
-encoding/&lt;project&gt;=${encoding}
-        
+                                <name>.settings/org.eclipse.core.resources.prefs</name>
+                                <content>
+
+                                    eclipse.preferences.version=1
+                                    encoding/&lt;project&gt;=${encoding}
+
                                 </content>
                             </file>
                         </additionalConfig>
@@ -208,22 +209,22 @@ encoding/&lt;project&gt;=${encoding}
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${org.springframework.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${org.springframework.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${org.springframework.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${org.springframework.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -399,9 +400,8 @@ encoding/&lt;project&gt;=${encoding}
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <jdk.version>1.6</jdk.version>
-        <org.springframework-version>3.0.5.RELEASE</org.springframework-version>
-        <org.springframework.roo-version>1.0.2.RELEASE</org.springframework.roo-version>
-        <spring.data.mongo.version>1.0.0.M3</spring.data.mongo.version>
+        <org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+        <org.springframework.security.version>3.1.0.RELEASE</org.springframework.security.version>
         <org.aspectj-version>1.6.9</org.aspectj-version>
         <org.slf4j-version>1.6.1</org.slf4j-version>
         <findbugs.maven.plugin.version>2.4.0</findbugs.maven.plugin.version>

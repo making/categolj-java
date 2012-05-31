@@ -47,8 +47,9 @@ public class CategoryController {
     @RequestMapping("/page/{page}/category/**")
     public String page(HttpServletRequest request, @PathVariable int page,
             Model model) {
-        String path = (String) request
-                .getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        String path = ((String) request
+                .getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE))
+                .replace("/category", "");
         logger.debug(LogId.DCTGL001, path);
 
         List<Category> categories = CategoryUtils

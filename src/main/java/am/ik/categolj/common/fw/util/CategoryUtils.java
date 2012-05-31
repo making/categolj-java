@@ -26,8 +26,14 @@ public class CategoryUtils {
     public static List<Category> populateCategoriesFromPath(String path) {
         String[] categoriesPath = StringUtils.delimitedListToStringArray(path,
                 "/");
-        List<Category> categories = populateCategoriesFromPath(Arrays
-                .asList(categoriesPath));
+        List<String> categoriesPathList = new ArrayList<String>(
+                categoriesPath.length);
+        for (String p : categoriesPath) {
+            if (StringUtils.hasText(p)) {
+                categoriesPathList.add(p);
+            }
+        }
+        List<Category> categories = populateCategoriesFromPath(categoriesPathList);
         return categories;
     }
 
