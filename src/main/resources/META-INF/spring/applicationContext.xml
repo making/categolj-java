@@ -12,6 +12,7 @@
             <list>
                 <value>messages</value>
                 <value>categolj</value>
+                <value>version</value>
             </list>
         </property>
     </bean>

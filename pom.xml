@@ -13,7 +13,7 @@
                 <plugin>
                     <artifactId>maven-eclipse-plugin</artifactId>
                     <configuration>
-                        <wtpversion>1.5</wtpversion>
+                        <wtpversion>2.0</wtpversion>
                         <useProjectReferences>false</useProjectReferences>
                         <wtpContextName>categolj</wtpContextName>
                         <downloadSources>true</downloadSources>
@@ -21,17 +21,14 @@
                             <file>
                                 <name>.settings/org.eclipse.jdt.ui.prefs</name>
                                 <content>
-
                                     editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=true
                                     sp_cleanup.format_source_code=true
                                     sp_cleanup.organize_imports=true
-
                                 </content>
                             </file>
                             <file>
                                 <name>.settings/org.eclipse.jdt.core.prefs</name>
                                 <content>
-
                                     encoding//src/test/java=${encoding}
                                     org.eclipse.jdt.core.compiler.codegen.targetPlatform=${jdk.version}
                                     eclipse.preferences.version=1
@@ -40,19 +37,46 @@
                                     encoding//src/main/java=${encoding}
                                     encoding//src/main/resources=UTF-8
                                     org.eclipse.jdt.core.compiler.compliance=${jdk.version}
-
                                 </content>
                             </file>
                             <file>
                                 <name>.settings/org.eclipse.core.resources.prefs</name>
                                 <content>
-
                                     eclipse.preferences.version=1
                                     encoding/&lt;project&gt;=${encoding}
-
                                 </content>
                             </file>
                         </additionalConfig>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>${org.eclipse.m2e.version}</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-antrun-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.7,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>run</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
             </plugins>
@@ -97,14 +121,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <configuration>
-                    <wtpversion>1.5</wtpversion>
-                    <wtpContextName>/</wtpContextName>
-                    <downloadSources>true</downloadSources>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>${findbugs.maven.plugin.version}</version>
@@ -121,6 +137,31 @@
                 <configuration>
                     <enableRulesSummary>false</enableRulesSummary>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${org.apache.maven.plugins.version}</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo
+                                    message="output version ${maven.build.timestamp}" />
+                                <exec executable="echo"
+                                    failifexecutionfails="false"
+                                    output="src/main/resources/version.properties">
+                                    <arg
+                                        value="build.time=${maven.build.timestamp}" />
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -400,6 +441,7 @@
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <jdk.version>1.6</jdk.version>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <org.springframework-version>3.1.1.RELEASE</org.springframework-version>
         <org.springframework.security.version>3.1.0.RELEASE</org.springframework.security.version>
         <org.aspectj-version>1.6.9</org.aspectj-version>
@@ -429,5 +471,7 @@
         <am.ik.support.jqgrid.version>1.0.0</am.ik.support.jqgrid.version>
         <junit.version>4.7</junit.version>
         <org.codehaus.mojo.version>1.1</org.codehaus.mojo.version>
+        <org.apache.maven.plugins.version>1.7</org.apache.maven.plugins.version>
+        <org.eclipse.m2e.version>1.0.0</org.eclipse.m2e.version>
     </properties>
 </project>
