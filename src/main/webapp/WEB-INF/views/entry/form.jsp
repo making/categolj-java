@@ -41,7 +41,7 @@
                     <label class="control-label" for="field-category">Category : </label>
                     <div class="controls">
                         <form:input path="category" id="field-category" cssClass="span10" cssErrorClass="error span7" />
-                        <form:errors path="category" cssClass="error help-inline inline" element="span" />
+                        <form:errors path="categoriesPath" cssClass="error help-inline inline" element="span" />
                     </div>
                 </div>
                 <div class="control-group">

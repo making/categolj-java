@@ -4,7 +4,6 @@ import static am.ik.categolj.common.fw.util.CommonUtils.postAppendIfNotEndsWithS
 import static am.ik.categolj.common.fw.util.CommonUtils.preAppendIfNotStartsWithSlash;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.util.StringUtils;

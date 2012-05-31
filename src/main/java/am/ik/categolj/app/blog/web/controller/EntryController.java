@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import am.ik.categolj.app.common.domain.Entry;
 import am.ik.categolj.app.common.service.EntryService;
 import am.ik.categolj.common.fw.consts.LogId;
-import am.ik.categolj.common.fw.util.BindingResultUtils;
 import am.ik.categolj.common.fw.util.CategoryEditor;
 import am.ik.support.jqgrid.JqGridRequest;
 import am.ik.support.jqgrid.JqGridResponse;
@@ -52,6 +52,11 @@ public class EntryController {
         binder.registerCustomEditor(List.class, "category", categoryEditor);
     }
 
+    @ModelAttribute
+    public Entry setUpForm() {
+        return new Entry();
+    }
+
     @RequestMapping("/view/id/{id}/**")
     public String view(@PathVariable Long id, Model model) {
         Entry entry = entryService.getEntryById(id);
@@ -72,7 +77,7 @@ public class EntryController {
             BindingResult bindingResult, Model model) {
         logger.debug(LogId.DCTGL002, entry);
 
-        if (!BindingResultUtils.addModelIfErrorsExist(bindingResult, model)) {
+        if (bindingResult.hasErrors()) {
             return FORM_VIEW;
         }
 
@@ -91,7 +96,7 @@ public class EntryController {
     public String editOnSubmit(@Valid Entry entry, BindingResult bindingResult,
             Model model) {
         logger.debug(LogId.DCTGL003, entry);
-        if (!BindingResultUtils.addModelIfErrorsExist(bindingResult, model)) {
+        if (bindingResult.hasErrors()) {
             return FORM_VIEW;
         }
         if (entry.isUpdateDate()) {
