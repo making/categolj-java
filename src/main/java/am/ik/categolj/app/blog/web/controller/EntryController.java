@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import am.ik.categolj.app.blog.web.model.EntryForm;
 import am.ik.categolj.app.common.domain.Entry;
 import am.ik.categolj.app.common.service.EntryService;
 import am.ik.categolj.common.fw.consts.LogId;
@@ -53,8 +55,20 @@ public class EntryController {
     }
 
     @ModelAttribute
-    public Entry setUpForm() {
-        return new Entry();
+    public EntryForm setUpForm() {
+        return new EntryForm();
+    }
+
+    public static Entry fromForm(EntryForm form) {
+        Entry entry = new Entry();
+        BeanUtils.copyProperties(form, entry);
+        return entry;
+    }
+
+    public static EntryForm toForm(Entry entry) {
+        EntryForm form = new EntryForm();
+        BeanUtils.copyProperties(entry, form);
+        return form;
     }
 
     @RequestMapping("/view/id/{id}/**")
@@ -65,22 +79,23 @@ public class EntryController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(Entry entry) {
+    public String create(EntryForm form) {
         Date today = new Date();
-        entry.setCreatedAt(today);
-        entry.setUpdatedAt(today);
+        form.setCreatedAt(today);
+        form.setUpdatedAt(today);
         return FORM_VIEW;
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createOnSubmit(@Valid Entry entry,
+    public String createOnSubmit(@Valid EntryForm form,
             BindingResult bindingResult, Model model) {
-        logger.debug(LogId.DCTGL002, entry);
+        logger.debug(LogId.DCTGL002, form);
 
         if (bindingResult.hasErrors()) {
             return FORM_VIEW;
         }
 
+        Entry entry = fromForm(form);
         entryService.insertEntry(entry);
         return "redirect:/";
     }
@@ -88,20 +103,22 @@ public class EntryController {
     @RequestMapping(value = "/edit/id/{id}/**", method = RequestMethod.GET)
     public String edit(@PathVariable Long id, Model model) {
         Entry entry = entryService.getEntryById(id);
-        model.addAttribute(entry);
+        EntryForm form = toForm(entry);
+        model.addAttribute(form);
         return FORM_VIEW;
     }
 
     @RequestMapping(value = "/edit/**", method = RequestMethod.POST)
-    public String editOnSubmit(@Valid Entry entry, BindingResult bindingResult,
-            Model model) {
-        logger.debug(LogId.DCTGL003, entry);
+    public String editOnSubmit(@Valid EntryForm form,
+            BindingResult bindingResult, Model model) {
+        logger.debug(LogId.DCTGL003, form);
         if (bindingResult.hasErrors()) {
             return FORM_VIEW;
         }
-        if (entry.isUpdateDate()) {
-            entry.setUpdatedAt(new Date());
+        if (form.isUpdateDate()) {
+            form.setUpdatedAt(new Date());
         }
+        Entry entry = fromForm(form);
         entryService.updateEntry(entry);
         return "redirect:/entry/edit/id/" + entry.getId();
     }
@@ -114,9 +131,10 @@ public class EntryController {
     }
 
     @RequestMapping(value = "/delete/**", method = RequestMethod.POST)
-    public String deleteOnSubmit(@Valid Entry entry,
+    public String deleteOnSubmit(@Valid EntryForm form,
             BindingResult bindingResult, Model model) {
-        logger.debug(LogId.DCTGL004, entry);
+        logger.debug(LogId.DCTGL004, form);
+        Entry entry = fromForm(form);
         entryService.deleteEntry(entry);
         return "redirect:/";
     }

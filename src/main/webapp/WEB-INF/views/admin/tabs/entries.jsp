@@ -10,7 +10,7 @@ $(document).ready(function() {
     var rows = localStorage.getItem("rows") || 10;
     var page = localStorage.getItem("page") || 1;
     grid.jqGrid({
-        url : "<c:url value="/entry/json" />",
+        url : '<c:url value="/entry/json" />',
         datatype : "json",
         colNames : ["ID", "TITLE", "CATEGORY", "CREATED_AT", "UPDATED_AT"],
         colModel : [ {
@@ -48,7 +48,7 @@ $(document).ready(function() {
                 grid.jqGrid('restoreRow', lastSelected);
                 lastSelected = id;
             }
-            location.href = "../../entry/edit/id/" + id + "/"
+            location.href = '<c:url value="/" />' + "entry/edit/id/" + id + "/"
         },
         loadComplete : function() {
             page = parseInt($(".ui-pg-input").val());

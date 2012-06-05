@@ -183,7 +183,7 @@ public class MongoEntryDao implements EntryDao {
     }
 
     protected void prepareEntry(Entry entry) {
-        List<String> categoriesPath = entry.getCategoriesPath();
+        List<String> categoriesPath = entry.getCategory();
         List<String> indexes = new ArrayList<String>();
         for (int i = 0; i < categoriesPath.size(); i++) {
             String c = categoriesPath.get(i);

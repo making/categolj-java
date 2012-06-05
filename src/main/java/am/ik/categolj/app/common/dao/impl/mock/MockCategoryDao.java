@@ -21,7 +21,7 @@ public class MockCategoryDao implements CategoryDao {
     @Override
     public Category getCategoryById(Long id) {
         // TODO 自動生成されたメソッド・スタブ
-        return null;
+        return new Category(1L, "xxx", 1L);
     }
 
     @Override

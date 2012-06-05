@@ -1,16 +1,11 @@
 package am.ik.categolj.app.common.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import am.ik.categolj.app.common.serializer.CategorySerializer;
 import am.ik.categolj.common.fw.serializer.DateSerializer;
@@ -18,26 +13,18 @@ import am.ik.categolj.common.fw.util.CategoryUtils;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Property;
-import com.google.code.morphia.annotations.Transient;
 
 @Entity(value = "entry", noClassnameStored = true)
 public class Entry {
     private Long id;
-    @NotEmpty
     private String title;
-    @NotEmpty
     private String content;
-    @NotNull
     @Property("created-at")
     private Date createdAt;
-    @NotNull
     @Property("updated-at")
     private Date updatedAt;
-    @Transient
-    private boolean updateDate = false;
     @Property("category")
-    @Size(min = 1)
-    private List<String> categoriesPath;
+    private List<String> category;
     @Property("distinct-category")
     private String distinctCategory;
     @Property("category-index")
@@ -48,13 +35,13 @@ public class Entry {
     }
 
     public Entry(Long id, String title, String content, Date createdAt,
-            Date updatedAt, List<Category> category) {
+            Date updatedAt, List<String> category) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        setCategory(category);
+        this.category = category;
     }
 
     public Long getId() {
@@ -100,52 +87,28 @@ public class Entry {
         this.updatedAt = updatedAt;
     }
 
-    @JsonSerialize(using = CategorySerializer.class)
-    public List<Category> getCategory() {
-        return CategoryUtils.populateCategoriesFromPath(categoriesPath);
+    public void setCategory(List<String> category) {
+        this.category = category;
     }
 
-    public void setCategory(List<Category> category) {
-        List<String> paths = new ArrayList<String>();
-        for (Category c : category) {
-            paths.add(c.getName());
-        }
-        this.categoriesPath = paths;
+    @JsonSerialize(using = CategorySerializer.class)
+    public List<String> getCategory() {
+        return category;
+    }
+
+    @JsonIgnore
+    public List<Category> getCategories() {
+        return CategoryUtils.populateCategoriesFromPath(category);
     }
 
     @JsonIgnore
     public String getCategoryLink() {
-        return CategoryUtils.categoryLinkString(categoriesPath);
+        return CategoryUtils.categoryLinkString(category);
     }
 
     @JsonIgnore
     public String getCategoryBreadCrumb() {
-        return CategoryUtils.categoryBreadCrumb(categoriesPath);
-    }
-
-    @JsonIgnore
-    public boolean isUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(boolean updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Entry [id=" + id + ", title=" + title + ", content="
-                + (content == null ? 0 : content.length()) + ", createdAt="
-                + createdAt + ", updatedAt=" + updatedAt;
-    }
-
-    public void setCategoriesPath(List<String> categoriesPath) {
-        this.categoriesPath = categoriesPath;
-    }
-
-    @JsonIgnore
-    public List<String> getCategoriesPath() {
-        return categoriesPath;
+        return CategoryUtils.categoryBreadCrumb(category);
     }
 
     @JsonIgnore
@@ -173,5 +136,13 @@ public class Entry {
 
     public void setKeywords(Set<String> keywords) {
         this.keywords = keywords;
+    }
+
+    @Override
+    public String toString() {
+        return "Entry [id=" + id + ", title=" + title + ", content="
+                + (content == null ? 0 : content.length()) + ", createdAt="
+                + createdAt + ", updatedAt=" + updatedAt + ", category="
+                + category + "]";
     }
 }

@@ -20,19 +20,15 @@ import am.ik.categolj.common.fw.util.CommonUtils;
 public class MockEntryDao implements EntryDao {
     protected Map<Long, Entry> entryMap = new LinkedHashMap<Long, Entry>();
     {
-        Category c1 = new Category(1L, "xxx", 1L);
-        Category c2 = new Category(2L, "yyy", 2L);
-        Category c3 = new Category(3L, "zzz", 3L);
-
         Entry[] entries = {
                 new Entry(1L, "aaa", "hoge", new Date(), new Date(),
-                        Arrays.asList(c1, c2)),
+                        Arrays.asList("xxx", "yyy")),
                 new Entry(2L, "bbb", "foo", new Date(), new Date(),
-                        Arrays.asList(c1)),
+                        Arrays.asList("xxx", "yyy")),
                 new Entry(3L, "ccc", "bar", new Date(), new Date(),
-                        Arrays.asList(c1, c2)),
+                        Arrays.asList("xxx", "yyy", "zzz")),
                 new Entry(4L, "ddd", "aaa", new Date(), new Date(),
-                        Arrays.asList(c1, c2, c3)) };
+                        Arrays.asList("xxx", "www")) };
 
         for (Entry e : entries) {
             entryMap.put(e.getId(), e);
@@ -76,8 +72,7 @@ public class MockEntryDao implements EntryDao {
     @Override
     public List<Entry> getEntriesForGrid(int page, int rows, String sidx,
             String sord) {
-        // TODO Auto-generated method stub
-        return null;
+        return getEntriesByPage(page, rows);
     }
 
     @Override
@@ -94,7 +89,7 @@ public class MockEntryDao implements EntryDao {
             Entry entry = e.getValue();
             boolean add = true;
             for (Category target : category) {
-                if (!entry.getCategory().contains(target)) {
+                if (!entry.getCategories().contains(target)) {
                     add = false;
                     break;
                 }

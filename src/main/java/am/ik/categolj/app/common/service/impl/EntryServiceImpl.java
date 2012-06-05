@@ -79,7 +79,7 @@ public class EntryServiceImpl implements EntryService {
         List<Entry> entries = getEntriesByPage(Const.START_PAGE,
                 Integer.MAX_VALUE);
         for (Entry e : entries) {
-            linkSet.add(CategoryUtils.categoryLinkString(e.getCategory()));
+            linkSet.add(CategoryUtils.categoryLinkString(e.getCategories()));
         }
         return linkSet;
     }

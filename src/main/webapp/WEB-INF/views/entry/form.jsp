@@ -16,12 +16,12 @@
                 new categolj.entry.Form().initialize();
             });
         </script>
-        <form:form method="post" modelAttribute="entry" cssClass="form-horizontal">
+        <form:form method="post" modelAttribute="entryForm" cssClass="form-horizontal">
             <fieldset>
                 <legend>
                 <a href="<c:url value="/entry/view/id/${f:h(entry.id)}/title/${f:u(entry.title)}/" />">${f:h(entry.title)}</a>
                 </legend>
-                <spring:hasBindErrors name="entry">
+                <spring:hasBindErrors name="entryForm">
                     <script type="text/javascript">
                         $(document).ready(function() {
                             var errorDiv = $("div.control-group>div.controls>.error").parent().parent().addClass("error");
@@ -41,7 +41,7 @@
                     <label class="control-label" for="field-category">Category : </label>
                     <div class="controls">
                         <form:input path="category" id="field-category" cssClass="span10" cssErrorClass="error span7" />
-                        <form:errors path="categoriesPath" cssClass="error help-inline inline" element="span" />
+                        <form:errors path="category" cssClass="error help-inline inline" element="span" />
                     </div>
                 </div>
                 <div class="control-group">

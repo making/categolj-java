@@ -7,24 +7,19 @@ import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
+import org.springframework.util.StringUtils;
 
 import am.ik.categolj.app.common.consts.Const;
-import am.ik.categolj.app.common.domain.Category;
 
-public class CategorySerializer extends JsonSerializer<List<Category>> {
+public class CategorySerializer extends JsonSerializer<List<String>> {
 
     @Override
-    public void serialize(List<Category> value, JsonGenerator jgen,
+    public void serialize(List<String> value, JsonGenerator jgen,
             SerializerProvider provider) throws IOException,
             JsonProcessingException {
-        StringBuilder sb = new StringBuilder();
-        for (Category c : value) {
-            if (c.getIndex() > 1) {
-                sb.append(Const.CATEGORY_DELIM);
-            }
-            sb.append(c.getName());
-        }
-        jgen.writeString(sb.toString());
+        String text = StringUtils.collectionToDelimitedString(value,
+                Const.CATEGORY_DELIM);
+        jgen.writeString(text);
     }
 
 }
