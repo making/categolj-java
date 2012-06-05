@@ -19,7 +19,7 @@
         <form:form method="post" modelAttribute="entryForm" cssClass="form-horizontal">
             <fieldset>
                 <legend>
-                <a href="<c:url value="/entry/view/id/${f:h(entry.id)}/title/${f:u(entry.title)}/" />">${f:h(entry.title)}</a>
+                <a href="<c:url value="/entry/view/id/${f:h(entryForm.id)}/title/${f:u(entryForm.title)}/" />">${f:h(entryForm.title)}</a>
                 </legend>
                 <spring:hasBindErrors name="entryForm">
                     <script type="text/javascript">

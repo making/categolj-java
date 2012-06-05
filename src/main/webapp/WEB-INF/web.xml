@@ -13,7 +13,7 @@
     
     <context-param>
         <param-name>spring.profiles.active</param-name>
-        <param-value>mock</param-value>
+        <param-value>mongodb</param-value>
     </context-param>
 
     <listener>
