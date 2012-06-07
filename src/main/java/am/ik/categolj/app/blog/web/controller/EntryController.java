@@ -108,20 +108,6 @@ public class EntryController {
         return FORM_VIEW;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createOnSubmit(@Valid EntryForm form,
-            BindingResult bindingResult, Model model) {
-        logger.debug(LogId.DCTGL002, form);
-
-        if (bindingResult.hasErrors()) {
-            return FORM_VIEW;
-        }
-
-        Entry entry = fromForm(form);
-        entryService.insertEntry(entry);
-        return "redirect:/";
-    }
-
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createForm(EntryForm form, Model model) {
         Date today = new Date();
