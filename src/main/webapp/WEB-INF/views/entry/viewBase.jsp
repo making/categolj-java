@@ -2,12 +2,12 @@
     <h2><a href="<c:url value="/entry/view/id/${f:h(param.id)}/title/${f:h(param.title)}/" />">${f:h(param.title)}</a></h2>
     ${categolj:markdown(param.content)}
     <div class="edit">
-        <c:choose>
-            <c:when test="${not empty loginUser}">
-                <a class="btn btn-primary" href="<c:url value="/entry/edit/id/${f:h(param.id)}/" />">EDIT</a> 
-                <a class="btn delete-link" href="<c:url value="/entry/delete/id/${f:h(param.id)}/" />">DELETE</a>
-            </c:when>
-        </c:choose>
+        <security:authorize ifAllGranted="ROLE_USER">
+            <a class="btn btn-primary"
+                href="<c:url value="/entry/edit/id/${f:h(param.id)}/" />">EDIT</a>
+            <a class="btn delete-link"
+                href="<c:url value="/entry/delete/id/${f:h(param.id)}/" />">DELETE</a>
+        </security:authorize>
     </div>
     <div class="date">
         <p>

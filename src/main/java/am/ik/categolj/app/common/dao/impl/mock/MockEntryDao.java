@@ -18,8 +18,12 @@ import am.ik.categolj.common.fw.util.CommonUtils;
 
 @Repository
 public class MockEntryDao implements EntryDao {
-    protected Map<Long, Entry> entryMap = new LinkedHashMap<Long, Entry>();
-    {
+
+    private Map<Long, Entry> entryMap = createInitialMap();
+
+    protected Map<Long, Entry> createInitialMap() {
+        Map<Long, Entry> entryMap = new LinkedHashMap<Long, Entry>();
+
         Entry[] entries = {
                 new Entry(1L, "aaa", "hoge", new Date(), new Date(),
                         Arrays.asList("xxx", "yyy")),
@@ -33,11 +37,17 @@ public class MockEntryDao implements EntryDao {
         for (Entry e : entries) {
             entryMap.put(e.getId(), e);
         }
+
+        return entryMap;
+    }
+
+    protected Map<Long, Entry> getEntryMap() {
+        return entryMap;
     }
 
     @Override
     public Entry getEntryById(Long id) throws NoSuchEntryException {
-        Entry entry = entryMap.get(id);
+        Entry entry = getEntryMap().get(id);
         if (entry == null) {
             throw new NoSuchEntryException(id);
         }
@@ -58,13 +68,13 @@ public class MockEntryDao implements EntryDao {
 
     @Override
     public List<Entry> getEntriesByPage(int page, int count) {
-        List<Entry> list = new ArrayList<Entry>(entryMap.values());
+        List<Entry> list = new ArrayList<Entry>(getEntryMap().values());
         return getPaged(list, page, count);
     }
 
     @Override
     public List<Entry> getEntriesOnlyIdTitle(int count) {
-        List<Entry> list = new ArrayList<Entry>(entryMap.values());
+        List<Entry> list = new ArrayList<Entry>(getEntryMap().values());
         Collections.reverse(list);
         return list;
     }
@@ -77,7 +87,7 @@ public class MockEntryDao implements EntryDao {
 
     @Override
     public int getTotalEntryCount() {
-        return entryMap.size();
+        return getEntryMap().size();
     }
 
     @Override
@@ -85,7 +95,7 @@ public class MockEntryDao implements EntryDao {
             int page, int count) {
         List<Entry> list = new ArrayList<Entry>();
 
-        for (Map.Entry<Long, Entry> e : entryMap.entrySet()) {
+        for (Map.Entry<Long, Entry> e : getEntryMap().entrySet()) {
             Entry entry = e.getValue();
             boolean add = true;
             for (Category target : category) {
@@ -110,20 +120,20 @@ public class MockEntryDao implements EntryDao {
 
     @Override
     public void insertEntry(Entry entry) {
-        Entry last = new ArrayList<Entry>(entryMap.values()).get(entryMap
-                .size() - 1);
+        Entry last = new ArrayList<Entry>(getEntryMap().values())
+                .get(getEntryMap().size() - 1);
         entry.setId(last.getId() + 1);
-        entryMap.put(entry.getId(), entry);
+        getEntryMap().put(entry.getId(), entry);
     }
 
     @Override
     public void updateEntry(Entry entry) {
-        entryMap.put(entry.getId(), entry);
+        getEntryMap().put(entry.getId(), entry);
     }
 
     @Override
     public void deleteEntry(Entry entry) {
-        entryMap.remove(entry.getId());
+        getEntryMap().remove(entry.getId());
     }
 
     @Override

@@ -25,7 +25,7 @@ public class EntryControllerTest {
     @Test
     public void testSetUpForm() {
         EntryController controller = new EntryController();
-        EntryForm form = controller.setUpForm();
+        EntryForm form = controller.setUpForm(null);
         assertNotNull(form);
     }
 
@@ -39,7 +39,7 @@ public class EntryControllerTest {
         form.setCreatedAt(new Date());
         form.setCategory(Arrays.asList("aa", "bb"));
         Entry entry = EntryController.fromForm(form);
-        
+
         assertEquals(form.getId(), entry.getId());
         assertEquals(form.getTitle(), entry.getTitle());
         assertEquals(form.getContent(), entry.getContent());
@@ -57,7 +57,7 @@ public class EntryControllerTest {
         entry.setCreatedAt(new Date());
         entry.setCategory(Arrays.asList("aa", "bb"));
         EntryForm form = EntryController.toForm(entry);
-        
+
         assertEquals(entry.getId(), form.getId());
         assertEquals(entry.getTitle(), form.getTitle());
         assertEquals(entry.getContent(), form.getContent());

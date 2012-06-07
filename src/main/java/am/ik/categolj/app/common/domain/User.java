@@ -4,18 +4,20 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
-    public Long id;
-    public String name;
-    public String password;
+    private Long id;
+    private String name;
+    private String password;
+    private String role;
 
     public User() {
     }
 
-    public User(Long id, String name, String password) {
+    public User(Long id, String name, String password, String role) {
         super();
         this.id = id;
         this.name = name;
         this.password = password;
+        this.role = role;
     }
 
     public Long getId() {
@@ -42,10 +44,19 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", password=" + password
-                + "]";
+                + ", role=" + role + "]";
     }
+
 
 }

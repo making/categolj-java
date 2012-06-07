@@ -28,18 +28,6 @@
             <mvc:mapping path="/search/**" />
             <mvc:mapping path="/page/**" />
             <mvc:mapping path="/login" />
-            <mvc:mapping path="/admin/**" />
-            <bean
-                class="am.ik.categolj.app.common.web.interceptor.LoginCheckInterceptor" />
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/" />
-            <mvc:mapping path="/all" />
-            <mvc:mapping path="/entry/**" />
-            <mvc:mapping path="/category/**" />
-            <mvc:mapping path="/search/**" />
-            <mvc:mapping path="/page/**" />
-            <mvc:mapping path="/login" />
             <bean
                 class="am.ik.categolj.app.common.web.interceptor.SetRecentEntriesInterceptor" />
         </mvc:interceptor>

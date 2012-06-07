@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import am.ik.categolj.app.blog.web.model.EntryForm;
 import am.ik.categolj.app.common.domain.Entry;
@@ -55,7 +57,7 @@ public class EntryController {
     }
 
     @ModelAttribute
-    public EntryForm setUpForm() {
+    public EntryForm setUpForm(Model model) {
         return new EntryForm();
     }
 
@@ -71,15 +73,35 @@ public class EntryController {
         return form;
     }
 
+    @RequestMapping("/json")
+    @ResponseBody
+    public JqGridResponse<Entry> entryList(JqGridRequest req,
+            @RequestParam("_search") boolean isSearch) {
+        logger.debug(false, "req={0} isSearch={1}", req, isSearch);
+        int records = entryService.getTotalEntryCount();
+        int total = (int) Math.ceil((double) records / req.getRows());
+        List<Entry> entries = entryService.getEntriesForGrid(req.getPage(),
+                req.getRows(), req.getSidx(), req.getSord());
+        return new JqGridResponseBuilder<Entry>().page(req.getPage())
+                .records(records).total(total).addAll(entries).build();
+    }
+
+    public String list(int page, Model model) {
+        // not supported
+        return null;
+    }
+
     @RequestMapping("/view/id/{id}/**")
-    public String view(@PathVariable Long id, Model model) {
+    public String show(@PathVariable Long id, Model model) {
         Entry entry = entryService.getEntryById(id);
         model.addAttribute(entry);
         return "entry/view";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(EntryForm form) {
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@Valid EntryForm form, BindingResult bindingResult,
+            Model model, HttpServletRequest req,
+            RedirectAttributes redirectAttributes) {
         Date today = new Date();
         form.setCreatedAt(today);
         form.setUpdatedAt(today);
@@ -100,17 +122,18 @@ public class EntryController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/edit/id/{id}/**", method = RequestMethod.GET)
-    public String edit(@PathVariable Long id, Model model) {
-        Entry entry = entryService.getEntryById(id);
-        EntryForm form = toForm(entry);
-        model.addAttribute(form);
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String createForm(EntryForm form, Model model) {
+        Date today = new Date();
+        form.setCreatedAt(today);
+        form.setUpdatedAt(today);
         return FORM_VIEW;
     }
 
     @RequestMapping(value = "/edit/**", method = RequestMethod.POST)
-    public String editOnSubmit(@Valid EntryForm form,
-            BindingResult bindingResult, Model model) {
+    public String update(@Valid EntryForm form, BindingResult bindingResult,
+            Model model, HttpServletRequest req,
+            RedirectAttributes redirectAttributes) {
         logger.debug(LogId.DCTGL003, form);
         if (bindingResult.hasErrors()) {
             return FORM_VIEW;
@@ -123,32 +146,28 @@ public class EntryController {
         return "redirect:/entry/edit/id/" + entry.getId();
     }
 
-    @RequestMapping(value = "/delete/id/{id}/**", method = RequestMethod.GET)
-    public String delete(@PathVariable Long id, Model model) {
+    @RequestMapping(value = "/edit/id/{id}/**", method = RequestMethod.GET)
+    public String updateForm(@PathVariable Long id, Model model) {
         Entry entry = entryService.getEntryById(id);
-        model.addAttribute(entry);
-        return "entry/delete";
+        EntryForm form = toForm(entry);
+        model.addAttribute(form);
+        return FORM_VIEW;
     }
 
     @RequestMapping(value = "/delete/**", method = RequestMethod.POST)
-    public String deleteOnSubmit(@Valid EntryForm form,
-            BindingResult bindingResult, Model model) {
+    public String delete(@Valid EntryForm form, BindingResult bindingResult,
+            Model model, HttpServletRequest req,
+            RedirectAttributes redirectAttributes) {
         logger.debug(LogId.DCTGL004, form);
         Entry entry = fromForm(form);
         entryService.deleteEntry(entry);
         return "redirect:/";
     }
 
-    @RequestMapping("/json")
-    @ResponseBody
-    public JqGridResponse<Entry> entryList(JqGridRequest req,
-            @RequestParam("_search") boolean isSearch) {
-        logger.debug(false, "req={0} isSearch={1}", req, isSearch);
-        int records = entryService.getTotalEntryCount();
-        int total = (int) Math.ceil((double) records / req.getRows());
-        List<Entry> entries = entryService.getEntriesForGrid(req.getPage(),
-                req.getRows(), req.getSidx(), req.getSord());
-        return new JqGridResponseBuilder<Entry>().page(req.getPage())
-                .records(records).total(total).addAll(entries).build();
+    @RequestMapping(value = "/delete/id/{id}/**", method = RequestMethod.GET)
+    public String deleteForm(@PathVariable Long id, Model model) {
+        Entry entry = entryService.getEntryById(id);
+        model.addAttribute(entry);
+        return "entry/delete";
     }
 }
