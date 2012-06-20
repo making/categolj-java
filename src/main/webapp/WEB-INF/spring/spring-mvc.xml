@@ -29,7 +29,7 @@
             <mvc:mapping path="/page/**" />
             <mvc:mapping path="/login" />
             <bean
-                class="am.ik.categolj.app.common.web.interceptor.SetRecentEntriesInterceptor" />
+                class="am.ik.categolj.app.common.interceptor.SetRecentEntriesInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/" />
@@ -41,7 +41,7 @@
             <mvc:mapping path="/login" />
             <mvc:mapping path="/admin/**" />
             <bean
-                class="am.ik.categolj.app.common.web.interceptor.SetLinkInterceptor" />
+                class="am.ik.categolj.app.common.interceptor.SetLinkInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -64,7 +64,7 @@
         <property name="maxInMemorySize" value="104857600" />
     </bean>
 
-    <bean id="rssEntryFeedView" class="am.ik.categolj.app.common.web.view.RssEntryFeedView">
+    <bean id="rssEntryFeedView" class="am.ik.categolj.app.view.RssEntryFeedView">
         <property name="feedTitle" value="${categolj.title}" />
         <property name="feedLink" value="${categolj.url}"></property>
         <property name="feedDescription" value="${categolj.description}" />
@@ -84,5 +84,7 @@
             </props>
         </property>
         <property name="defaultErrorView" value="error/default" />
+        <property name="warnLogCategory"
+            value="am.ik.categolj.common.fw.resolver.LoggingExeptionResolver" />
     </bean>
 </beans>

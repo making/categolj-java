@@ -23,7 +23,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     </http>
 
     <beans:bean id="userDetailsService"
-        class="am.ik.categolj.app.common.service.impl.UserDetailsServiceImpl" />
+        class="am.ik.categolj.app.service.impl.UserDetailsServiceImpl" />
 
     <authentication-manager>
         <authentication-provider
