@@ -2,9 +2,13 @@ package am.ik.categolj.app.common.domain;
 
 import java.io.Serializable;
 
+import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Id;
+
 @SuppressWarnings("serial")
+@Entity(value = "user", noClassnameStored = true)
 public class User implements Serializable {
-    private Long id;
+    @Id
     private String name;
     private String password;
     private String role;
@@ -12,20 +16,11 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long id, String name, String password, String role) {
+    public User(String name, String password, String role) {
         super();
-        this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -54,9 +49,8 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", password=" + password
-                + ", role=" + role + "]";
+        return "User [name=" + name + ", password=****, role="
+                + role + "]";
     }
-
 
 }

@@ -14,6 +14,11 @@ public class MockUserDao implements UserDao {
     }
 
     @Override
+    public User getUserByName(String name) {
+        return null;
+    }
+
+    @Override
     public User getUserById(Long id) {
         return null;
     }

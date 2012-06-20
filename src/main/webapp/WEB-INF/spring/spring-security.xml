@@ -21,10 +21,13 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
         <remember-me key="categoljKey"
             token-validity-seconds="2419200" />
     </http>
-    
+
+    <beans:bean id="userDetailsService"
+        class="am.ik.categolj.app.common.service.impl.UserDetailsServiceImpl" />
+
     <authentication-manager>
-        <authentication-provider>
-            <user-service properties="classpath:users.properties" />
+        <authentication-provider
+            user-service-ref="userDetailsService">
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

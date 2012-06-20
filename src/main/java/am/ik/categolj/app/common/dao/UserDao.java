@@ -7,6 +7,8 @@ public interface UserDao {
 
     User getUserById(Long id);
 
+    User getUserByName(String name);
+
     void insertUser(User user);
 
     void updateUser(User user);

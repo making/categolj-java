@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import am.ik.categolj.app.common.dao.EntryDao;
+import am.ik.categolj.app.common.dao.UserDao;
 import am.ik.categolj.app.common.domain.Entry;
+import am.ik.categolj.app.common.domain.User;
 
 public class MongoDemo {
 
@@ -18,11 +20,15 @@ public class MongoDemo {
         ctx.load(new String[] { "classpath:/META-INF/spring/applicationContext.xml" });
         ctx.refresh();
         
-        EntryDao entryDao = ctx.getBean(EntryDao.class);
-        List<Entry> entries = entryDao.getEntriesByPage(1, 5);
-        for (Entry e : entries) {
-            System.out.println(e);
-        }
+//        EntryDao entryDao = ctx.getBean(EntryDao.class);
+//        List<Entry> entries = entryDao.getEntriesByPage(1, 5);
+//        for (Entry e : entries) {
+//            System.out.println(e);
+//        }
+        User u = new User("making", "makix", "USER");
+        UserDao dao = ctx.getBean(UserDao.class);
+        dao.insertUser(u);
+        System.out.println(dao.getUserByName(u.getName()));
         ctx.close();
     }
 }
