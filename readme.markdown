@@ -1,8 +1,6 @@
 ## Create User
 
 $ mongo categolj
-MongoDB shell version: 1.6.5
-connecting to: categolj
 > db.user.save({ "_id" : "<USER ID>", "password" : "<PASSWORD>", "role" : "USER" })
 
 ## Run
