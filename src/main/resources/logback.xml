@@ -3,7 +3,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <Target>System.out</Target>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n
+            <Pattern><![CDATA[%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
             </Pattern>
         </layout>
     </appender>
@@ -12,12 +12,14 @@
         class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
         <File>log/categolj.log</File>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>log/categolj-%d{yyyyMMdd}.log</FileNamePattern>
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>log/categolj-%d{yyyyMMdd}.log
+            </FileNamePattern>
             <MaxHistory>2</MaxHistory>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n
+            <Pattern><![CDATA[%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
             </Pattern>
         </layout>
     </appender>
@@ -52,6 +54,11 @@
 
     <logger name="com.google.code.morphia">
         <level value="DEBUG" />
+    </logger>
+
+    <logger
+        name="am.ik.categolj.common.fw.interceptor.TraceLogginInterceptor">
+        <level value="TRACE" />
     </logger>
 
     <root>

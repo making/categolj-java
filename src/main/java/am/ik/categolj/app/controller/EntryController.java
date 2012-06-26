@@ -58,6 +58,10 @@ public class EntryController {
 
     @ModelAttribute
     public EntryForm setUpForm(Model model) {
+        Date today = new Date();
+        EntryForm form = new EntryForm();
+        form.setCreatedAt(today);
+        form.setUpdatedAt(today);
         return new EntryForm();
     }
 
@@ -86,11 +90,6 @@ public class EntryController {
                 .records(records).total(total).addAll(entries).build();
     }
 
-    public String list(int page, Model model) {
-        // not supported
-        return null;
-    }
-
     @RequestMapping("/view/id/{id}/**")
     public String show(@PathVariable Long id, Model model) {
         Entry entry = entryService.getEntryById(id);
@@ -102,17 +101,18 @@ public class EntryController {
     public String create(@Valid EntryForm form, BindingResult bindingResult,
             Model model, HttpServletRequest req,
             RedirectAttributes redirectAttributes) {
-        Date today = new Date();
-        form.setCreatedAt(today);
-        form.setUpdatedAt(today);
-        return FORM_VIEW;
+        logger.debug(LogId.DCTGL002, form);
+        if (bindingResult.hasErrors()) {
+
+            return FORM_VIEW;
+        }
+        Entry entry = fromForm(form);
+        entryService.insertEntry(entry);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createForm(EntryForm form, Model model) {
-        Date today = new Date();
-        form.setCreatedAt(today);
-        form.setUpdatedAt(today);
         return FORM_VIEW;
     }
 

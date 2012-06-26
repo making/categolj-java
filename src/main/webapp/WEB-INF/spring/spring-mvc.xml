@@ -21,6 +21,10 @@
     <!-- Configures Handler Interceptors -->
     <mvc:interceptors>
         <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="am.ik.categolj.common.fw.interceptor.TraceLogginInterceptor" />
+        </mvc:interceptor>
+        <mvc:interceptor>
             <mvc:mapping path="/" />
             <mvc:mapping path="/all" />
             <mvc:mapping path="/entry/**" />
