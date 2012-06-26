@@ -62,7 +62,7 @@ public class EntryController {
         EntryForm form = new EntryForm();
         form.setCreatedAt(today);
         form.setUpdatedAt(today);
-        return new EntryForm();
+        return form;
     }
 
     public static Entry fromForm(EntryForm form) {
