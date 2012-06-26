@@ -61,11 +61,11 @@ public class FileInfo implements Comparable<FileInfo> {
         this.size = size;
     }
 
-    @Override
-    public String toString() {
-        return "FileInfo [id=" + id + ", fileName=" + fileName + ", ext=" + ext
-                + ", size=" + size + "]";
-    }
+    // @Override
+    // public String toString() {
+    // return "FileInfo [id=" + id + ", fileName=" + fileName + ", ext=" + ext
+    // + ", size=" + size + "]";
+    // }
 
     @Override
     public int compareTo(FileInfo o) {

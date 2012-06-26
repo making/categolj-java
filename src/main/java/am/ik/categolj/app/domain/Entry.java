@@ -137,12 +137,12 @@ public class Entry {
     public void setKeywords(Set<String> keywords) {
         this.keywords = keywords;
     }
-
-    @Override
-    public String toString() {
-        return "Entry [id=" + id + ", title=" + title + ", content="
-                + (content == null ? 0 : content.length()) + ", createdAt="
-                + createdAt + ", updatedAt=" + updatedAt + ", category="
-                + category + "]";
-    }
+    //
+    // @Override
+    // public String toString() {
+    // return "Entry [id=" + id + ", title=" + title + ", content="
+    // + (content == null ? 0 : content.length()) + ", createdAt="
+    // + createdAt + ", updatedAt=" + updatedAt + ", category="
+    // + category + "]";
+    // }
 }
