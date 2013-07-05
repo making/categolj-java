@@ -17,17 +17,6 @@ public class MongoUserRepository implements UserRepository {
     private Datastore ds;
 
     @Override
-    public User authUser(User user) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public User getUserById(Long id) {
-        return null;
-    }
-
-    @Override
     public User getUserByName(String name) {
         Query<User> q = ds.find(User.class, "name", name);
         logger.debug(false, "search user {0}", q);
