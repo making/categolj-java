@@ -10,6 +10,7 @@
         <script src='<c:url value="/resources/js/pagedown/Markdown.Editor.js" />' type='text/javascript'></script>
         <script src='<c:url value="/resources/js/jquery-ui/js/jquery-ui-1.8.16.custom.min.js" />' type='text/javascript'></script>
         <script src='<c:url value="/resources/js/jquery.upload-1.0.2.modified.min.js" />' type='text/javascript'></script>
+        <script src='<c:url value="/resources/js/jquery.autogrow-textarea.js" />' type='text/javascript'></script>
         <script src='<c:url value="/resources/js/form.js" />' type='text/javascript'></script>
         <script type="text/javascript">
             $(document).ready(function() {

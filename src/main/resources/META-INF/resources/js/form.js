@@ -52,6 +52,8 @@ mk.ns('categolj.entry');
     $('#preview').click(function() {
       self.preview.slideToggle();
     });
+    
+    $('textarea').autogrow();
 
     // autocomplete
     $('#field-category').autocomplete({
