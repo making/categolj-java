@@ -3,7 +3,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <Target>System.out</Target>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern><![CDATA[%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
+            <Pattern><![CDATA[date:%d{HH:mm:ss}\tthread:%thread\tlevel:%-5level\tlogger:%-48logger{48}\tmsg:%msg%n]]>
             </Pattern>
         </layout>
     </appender>
@@ -19,14 +19,14 @@
             <MaxHistory>2</MaxHistory>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern><![CDATA[%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
+            <Pattern><![CDATA[date:%d{HH:mm:ss}\tthread:%thread\tlevel:%-5level\tlogger:%-48logger{48}\tmsg:%msg%n]]>
             </Pattern>
         </layout>
     </appender>
 
-    <logger name="am.ik.categolj">
-        <level value="DEBUG" />
-    </logger>
+<!--     <logger name="am.ik.categolj"> -->
+<!--         <level value="DEBUG" /> -->
+<!--     </logger> -->
 
     <logger name="org.springframework.core">
         <level value="WARN" />
@@ -48,13 +48,13 @@
         <level value="INFO" />
     </logger>
 
-    <logger name="org.springframework.security.core.userdetails">
-        <level value="DEBUG" />
-    </logger>
+<!--     <logger name="org.springframework.security.core.userdetails"> -->
+<!--         <level value="DEBUG" /> -->
+<!--     </logger> -->
 
-    <logger name="com.google.code.morphia">
-        <level value="DEBUG" />
-    </logger>
+<!--     <logger name="com.google.code.morphia"> -->
+<!--         <level value="DEBUG" /> -->
+<!--     </logger> -->
 
     <logger
         name="am.ik.categolj.app.common.interceptor.TraceLogginInterceptor">
