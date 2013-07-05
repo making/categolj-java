@@ -4,7 +4,7 @@ import java.util.List;
 
 import am.ik.categolj.domain.model.Link;
 
-public interface LinkDao {
+public interface LinkRepository {
     List<Link> findAll();
 
     void save(Link link);

@@ -12,16 +12,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import am.ik.categolj.domain.model.User;
-import am.ik.categolj.domain.repository.user.UserDao;
+import am.ik.categolj.domain.repository.user.UserRepository;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Inject
-    UserDao userDao;
+    UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        final User user = userDao.getUserByName(username);
+        final User user = userRepository.getUserByName(username);
         if (user == null) {
             throw new UsernameNotFoundException(username + " is not found");
         }

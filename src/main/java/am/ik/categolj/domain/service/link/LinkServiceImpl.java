@@ -7,26 +7,26 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import am.ik.categolj.domain.model.Link;
-import am.ik.categolj.domain.repository.link.LinkDao;
+import am.ik.categolj.domain.repository.link.LinkRepository;
 
 @Service
 public class LinkServiceImpl implements LinkService {
     @Inject
-    protected LinkDao linkDao;
+    protected LinkRepository linkRepository;
 
     @Override
     public List<Link> findAll() {
-        return linkDao.findAll();
+        return linkRepository.findAll();
     }
 
     @Override
     public void save(Link link) {
-        linkDao.save(link);
+        linkRepository.save(link);
     }
 
     @Override
     public void delete(Long id) {
-        linkDao.delete(id);
+        linkRepository.delete(id);
     }
 
 }

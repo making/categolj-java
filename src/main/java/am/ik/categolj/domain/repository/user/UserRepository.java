@@ -2,7 +2,7 @@ package am.ik.categolj.domain.repository.user;
 
 import am.ik.categolj.domain.model.User;
 
-public interface UserDao {
+public interface UserRepository {
     User authUser(User user);
 
     User getUserById(Long id);

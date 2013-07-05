@@ -6,7 +6,7 @@ import am.ik.categolj.app.common.exception.NoSuchEntryException;
 import am.ik.categolj.domain.model.Category;
 import am.ik.categolj.domain.model.Entry;
 
-public interface EntryDao {
+public interface EntryRepository {
     Entry getEntryById(Long id) throws NoSuchEntryException;
 
     List<Entry> getEntriesByPage(int page, int count);

@@ -4,7 +4,7 @@ import java.util.List;
 
 import am.ik.categolj.domain.model.Category;
 
-public interface CategoryDao {
+public interface CategoryRepository {
     List<Category> getAllCategoryList();
 
     Category getCategoryById(Long id);

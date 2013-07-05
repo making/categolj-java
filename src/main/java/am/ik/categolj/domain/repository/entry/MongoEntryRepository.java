@@ -30,8 +30,8 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.WriteResult;
 
 @Repository
-public class MongoEntryDao implements EntryDao {
-    private static final Logger LOGGER = Logger.getLogger(MongoEntryDao.class);
+public class MongoEntryRepository implements EntryRepository {
+    private static final Logger LOGGER = Logger.getLogger(MongoEntryRepository.class);
 
     private static final String GET_ENTRY_ORDER = "-updated-at";
 

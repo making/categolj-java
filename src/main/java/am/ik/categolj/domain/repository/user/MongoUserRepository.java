@@ -11,8 +11,8 @@ import am.ik.categolj.domain.model.User;
 import am.ik.yalf.logger.Logger;
 
 @Repository
-public class MongoUserDao implements UserDao {
-    private static final Logger logger = Logger.getLogger(MongoUserDao.class);
+public class MongoUserRepository implements UserRepository {
+    private static final Logger logger = Logger.getLogger(MongoUserRepository.class);
     @Inject
     private Datastore ds;
 

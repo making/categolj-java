@@ -6,7 +6,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 import am.ik.categolj.domain.model.Entry;
 import am.ik.categolj.domain.model.User;
-import am.ik.categolj.domain.repository.user.UserDao;
+import am.ik.categolj.domain.repository.user.UserRepository;
 
 public class MongoDemo {
 
@@ -25,7 +25,7 @@ public class MongoDemo {
 //            System.out.println(e);
 //        }
         User u = new User("foo", "bar", "USER");
-        UserDao dao = ctx.getBean(UserDao.class);
+        UserRepository dao = ctx.getBean(UserRepository.class);
         dao.insertUser(u);
         System.out.println(dao.getUserByName(u.getName()));
         ctx.close();

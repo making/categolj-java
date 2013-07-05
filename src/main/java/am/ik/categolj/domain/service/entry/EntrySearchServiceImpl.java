@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 import net.reduls.igo.Tagger;
 import am.ik.categolj.domain.common.util.CommonUtils;
 import am.ik.categolj.domain.model.Entry;
-import am.ik.categolj.domain.repository.entry.MongoEntryDao;
+import am.ik.categolj.domain.repository.entry.MongoEntryRepository;
 
 @Service
-public class MongoEntrySearchService implements EntrySearchService {
+public class EntrySearchServiceImpl implements EntrySearchService {
     @Inject
-    protected MongoEntryDao entryDao;
+    protected MongoEntryRepository entryRepository;
     @Inject
     protected Tagger tagger;
 
     @Override
     public List<Entry> getKeywordSearchedEntriesByPage(Set<String> keywords, int page,
             int count) {
-        return entryDao.getKeywordSearchedEntriesByPage(keywords, page, count);
+        return entryRepository.getKeywordSearchedEntriesByPage(keywords, page, count);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MongoEntrySearchService implements EntrySearchService {
 
     @Override
     public int getKeywordSearchedEntryCount(Set<String> keywords) {
-        return entryDao.getKeywordSearchedEntryCount(keywords);
+        return entryRepository.getKeywordSearchedEntryCount(keywords);
     }
 
 }

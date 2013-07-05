@@ -13,7 +13,7 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 
 @Repository
-public class MongoLinkDao implements LinkDao {
+public class MongoLinkRepository implements LinkRepository {
 
     @Inject
     protected Datastore ds;

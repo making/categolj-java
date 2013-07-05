@@ -13,63 +13,63 @@ import am.ik.categolj.app.common.exception.NoSuchEntryException;
 import am.ik.categolj.app.common.util.CategoryUtils;
 import am.ik.categolj.domain.model.Category;
 import am.ik.categolj.domain.model.Entry;
-import am.ik.categolj.domain.repository.entry.EntryDao;
+import am.ik.categolj.domain.repository.entry.EntryRepository;
 
 @Service
 public class EntryServiceImpl implements EntryService {
     @Inject
-    protected EntryDao entryDao;
+    protected EntryRepository entryRepository;
 
     @Override
     public Entry getEntryById(Long id) throws NoSuchEntryException {
-        return entryDao.getEntryById(id);
+        return entryRepository.getEntryById(id);
     }
 
     @Override
     public List<Entry> getEntriesByPage(int page, int count) {
-        return entryDao.getEntriesByPage(page, count);
+        return entryRepository.getEntriesByPage(page, count);
     }
 
     @Override
     public List<Entry> getEntriesOnlyIdTitle(int count) {
-        return entryDao.getEntriesOnlyIdTitle(count);
+        return entryRepository.getEntriesOnlyIdTitle(count);
     }
 
     @Override
     public List<Entry> getEntriesForGrid(int page, int rows, String sidx,
             String sord) {
-        return entryDao.getEntriesForGrid(page, rows, sidx, sord);
+        return entryRepository.getEntriesForGrid(page, rows, sidx, sord);
     }
 
     @Override
     public int getTotalEntryCount() {
-        return entryDao.getTotalEntryCount();
+        return entryRepository.getTotalEntryCount();
     }
 
     @Override
     public List<Entry> getCategorizedEntriesByPage(List<Category> category,
             int page, int count) {
-        return entryDao.getCategorizedEntriesByPage(category, page, count);
+        return entryRepository.getCategorizedEntriesByPage(category, page, count);
     }
 
     @Override
     public int getCategorizeEntryCount(List<Category> category) {
-        return entryDao.getCategorizeEntryCount(category);
+        return entryRepository.getCategorizeEntryCount(category);
     }
 
     @Override
     public void insertEntry(Entry entry) {
-        entryDao.insertEntry(entry);
+        entryRepository.insertEntry(entry);
     }
 
     @Override
     public void updateEntry(Entry entry) {
-        entryDao.updateEntry(entry);
+        entryRepository.updateEntry(entry);
     }
 
     @Override
     public void deleteEntry(Entry entry) {
-        entryDao.deleteEntry(entry);
+        entryRepository.deleteEntry(entry);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public List<String> getAllCategoryPath(String term) {
-        return entryDao.getAllCategoryPath(term);
+        return entryRepository.getAllCategoryPath(term);
     }
 
 }
