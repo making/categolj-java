@@ -29,7 +29,7 @@ public class PageDownMarkdown {
 
             String js = getPageDownJS();
 
-            Object pageDownConverter = engine.eval(js, bindings);
+            Object pageDownConverter = engine.eval(js + ";new Markdown.Converter();", bindings);
             return invocableEngine.invokeMethod(pageDownConverter, "makeHtml",
                     markdownText)
                     + "";
@@ -47,12 +47,13 @@ public class PageDownMarkdown {
                 .readResource(
                         "META-INF/resources/js/pagedown/Markdown.Converter.js",
                         sw)
-                .readResource(
-                        "META-INF/resources/js/pagedown/Markdown.Sanitizer.js",
-                        sw)
-                .readResource(
-                        "META-INF/resources/js/pagedown/Markdown.SharedSecret.js",
-                        sw);
+//                .readResource(
+//                        "META-INF/resources/js/pagedown/Markdown.Sanitizer.js",
+//                        sw)
+//                .readResource(
+//                        "META-INF/resources/js/pagedown/Markdown.SharedSecret.js",
+//                        sw)
+                        ;
 
         return sw.toString();
     }
