@@ -49,7 +49,7 @@ public class CategoryController {
             Model model) {
         String path = ((String) request
                 .getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE))
-                .replace("/category", "");
+                .replace("/category", "").replace("/page/" + page, "");
         logger.debug(LogId.DCTGL001, path);
 
         List<Category> categories = CategoryUtils
@@ -66,8 +66,8 @@ public class CategoryController {
 
         model.addAttribute(entries);
         model.addAttribute(Const.PAGER_ATTR, pagerLink);
-        model.addAttribute(Const.CATEGORY_LINK_ATTR,
-                CategoryUtils.categoryBreadCrumb(categories));
+        model.addAttribute(Const.CATEGORY_LINK_ATTR, CategoryUtils
+                .categoryBreadCrumb(categories));
         return "category/view";
     }
 
