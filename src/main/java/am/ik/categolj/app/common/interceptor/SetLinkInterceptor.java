@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import am.ik.categolj.app.common.consts.Const;
-import am.ik.categolj.app.domain.Link;
-import am.ik.categolj.app.service.LinkService;
+import am.ik.categolj.domain.model.Link;
+import am.ik.categolj.domain.service.link.LinkService;
 
 public class SetLinkInterceptor extends HandlerInterceptorAdapter {
     @Inject

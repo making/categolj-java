@@ -5,14 +5,15 @@
     xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-    <import resource="classpath:/META-INF/spring/component-scan.xml" />
+
+    <context:component-scan base-package="am.ik.categolj.app" />
     <context:property-placeholder location="classpath*:categolj.properties" />
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven />
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
         up static resources in the ${webappRoot}/resources directory -->
-    <mvc:resources mapping="/resources/**" location="/resources/"
+    <mvc:resources mapping="/resources/**" location="classpath:/META-INF/resources/"
         cache-period="604800" />
     <mvc:resources mapping="/favicon.ico" location="/resources/images/favicon.ico"
         cache-period="604800" />
@@ -21,8 +22,9 @@
     <!-- Configures Handler Interceptors -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="am.ik.categolj.common.fw.interceptor.TraceLogginInterceptor" />
+            <mvc:mapping path="/**" />
+            <bean
+                class="am.ik.categolj.app.common.interceptor.TraceLogginInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/" />
@@ -68,13 +70,13 @@
         <property name="maxInMemorySize" value="104857600" />
     </bean>
 
-    <bean id="rssEntryFeedView" class="am.ik.categolj.app.view.RssEntryFeedView">
+    <bean id="rssEntryFeedView" class="am.ik.categolj.app.feed.RssEntryFeedView">
         <property name="feedTitle" value="${categolj.title}" />
         <property name="feedLink" value="${categolj.url}"></property>
         <property name="feedDescription" value="${categolj.description}" />
     </bean>
 
-    <bean class="am.ik.categolj.common.fw.resolver.LoggingExeptionResolver">
+    <bean class="am.ik.categolj.app.common.resolver.LoggingExeptionResolver">
         <property name="exceptionMappings">
             <props>
                 <prop
@@ -89,6 +91,6 @@
         </property>
         <property name="defaultErrorView" value="error/default" />
         <property name="warnLogCategory"
-            value="am.ik.categolj.common.fw.resolver.LoggingExeptionResolver" />
+            value="am.am.ik.categolj.common.resolverggingExeptionResolver" />
     </bean>
 </beans>

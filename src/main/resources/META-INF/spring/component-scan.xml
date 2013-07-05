@@ -4,16 +4,6 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <beans profile="mongodb">
-        <context:component-scan base-package="am.ik.categolj.app">
-            <context:exclude-filter type="regex"
-                expression=".*impl\.mock\..*" />
-        </context:component-scan>
-    </beans>
-    <beans profile="mock">
-        <context:component-scan base-package="am.ik.categolj.app">
-            <context:exclude-filter type="regex"
-                expression=".*impl\.mongodb\..*" />
-        </context:component-scan>
-    </beans>
+    <context:component-scan base-package="am.ik.categolj.domain">
+    </context:component-scan>
 </beans>

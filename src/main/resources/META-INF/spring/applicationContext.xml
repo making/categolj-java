@@ -18,7 +18,7 @@
         </property>
     </bean>
 
-    <bean class="am.ik.categolj.common.fw.support.igo.TaggerFactoryBean">
+    <bean class="am.ik.categolj.domain.common.support.igo.TaggerFactoryBean">
         <property name="dictDir" value="${categolj.mecab.dict.dir}" />
     </bean>
 

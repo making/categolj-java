@@ -9,9 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import am.ik.categolj.app.controller.EntryController;
-import am.ik.categolj.app.domain.Entry;
-import am.ik.categolj.app.model.form.EntryForm;
+import am.ik.categolj.app.entry.EntryController;
+import am.ik.categolj.app.entry.EntryForm;
+import am.ik.categolj.domain.model.Entry;
 
 public class EntryControllerTest {
 

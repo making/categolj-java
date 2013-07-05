@@ -57,7 +57,7 @@
     </logger>
 
     <logger
-        name="am.ik.categolj.common.fw.interceptor.TraceLogginInterceptor">
+        name="am.ik.categolj.app.common.interceptor.TraceLogginInterceptor">
         <level value="TRACE" />
     </logger>
 

@@ -1,7 +1,7 @@
 package am.ik.categolj.app.common.util;
 
-import static am.ik.categolj.common.fw.util.CommonUtils.postAppendIfNotEndsWithSlash;
-import static am.ik.categolj.common.fw.util.CommonUtils.preAppendIfNotStartsWithSlash;
+import static am.ik.categolj.domain.common.util.CommonUtils.postAppendIfNotEndsWithSlash;
+import static am.ik.categolj.domain.common.util.CommonUtils.preAppendIfNotStartsWithSlash;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 import am.ik.categolj.app.common.consts.Const;
-import am.ik.categolj.app.domain.Category;
-import am.ik.categolj.common.fw.listener.RequestUtil;
+import am.ik.categolj.app.common.listener.RequestUtil;
+import am.ik.categolj.domain.model.Category;
 
 public class CategoryUtils {
 
