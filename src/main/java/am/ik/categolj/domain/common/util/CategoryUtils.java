@@ -1,4 +1,4 @@
-package am.ik.categolj.app.common.util;
+package am.ik.categolj.domain.common.util;
 
 import static am.ik.categolj.domain.common.util.CommonUtils.postAppendIfNotEndsWithSlash;
 import static am.ik.categolj.domain.common.util.CommonUtils.preAppendIfNotStartsWithSlash;

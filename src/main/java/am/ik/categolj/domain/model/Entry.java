@@ -7,9 +7,9 @@ import java.util.Set;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import am.ik.categolj.app.common.util.CategoryUtils;
 import am.ik.categolj.domain.common.serializer.CategorySerializer;
 import am.ik.categolj.domain.common.serializer.DateSerializer;
+import am.ik.categolj.domain.common.util.CategoryUtils;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Property;
