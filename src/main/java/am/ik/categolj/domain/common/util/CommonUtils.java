@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import am.ik.categolj.app.common.consts.Const;
+import am.ik.categolj.domain.common.consts.Const;
 
 public final class CommonUtils {
     public static int calcTotalPage(int totalCount, int viewCount) {

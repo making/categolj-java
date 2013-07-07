@@ -3,7 +3,7 @@ package am.ik.categolj.domain.service.entry;
 import java.util.List;
 import java.util.Set;
 
-import am.ik.categolj.app.common.exception.NoSuchEntryException;
+import am.ik.categolj.domain.common.exception.NoSuchEntryException;
 import am.ik.categolj.domain.model.Category;
 import am.ik.categolj.domain.model.Entry;
 

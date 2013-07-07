@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.HandlerMapping;
 
 import am.ik.categolj.app.common.component.PagerComponent;
-import am.ik.categolj.app.common.consts.Const;
+import am.ik.categolj.domain.common.consts.Const;
 import am.ik.categolj.domain.common.consts.LogId;
 import am.ik.categolj.domain.common.util.CategoryUtils;
 import am.ik.categolj.domain.common.util.CommonUtils;

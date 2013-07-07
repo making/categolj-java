@@ -1,4 +1,4 @@
-package am.ik.categolj.app.common.exception;
+package am.ik.categolj.domain.common.exception;
 
 @SuppressWarnings("serial")
 public class NoSuchEntryException extends RuntimeException {

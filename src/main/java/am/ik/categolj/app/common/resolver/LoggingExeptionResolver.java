@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
-import am.ik.categolj.app.common.exception.NoSuchEntryException;
 import am.ik.categolj.domain.common.consts.LogId;
+import am.ik.categolj.domain.common.exception.NoSuchEntryException;
 import am.ik.yalf.logger.Logger;
 
 public class LoggingExeptionResolver extends SimpleMappingExceptionResolver {

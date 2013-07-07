@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.util.StringUtils;
 
-import am.ik.categolj.app.common.consts.Const;
+import am.ik.categolj.domain.common.consts.Const;
 
 public class CategoryEditor extends PropertyEditorSupport {
     @Override

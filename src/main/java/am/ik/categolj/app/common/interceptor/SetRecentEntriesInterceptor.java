@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import am.ik.categolj.app.common.consts.Const;
+import am.ik.categolj.domain.common.consts.Const;
 import am.ik.categolj.domain.model.Entry;
 import am.ik.categolj.domain.service.entry.EntryService;
 

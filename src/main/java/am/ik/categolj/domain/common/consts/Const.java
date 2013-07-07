@@ -1,4 +1,4 @@
-package am.ik.categolj.app.common.consts;
+package am.ik.categolj.domain.common.consts;
 
 import java.io.IOException;
 import java.io.InputStream;

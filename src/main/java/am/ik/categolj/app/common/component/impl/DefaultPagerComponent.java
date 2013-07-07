@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import jp.sf.amateras.functions.utils.StringUtils;
 import am.ik.categolj.app.common.component.PagerComponent;
-import am.ik.categolj.app.common.consts.Const;
 import am.ik.categolj.app.common.listener.RequestUtil;
+import am.ik.categolj.domain.common.consts.Const;
 import am.ik.categolj.domain.model.Entry;
 
 @Service

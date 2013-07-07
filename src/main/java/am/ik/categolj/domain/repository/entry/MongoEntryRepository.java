@@ -12,9 +12,9 @@ import net.reduls.igo.Tagger;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import am.ik.categolj.app.common.consts.Const;
-import am.ik.categolj.app.common.exception.NoSuchEntryException;
+import am.ik.categolj.domain.common.consts.Const;
 import am.ik.categolj.domain.common.consts.LogId;
+import am.ik.categolj.domain.common.exception.NoSuchEntryException;
 import am.ik.categolj.domain.common.util.CommonUtils;
 import am.ik.categolj.domain.common.util.TaggerUtils;
 import am.ik.categolj.domain.model.Category;

@@ -80,13 +80,13 @@
         <property name="exceptionMappings">
             <props>
                 <prop
-                    key="am.ik.categolj.app.common.exception.NoSuchEntryException">error/noSuchEntry</prop>
+                    key="am.ik.categolj.domain.common.exception.NoSuchEntryException">error/noSuchEntry</prop>
             </props>
         </property>
         <property name="statusCodes">
             <props>
                 <prop
-                    key="am.ik.categolj.app.common.exception.NoSuchEntryException">404</prop>
+                    key="am.ik.categolj.domain.common.exception.NoSuchEntryException">404</prop>
             </props>
         </property>
         <property name="defaultErrorView" value="error/default" />

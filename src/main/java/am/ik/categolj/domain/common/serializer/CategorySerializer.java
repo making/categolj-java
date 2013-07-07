@@ -9,7 +9,7 @@ import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 import org.springframework.util.StringUtils;
 
-import am.ik.categolj.app.common.consts.Const;
+import am.ik.categolj.domain.common.consts.Const;
 
 public class CategorySerializer extends JsonSerializer<List<String>> {
 

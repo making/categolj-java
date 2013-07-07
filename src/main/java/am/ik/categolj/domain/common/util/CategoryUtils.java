@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.springframework.util.StringUtils;
 
-import am.ik.categolj.app.common.consts.Const;
 import am.ik.categolj.app.common.listener.RequestUtil;
+import am.ik.categolj.domain.common.consts.Const;
 import am.ik.categolj.domain.model.Category;
 
 public class CategoryUtils {

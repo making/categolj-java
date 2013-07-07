@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import am.ik.categolj.app.common.component.PagerComponent;
-import am.ik.categolj.app.common.consts.Const;
+import am.ik.categolj.domain.common.consts.Const;
 import am.ik.categolj.domain.common.util.CommonUtils;
 import am.ik.categolj.domain.model.Entry;
 import am.ik.categolj.domain.service.entry.EntryService;
