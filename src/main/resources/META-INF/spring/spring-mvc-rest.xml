@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="am.ik.categolj.api" />
+    <context:property-placeholder location="classpath*:categolj.properties" />
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean
+                class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                <property name="objectMapper" ref="objectMapper" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper">
+        <property name="propertyNamingStrategy">
+            <bean
+                class="org.codehaus.jackson.map.PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy" />
+        </property>
+        <property name="dateFormat">
+            <bean class="org.codehaus.jackson.map.util.StdDateFormat" />
+        </property>
+    </bean>
+</beans>
