@@ -414,7 +414,7 @@
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <jdk.version>1.7</jdk.version>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
-        <org.springframework-version>3.2.3.RELEASE</org.springframework-version>
+        <org.springframework-version>3.2.4.RELEASE</org.springframework-version>
         <org.springframework.security.version>3.1.4.RELEASE</org.springframework.security.version>
         <org.aspectj-version>1.6.9</org.aspectj-version>
         <org.slf4j-version>1.6.1</org.slf4j-version>
@@ -423,7 +423,7 @@
         <pmd.maven.plugin.version>2.7.1</pmd.maven.plugin.version>
         <commons-fileupload.version>1.2.2</commons-fileupload.version>
         <commons-io.version>2.0.1</commons-io.version>
-        <org.codehaus.jackson.version>1.6.4</org.codehaus.jackson.version>
+        <org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
         <ch.qos.logback.version>0.9.24</ch.qos.logback.version>
         <javax.inject.version>1</javax.inject.version>
         <javax.validation.version>1.0.0.GA</javax.validation.version>
