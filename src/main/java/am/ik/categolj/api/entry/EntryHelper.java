@@ -14,7 +14,7 @@ import am.ik.categolj.domain.model.Entry;
 @Component
 public class EntryHelper {
 
-	protected EntryResponse convertEntry(Entry entry) {
+	public EntryResponse convertEntry(Entry entry) {
 		EntryResponse response = new EntryResponse();
 		response.setEntryId(entry.getId());
 		response.setTitle(entry.getTitle());

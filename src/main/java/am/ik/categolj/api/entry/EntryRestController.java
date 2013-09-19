@@ -3,6 +3,7 @@ package am.ik.categolj.api.entry;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import am.ik.categolj.domain.common.consts.Const;
 import am.ik.categolj.domain.model.Entry;
+import am.ik.categolj.domain.service.entry.EntrySearchService;
 import am.ik.categolj.domain.service.entry.EntryService;
 
 @Controller
@@ -22,6 +24,8 @@ import am.ik.categolj.domain.service.entry.EntryService;
 public class EntryRestController {
 	@Inject
 	protected EntryService entryService;
+	@Inject
+	protected EntrySearchService entrySearchService;
 
 	@Inject
 	protected EntryHelper entryHelper;
@@ -29,9 +33,30 @@ public class EntryRestController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public Collection<EntryResponse> getEntries(
-			@RequestParam(required = false, defaultValue = "1") Integer page) {
+			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 		List<Entry> entries = entryService.getEntriesByPage(page,
 				Const.VIEW_COUNT);
+
+		// bean convert
+		List<EntryResponse> responses = new ArrayList<>();
+		for (Entry entry : entries) {
+			EntryResponse response = entryHelper.convertEntry(entry);
+			responses.add(response);
+		}
+		return responses;
+	}
+
+	@RequestMapping(params = "q", method = RequestMethod.GET)
+	@ResponseBody
+	public Collection<EntryResponse> searcgEntries(
+			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			@RequestParam(value = "q") String query) {
+
+		Set<String> keywords = entrySearchService.splitQuery(query);
+		List<Entry> entries = entrySearchService
+				.getKeywordSearchedEntriesByPage(keywords, page,
+						Const.VIEW_COUNT);
+
 		// bean convert
 		List<EntryResponse> responses = new ArrayList<>();
 		for (Entry entry : entries) {
