@@ -16,13 +16,14 @@
                 <property name="objectMapper" ref="objectMapper" />
             </bean>
         </mvc:message-converters>
+        <mvc:argument-resolvers>
+            <bean
+                class="org.springframework.data.web.PageableHandlerMethodArgumentResolver">
+            </bean>
+        </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
     <bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper">
-<!--         <property name="propertyNamingStrategy"> -->
-<!--             <bean -->
-<!--                 class="org.codehaus.jackson.map.PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy" /> -->
-<!--         </property> -->
         <property name="dateFormat">
             <bean class="org.codehaus.jackson.map.util.StdDateFormat" />
         </property>

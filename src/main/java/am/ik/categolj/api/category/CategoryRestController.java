@@ -6,11 +6,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import am.ik.categolj.api.entry.EntryHelper;
@@ -43,19 +46,22 @@ public class CategoryRestController {
 
 	@RequestMapping(value = "{category}/entries", method = RequestMethod.GET)
 	@ResponseBody
-	public Collection<EntryResponse> getEntries(
-			@RequestParam(required = false, defaultValue = "1") Integer page,
+	public Page<EntryResponse> getEntries(
+			@PageableDefault(size = Const.REST_VIEW_COUNT) Pageable pageable,
 			@PathVariable("category") String category) {
 		List<Category> categories = CategoryUtils.populateCategoriesFromPath(
 				category, Const.CATEGORY_DELIM);
 		List<Entry> entries = entryService.getCategorizedEntriesByPage(
-				categories, page, Const.VIEW_COUNT);
+				categories, pageable.getPageNumber() + 1,
+				pageable.getPageSize());
+		int total = entryService.getCategorizeEntryCount(categories);
 		// bean convert
 		List<EntryResponse> responses = new ArrayList<>();
 		for (Entry entry : entries) {
 			EntryResponse response = entryHelper.convertEntry(entry);
 			responses.add(response);
 		}
-		return responses;
+		Page<EntryResponse> page = new PageImpl<>(responses, pageable, total);
+		return page;
 	}
 }
