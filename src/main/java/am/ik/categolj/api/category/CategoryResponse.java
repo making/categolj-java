@@ -3,20 +3,20 @@ package am.ik.categolj.api.category;
 import java.util.List;
 
 public class CategoryResponse {
-	private List<CategoryResponseElement> category;
+	private List<String> category;
 
 	public CategoryResponse() {
 	}
 
-	public CategoryResponse(List<CategoryResponseElement> category) {
+	public CategoryResponse(List<String> category) {
 		this.category = category;
 	}
 
-	public void setCategory(List<CategoryResponseElement> category) {
+	public void setCategory(List<String> category) {
 		this.category = category;
 	}
 
-	public List<CategoryResponseElement> getCategory() {
+	public List<String> getCategory() {
 		return category;
 	}
 }

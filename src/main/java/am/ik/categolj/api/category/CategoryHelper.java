@@ -34,13 +34,9 @@ public class CategoryHelper {
 		for (String categoryString : categoryStringSet) {
 			Iterable<String> splitted = Splitter.on(SEPARATOR).split(
 					categoryString);
-			long categoryId = 0;
-			List<CategoryResponseElement> elements = new ArrayList<>();
+			List<String> elements = new ArrayList<>();
 			for (String name : splitted) {
-				CategoryResponseElement element = new CategoryResponseElement();
-				element.setCategoryName(name);
-				element.setCategoryId(++categoryId);
-				elements.add(element);
+				elements.add(name);
 			}
 			responses.add(new CategoryResponse(elements));
 		}
