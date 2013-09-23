@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import am.ik.categolj.api.category.CategoryResponseElement;
 import am.ik.categolj.api.user.UserResponse;
 import am.ik.categolj.domain.common.util.MarkdownUtils;
 import am.ik.categolj.domain.model.Category;
@@ -24,12 +23,9 @@ public class EntryHelper {
 		response.setCreatedAt(entry.getCreatedAt());
 		response.setUpdatedAt(entry.getUpdatedAt());
 		if (entry.getCategories() != null && !entry.getCategories().isEmpty()) {
-			List<CategoryResponseElement> categoryResponses = new ArrayList<>();
+			List<String> categoryResponses = new ArrayList<>();
 			for (Category category : entry.getCategories()) {
-				CategoryResponseElement categoryResponse = new CategoryResponseElement();
-				categoryResponse.setCategoryId(category.getId());
-				categoryResponse.setCategoryName(category.getName());
-				categoryResponses.add(categoryResponse);
+				categoryResponses.add(category.getName());
 			}
 			response.setCategory(categoryResponses);
 		}

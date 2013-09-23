@@ -3,14 +3,13 @@ package am.ik.categolj.api.entry;
 import java.util.Date;
 import java.util.List;
 
-import am.ik.categolj.api.category.CategoryResponseElement;
 import am.ik.categolj.api.user.UserResponse;
 
 public class EntryResponse {
 	private Long entryId;
 	private String title;
 	private String contents;
-	private List<CategoryResponseElement> category;
+	private List<String> category;
 	private Date createdAt;
 	private UserResponse createdBy;
 	private Date updatedAt;
@@ -40,11 +39,11 @@ public class EntryResponse {
 		this.contents = contents;
 	}
 
-	public List<CategoryResponseElement> getCategory() {
+	public List<String> getCategory() {
 		return category;
 	}
 
-	public void setCategory(List<CategoryResponseElement> category) {
+	public void setCategory(List<String> category) {
 		this.category = category;
 	}
 
