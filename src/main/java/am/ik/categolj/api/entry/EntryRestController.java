@@ -37,7 +37,6 @@ public class EntryRestController {
 	@ResponseBody
 	public Page<EntryResponse> getEntries(
 			@PageableDefault(size = Const.REST_VIEW_COUNT) Pageable pageable) {
-		System.out.println(pageable);
 		List<Entry> entries = entryService.getEntriesByPage(
 				pageable.getPageNumber() + 1, pageable.getPageSize());
 		int total = entryService.getTotalEntryCount();
