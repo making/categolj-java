@@ -13,11 +13,14 @@
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
         up static resources in the ${webappRoot}/resources directory -->
-    <mvc:resources mapping="/resources/**" location="classpath:/META-INF/resources/"
-        cache-period="604800" />
+    <mvc:resources mapping="/resources/**"
+        location="classpath:/META-INF/resources/" cache-period="604800" />
     <mvc:resources mapping="/favicon.ico" location="/resources/images/favicon.ico"
         cache-period="604800" />
     <mvc:resources mapping="/upload/*/*" location="${categolj.upload.dir}/" />
+    <!-- CategLJ2 support -->
+    <mvc:resources mapping="/*" location="categolj2-frontend/"
+        cache-period="604800" />
 
     <!-- Configures Handler Interceptors -->
     <mvc:interceptors>
