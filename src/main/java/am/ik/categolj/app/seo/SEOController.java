@@ -33,17 +33,22 @@ public class SEOController {
 			@RequestParam("_escaped_fragment_") String escapedFragment,
 			HttpServletRequest request) throws IOException,
 			InterruptedException {
-		String url = request.getScheme() + "://" + request.getServerName()
-				+ ":" + request.getServerPort() + request.getRequestURI() + "#"
-				+ escapedFragment;
-		logger.warn("retrieve {}", url);
+
+		StringBuilder urlBuilder = new StringBuilder(request.getRequestURL());
+		urlBuilder.append("#").append(escapedFragment);
+		logger.warn("retrieve {}", urlBuilder);
 		String path = phantomjsScript.getURL().getPath();
-		ProcessBuilder pb = new ProcessBuilder(phantomjsPath, path, url);
+		ProcessBuilder pb = new ProcessBuilder(phantomjsPath, path,
+				urlBuilder.toString());
 		Process process = pb.start();
-		process.waitFor();
-		try (InputStream inputStream = process.getInputStream()) {
-			String contents = IOUtils.toString(inputStream);
-			return contents;
+		try {
+			process.waitFor();
+			try (InputStream inputStream = process.getInputStream()) {
+				String contents = IOUtils.toString(inputStream);
+				return contents;
+			}
+		} finally {
+			process.destroy();
 		}
 	}
 }
